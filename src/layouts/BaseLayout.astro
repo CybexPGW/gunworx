@@ -1,0 +1,1535 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  type?: string;
+}
+
+const {
+  title,
+  description = 'Cybex Precision Gunworx – Custom-built AR-15 rifles, uppers, lowers, and accessories. Precision-machined firearms built in the USA. Shop online or visit us today.',
+  ogImage = '/images/og-default.webp',
+  canonicalUrl = Astro.url.href,
+  type = 'website',
+} = Astro.props;
+
+const siteUrl = 'https://cybexprecisiongunworx.com';
+const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rifles & Precision Firearms' : `${title} | Cybex Precision Gunworx`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <title>{fullTitle}</title>
+
+  <!-- Canonical -->
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Open Graph -->
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content={type} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content="Cybex Precision Gunworx" />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Snipcart -->
+  <link rel="preconnect" href="https://cdn.snipcart.com" />
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="Cybex Precision Gunworx" href="/rss.xml" />
+
+  <style is:global>
+    /* ============================================
+       DESIGN SYSTEM – Cybex Precision Gunworx
+       Dark, bold, precision firearms aesthetic
+    ============================================ */
+
+    :root {
+      /* Brand Colors */
+      --cpg-black: #0a0a0a;
+      --cpg-dark: #111111;
+      --cpg-darker: #0d0d0d;
+      --cpg-charcoal: #1a1a1a;
+      --cpg-gunmetal: #2a2a2a;
+      --cpg-steel: #3a3a3a;
+      --cpg-silver: #8a8a8a;
+      --cpg-light: #b0b0b0;
+      --cpg-white: #f5f5f5;
+      --cpg-pure-white: #ffffff;
+
+      /* Accent */
+      --cpg-accent: #c8102e;
+      --cpg-accent-hover: #e01535;
+      --cpg-accent-dark: #9a0c22;
+      --cpg-gold: #c9a84c;
+      --cpg-gold-light: #d4b95f;
+
+      /* Functional */
+      --cpg-success: #22c55e;
+      --cpg-warning: #f59e0b;
+      --cpg-border: rgba(255,255,255,0.08);
+      --cpg-border-hover: rgba(255,255,255,0.15);
+
+      /* Typography */
+      --font-heading: 'Oswald', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      /* Spacing */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 6rem;
+
+      /* Transitions */
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+      --transition-slow: 400ms ease;
+
+      /* Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,0.6);
+      --shadow-glow: 0 0 20px rgba(200,16,46,0.15);
+    }
+
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--cpg-black);
+      color: var(--cpg-light);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+    ul, ol { list-style: none; }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--cpg-pure-white);
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    /* ============================================
+       HEADER / NAV
+    ============================================ */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--cpg-border);
+      transition: background var(--transition-base);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-lg);
+      gap: var(--space-lg);
+    }
+
+    .header-info-bar {
+      background: var(--cpg-accent);
+      color: var(--cpg-pure-white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 6px var(--space-md);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .header-info-bar a {
+      color: var(--cpg-pure-white);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) 0;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--cpg-pure-white);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 0.55em;
+      color: var(--cpg-accent);
+      font-weight: 500;
+      letter-spacing: 0.15em;
+    }
+
+    .nav-desktop {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .nav-desktop {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+    }
+
+    .nav-desktop a {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--cpg-light);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .nav-desktop a:hover,
+    .nav-desktop a[aria-current="page"] {
+      color: var(--cpg-pure-white);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .cart-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--cpg-light);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .cart-btn:hover {
+      color: var(--cpg-pure-white);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .cart-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: var(--cpg-accent);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: var(--space-sm);
+      cursor: pointer;
+    }
+
+    @media (min-width: 1024px) {
+      .menu-toggle { display: none; }
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cpg-pure-white);
+      border-radius: 2px;
+      transition: all var(--transition-fast);
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10,10,10,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      padding: 100px var(--space-xl) var(--space-xl);
+      flex-direction: column;
+      gap: var(--space-xs);
+      overflow-y: auto;
+    }
+
+    .nav-mobile.open {
+      display: flex;
+    }
+
+    .nav-mobile a {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--cpg-light);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--cpg-border);
+      transition: color var(--transition-fast);
+    }
+
+    .nav-mobile a:hover {
+      color: var(--cpg-accent);
+    }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--cpg-darker);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(10,10,10,0.85) 0%,
+        rgba(10,10,10,0.6) 50%,
+        rgba(10,10,10,0.4) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: var(--space-4xl) var(--space-lg);
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: rgba(200,16,46,0.15);
+      border: 1px solid rgba(200,16,46,0.3);
+      color: var(--cpg-accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 100px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero h1 .accent {
+      color: var(--cpg-accent);
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--cpg-silver);
+      margin-bottom: var(--space-2xl);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      justify-content: center;
+    }
+
+    /* ============================================
+       BUTTONS
+    ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 14px 32px;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--cpg-accent);
+      color: var(--cpg-pure-white);
+      border: 2px solid var(--cpg-accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--cpg-accent-hover);
+      border-color: var(--cpg-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cpg-pure-white);
+      border: 2px solid var(--cpg-border-hover);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cpg-pure-white);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================
+       SECTIONS
+    ============================================ */
+    .section {
+      padding: var(--space-4xl) 0;
+    }
+
+    .section-dark {
+      background: var(--cpg-dark);
+    }
+
+    .section-darker {
+      background: var(--cpg-darker);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .section-header .label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cpg-accent);
+      margin-bottom: var(--space-md);
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: var(--space-md);
+    }
+
+    .section-header p {
+      color: var(--cpg-silver);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ============================================
+       PRODUCT CARDS
+    ============================================ */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .product-card {
+      background: var(--cpg-charcoal);
+      border: 1px solid var(--cpg-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition-base);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      border-color: var(--cpg-border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-card-image {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--cpg-gunmetal);
+    }
+
+    .product-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .product-card:hover .product-card-image img {
+      transform: scale(1.05);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: var(--space-md);
+      left: var(--space-md);
+      background: var(--cpg-accent);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+    }
+
+    .product-card-body {
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-category {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cpg-accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .product-name {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--cpg-pure-white);
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+    }
+
+    .product-name a {
+      transition: color var(--transition-fast);
+    }
+
+    .product-name a:hover {
+      color: var(--cpg-accent);
+    }
+
+    .product-desc {
+      font-size: 0.85rem;
+      color: var(--cpg-silver);
+      margin-bottom: var(--space-lg);
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      margin-top: auto;
+    }
+
+    .product-price {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--cpg-pure-white);
+    }
+
+    .product-price .original {
+      font-size: 0.85rem;
+      color: var(--cpg-silver);
+      text-decoration: line-through;
+      margin-left: var(--space-xs);
+    }
+
+    .btn-add-cart {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background: var(--cpg-accent);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .btn-add-cart:hover {
+      background: var(--cpg-accent-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================
+       FEATURES / VALUE PROPS
+    ============================================ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: var(--space-2xl) var(--space-lg);
+      background: var(--cpg-charcoal);
+      border: 1px solid var(--cpg-border);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-base);
+    }
+
+    .feature-card:hover {
+      border-color: var(--cpg-accent);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(200,16,46,0.1);
+      border-radius: var(--radius-md);
+      color: var(--cpg-accent);
+    }
+
+    .feature-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--cpg-silver);
+    }
+
+    /* ============================================
+       CATEGORY FILTER
+    ============================================ */
+    .category-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .category-btn {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1px solid var(--cpg-border);
+      color: var(--cpg-silver);
+      background: transparent;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: var(--cpg-accent);
+      border-color: var(--cpg-accent);
+      color: var(--cpg-pure-white);
+    }
+
+    /* ============================================
+       FFL BANNER
+    ============================================ */
+    .ffl-banner {
+      background: linear-gradient(135deg, var(--cpg-charcoal) 0%, var(--cpg-dark) 100%);
+      border: 1px solid var(--cpg-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2xl);
+      margin-top: var(--space-3xl);
+    }
+
+    @media (max-width: 768px) {
+      .ffl-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    .ffl-banner-icon {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(200,16,46,0.1);
+      border-radius: var(--radius-lg);
+    }
+
+    .ffl-banner h3 {
+      font-size: 1.3rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .ffl-banner p {
+      color: var(--cpg-silver);
+      font-size: 0.9rem;
+    }
+
+    /* ============================================
+       ABOUT SECTION
+    ============================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .about-image {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--cpg-gunmetal);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-content h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: var(--space-lg);
+    }
+
+    .about-content p {
+      color: var(--cpg-silver);
+      margin-bottom: var(--space-md);
+      line-height: 1.8;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: var(--space-2xl);
+      margin-top: var(--space-xl);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--cpg-accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--cpg-silver);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: var(--space-xs);
+    }
+
+    /* ============================================
+       CONTACT SECTION
+    ============================================ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3xl);
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .contact-info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-lg);
+      padding: var(--space-lg);
+      background: var(--cpg-charcoal);
+      border: 1px solid var(--cpg-border);
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition-fast);
+    }
+
+    .contact-info-card:hover {
+      border-color: var(--cpg-accent);
+    }
+
+    .contact-icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(200,16,46,0.1);
+      border-radius: var(--radius-md);
+      color: var(--cpg-accent);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cpg-silver);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--cpg-charcoal);
+      border: 1px solid var(--cpg-border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: var(--cpg-pure-white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color var(--transition-fast);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--cpg-accent);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .site-footer {
+      background: var(--cpg-darker);
+      border-top: 1px solid var(--cpg-border);
+      padding: var(--space-4xl) 0 var(--space-xl);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-3xl);
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .footer-brand p {
+      color: var(--cpg-silver);
+      font-size: 0.9rem;
+      margin-top: var(--space-md);
+      max-width: 320px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cpg-charcoal);
+      border: 1px solid var(--cpg-border);
+      border-radius: var(--radius-sm);
+      color: var(--cpg-silver);
+      transition: all var(--transition-fast);
+    }
+
+    .footer-social a:hover {
+      background: var(--cpg-accent);
+      border-color: var(--cpg-accent);
+      color: white;
+    }
+
+    .footer-col h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: var(--space-lg);
+      color: var(--cpg-pure-white);
+    }
+
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .footer-col a {
+      font-size: 0.9rem;
+      color: var(--cpg-silver);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-col a:hover {
+      color: var(--cpg-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--cpg-border);
+      padding-top: var(--space-xl);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+      font-size: 0.8rem;
+      color: var(--cpg-steel);
+    }
+
+    .footer-bottom a {
+      color: var(--cpg-silver);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-bottom a:hover {
+      color: var(--cpg-accent);
+    }
+
+    /* ============================================
+       PRODUCT DETAIL PAGE
+    ============================================ */
+    .product-detail {
+      padding-top: 140px;
+    }
+
+    .product-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3xl);
+    }
+
+    @media (min-width: 768px) {
+      .product-detail-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .product-detail-image {
+      background: var(--cpg-charcoal);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-detail-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-detail-info h1 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      margin-bottom: var(--space-md);
+    }
+
+    .product-detail-price {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--cpg-accent);
+      margin-bottom: var(--space-lg);
+    }
+
+    .product-detail-desc {
+      color: var(--cpg-silver);
+      line-height: 1.8;
+      margin-bottom: var(--space-xl);
+    }
+
+    .specs-table {
+      width: 100%;
+      margin-bottom: var(--space-xl);
+    }
+
+    .specs-table tr {
+      border-bottom: 1px solid var(--cpg-border);
+    }
+
+    .specs-table td {
+      padding: var(--space-sm) 0;
+      font-size: 0.9rem;
+    }
+
+    .specs-table td:first-child {
+      color: var(--cpg-silver);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      width: 40%;
+    }
+
+    .specs-table td:last-child {
+      color: var(--cpg-pure-white);
+    }
+
+    /* ============================================
+       PAGE HEADER
+    ============================================ */
+    .page-header {
+      padding: 140px 0 var(--space-3xl);
+      background: linear-gradient(180deg, var(--cpg-dark) 0%, var(--cpg-black) 100%);
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: var(--space-md);
+    }
+
+    .page-header p {
+      color: var(--cpg-silver);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      font-size: 0.8rem;
+      color: var(--cpg-steel);
+      margin-bottom: var(--space-lg);
+    }
+
+    .breadcrumb a {
+      color: var(--cpg-silver);
+      transition: color var(--transition-fast);
+    }
+
+    .breadcrumb a:hover {
+      color: var(--cpg-accent);
+    }
+
+    .breadcrumb span {
+      color: var(--cpg-steel);
+    }
+
+    /* ============================================
+       POLICY PAGES
+    ============================================ */
+    .prose {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--cpg-light);
+      line-height: 1.8;
+    }
+
+    .prose h2 {
+      font-size: 1.5rem;
+      margin-top: var(--space-2xl);
+      margin-bottom: var(--space-md);
+    }
+
+    .prose h3 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-sm);
+    }
+
+    .prose p {
+      margin-bottom: var(--space-md);
+    }
+
+    .prose ul {
+      padding-left: var(--space-xl);
+      margin-bottom: var(--space-md);
+    }
+
+    .prose ul li {
+      list-style: disc;
+      margin-bottom: var(--space-xs);
+    }
+
+    .prose a {
+      color: var(--cpg-accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ============================================
+       ANIMATIONS
+    ============================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-up {
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .delay-3 { animation-delay: 0.3s; opacity: 0; }
+    .delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+    /* Snipcart overrides */
+    .snipcart-modal__container {
+      z-index: 10000 !important;
+    }
+
+    /* ============================================
+       SCROLL TO TOP
+    ============================================ */
+    .scroll-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      background: var(--cpg-accent);
+      color: white;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-base);
+      z-index: 500;
+      cursor: pointer;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      background: var(--cpg-accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Product Placeholder */
+    .product-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--cpg-gunmetal) 0%, var(--cpg-charcoal) 100%);
+      color: var(--cpg-steel);
+    }
+
+    .product-placeholder svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": `${siteUrl}/#business`,
+        "name": "Cybex Precision Gunworx",
+        "description": "Custom-built AR-15 rifles, uppers, lowers, and precision firearms accessories. Built with precision in the USA.",
+        "url": siteUrl,
+        "telephone": "+1-419-350-8484",
+        "email": "sales@cybexprecisiongunworx.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Toledo",
+          "addressRegion": "OH",
+          "addressCountry": "US"
+        },
+        "priceRange": "$$",
+        "sameAs": [
+          "https://www.facebook.com/CybexPrecisionGunworx"
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        "url": siteUrl,
+        "name": "Cybex Precision Gunworx",
+        "inLanguage": "en-US",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${siteUrl}/shop/?q={search_term_string}`
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  })} />
+
+  <!-- Header -->
+  <div class="header-info-bar">
+    ⚡ Free Shipping on Orders Over $500 &nbsp;|&nbsp; FFL Transfer Available &nbsp;|&nbsp; <a href="tel:+14193508484">Call (419) 350-8484</a>
+  </div>
+
+  <header class="site-header" id="site-header">
+    <div class="header-top">
+      <a href="/" class="logo" aria-label="Cybex Precision Gunworx Home">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="6" fill="#c8102e"/>
+          <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Oswald" font-weight="700" font-size="18">CPG</text>
+        </svg>
+        <div class="logo-text">
+          Cybex Precision
+          <span>Gunworx</span>
+        </div>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Main Navigation">
+        <a href="/">Home</a>
+        <a href="/shop/">Shop</a>
+        <a href="/about/">About</a>
+        <a href="/ffl-transfer/">FFL Transfer</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="snipcart-checkout cart-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="snipcart-items-count cart-count">0</span>
+        </button>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Mobile Navigation">
+    <a href="/">Home</a>
+    <a href="/shop/">Shop All</a>
+    <a href="/about/">About Us</a>
+    <a href="/ffl-transfer/">FFL Transfer</a>
+    <a href="/contact/">Contact</a>
+  </nav>
+
+  <main>
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="6" fill="#c8102e"/>
+              <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Oswald" font-weight="700" font-size="18">CPG</text>
+            </svg>
+            <div class="logo-text">
+              Cybex Precision
+              <span>Gunworx</span>
+            </div>
+          </a>
+          <p>Custom-built precision firearms crafted with uncompromising quality. Every build is a statement of accuracy and reliability.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/CybexPrecisionGunworx" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/cybexprecisiongunworx" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="/shop/">All Products</a></li>
+            <li><a href="/shop/?category=complete-firearms">Complete Firearms</a></li>
+            <li><a href="/shop/?category=ar-15-uppers">AR-15 Uppers</a></li>
+            <li><a href="/shop/?category=ar-15-lowers">AR-15 Lowers</a></li>
+            <li><a href="/shop/?category=accessories">Accessories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="/ffl-transfer/">FFL Transfers</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Policies</h4>
+          <ul>
+            <li><a href="/policies/shipping/">Shipping & Delivery</a></li>
+            <li><a href="/policies/returns/">Return Policy</a></li>
+            <li><a href="/policies/terms/">Terms & Conditions</a></li>
+            <li><a href="/policies/privacy/">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} Cybex Precision Gunworx. All rights reserved.</p>
+        <p>All firearm purchases require valid FFL for transfer. Must be 21+ years of age.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- Snipcart -->
+  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_API_KEY" data-config-modal-style="side" data-currency="usd">
+  </div>
+  <script src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js" defer></script>
+
+  <!-- Mobile Menu & Scroll -->
+  <script is:inline>
+    // Mobile menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('nav-mobile');
+    if (toggle && mobileNav) {
+      toggle.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        toggle.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', isOpen.toString());
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+          toggle.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scroll-top');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        scrollBtn.classList.toggle('visible', window.scrollY > 400);
+      });
+      scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About Us"
+  description="Cybex Precision Gunworx is a custom firearms builder specializing in precision AR-15 rifles, uppers, and lowers. Hand-built with uncompromising quality."
+>
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>About Us</span>
+      </div>
+      <h1>About Cybex Precision Gunworx</h1>
+      <p>Where precision engineering meets uncompromising craftsmanship.</p>
+    </div>
+  </div>
+
+  <!-- Story -->
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="/images/workshop.webp" alt="Cybex Precision Gunworx precision firearms workshop" loading="lazy" width="800" height="600" />
+        </div>
+        <div class="about-content">
+          <span class="label" style="display:inline-block;font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--cpg-accent);margin-bottom:var(--space-md);">Our Mission</span>
+          <h2>Precision Is Not Optional. <br>It's Everything.</h2>
+          <p>
+            Cybex Precision Gunworx was founded on a simple principle: every shooter deserves a firearm built to the highest standard. We don't believe in "good enough." Every component is hand-selected, every assembly point is inspected, and every build is test-fired before it leaves our shop.
+          </p>
+          <p>
+            Our team brings decades of combined experience in firearms manufacturing, gunsmithing, and competitive shooting. We understand what makes a rifle accurate, reliable, and built to last — because we use our own builds every day.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">What Sets Us Apart</span>
+        <h2>The CPG Difference</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3>Zero Compromise</h3>
+          <p>We use only proven, high-quality components. No shortcuts, no cheap substitutes. Mil-Spec is our starting point, not our ceiling.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>Test-Fired & Verified</h3>
+          <p>Every complete firearm is function-tested and accuracy-verified before shipping. We send you the test results with your build.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3>Direct Builder Access</h3>
+          <p>Have a question about your build? Talk directly to the person who assembled it. No call centers, no runaround.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section">
+    <div class="container" style="text-align: center;">
+      <div class="stat-row" style="justify-content: center; gap: var(--space-4xl); flex-wrap: wrap;">
+        <div class="stat">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Custom Builds</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Test Fired</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">USA</div>
+          <div class="stat-label">Built Here</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5★</div>
+          <div class="stat-label">Reviews</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-darker" style="text-align: center;">
+    <div class="container">
+      <h2 style="font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: var(--space-md);">Ready to Build?</h2>
+      <p style="color: var(--cpg-silver); margin-bottom: var(--space-xl); max-width: 500px; margin-left: auto; margin-right: auto;">
+        Whether you're looking for a complete rifle, a custom upper, or a precision build consultation — we're here.
+      </p>
+      <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+        <a href="/shop/" class="btn btn-primary">Shop Now →</a>
+        <a href="/contact/" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
