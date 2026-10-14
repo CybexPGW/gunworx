@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { products, categories } from '../../data/products';
+import ComplianceNotice from '../../components/ComplianceNotice.astro';
 
 export function getStaticPaths() {
   return products.map((product) => ({
@@ -106,13 +107,7 @@ const relatedProducts = products.filter(p => p.category === product.category && 
             )}
           </div>
 
-          {(product.category === 'complete-firearms' || product.category === 'ar-15-lowers') && (
-            <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(200,16,46,0.08); border: 1px solid rgba(200,16,46,0.2); border-radius: var(--radius-md);">
-              <p style="font-size: 0.85rem; color: var(--cpg-light);">
-                <strong style="color: var(--cpg-accent);">⚠ FFL Required:</strong> This item must be shipped to a licensed Federal Firearms Licensee (FFL) dealer. <a href="/ffl-transfer/" style="color: var(--cpg-accent); text-decoration: underline;">Learn about our FFL transfer service →</a>
-              </p>
-            </div>
-          )}
+          <ComplianceNotice category={product.category} />
         </div>
       </div>
 

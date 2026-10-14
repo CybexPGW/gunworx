@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { noShipStates, noShipTerritories, prop65Text } from '../../data/compliance';
+---
+
+<BaseLayout title="Restricted States & Shipping Limits" description="States and territories where Cybex Precision Gunworx cannot ship firearms, receivers, uppers and certain accessories, plus California Prop 65 notice.">
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb"><a href="/">Home</a><span>/</span><span>Restricted States</span></div>
+      <h1>Restricted States &amp; Legal Notices</h1>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="prose">
+        <h2>Where We Cannot Ship</h2>
+        <p>Firearm laws vary widely. To stay compliant, Cybex Precision Gunworx does <strong>not</strong> ship the following to the jurisdictions below, even to a local FFL:</p>
+        <ul>
+          <li>Complete rifles and pistols</li>
+          <li>Stripped and complete AR-15 lower receivers</li>
+          <li>AR-15 upper receivers and pistol uppers</li>
+          <li>Magazines, handguards, stocks or other parts that are regulated in the destination</li>
+        </ul>
+
+        <h3>Restricted states &amp; districts</h3>
+        <ul>
+          {noShipStates.map((s) => <li>{s.name} ({s.code})</li>)}
+        </ul>
+
+        <h3>Territories &amp; other destinations</h3>
+        <ul>
+          {noShipTerritories.map((t) => <li>{t}</li>)}
+        </ul>
+
+        <h2>Other Local Restrictions</h2>
+        <p>Cities, counties and some other states restrict magazine capacity, barrel features, adjustable stocks, suppressor-ready items and more. Orders for items we ship to non-restricted states are still your responsibility: you must verify that the product is legal where you live <em>and</em> where your receiving FFL is located. If in doubt, <a href="/contact/">contact us before ordering</a>.</p>
+
+        <h2>Order Review</h2>
+        <p>Every order is reviewed before shipping. We may cancel and refund any order destined for a restricted location or that we believe violates law, without liability.</p>
+
+        <h2>FFL &amp; Age Requirements</h2>
+        <ul>
+          <li>Complete firearms and serialized receivers ship only to a licensed FFL.</li>
+          <li>You must be 21+ to enter this site and to purchase handguns or pistol uppers; 18+ is the legal minimum for long guns, subject to your state's law.</li>
+          <li>You must pass a NICS background check and complete ATF Form 4473 at your FFL.</li>
+        </ul>
+
+        <h2>California Proposition 65</h2>
+        <p><strong>{prop65Text}</strong></p>
+        <p>Products sold on this site, including firearms, ammunition-related products, parts and accessories, can expose you to chemicals including lead and/or di(2-ethylhexyl)phthalate (DEHP), which are known to the State of California to cause cancer, birth defects or other reproductive harm. For more information go to <a href="https://www.p65warnings.ca.gov" target="_blank" rel="noopener">www.P65Warnings.ca.gov</a>.</p>
+        <p>Apparel and non-regulated accessories may still ship to California where legal. Firearms, receivers and uppers do not.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

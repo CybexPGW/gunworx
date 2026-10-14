@@ -1,0 +1,53 @@
+---
+import { MIN_AGE, noShipStateNames, prop65Text, isFFLProduct, isRestrictedProduct } from '../data/compliance';
+
+interface Props {
+  /** Product category slug. Omit for a general (shop-wide) notice. */
+  category?: string;
+}
+const { category } = Astro.props;
+const showFFL = category ? isFFLProduct(category) : false;
+const showRestricted = category ? isRestrictedProduct(category) : true;
+const showProp65 = category ? category !== 'apparel' : true;
+---
+
+<div class="compliance-notice" role="note">
+  {showFFL && (
+    <p>
+      <strong>FFL Required:</strong> Ships only to a licensed Federal Firearms Licensee. Valid FFL copy and a
+      completed ATF Form 4473 / background check are required before release.
+      <a href="/ffl-transfer/">FFL transfer info →</a>
+    </p>
+  )}
+  {showRestricted && (
+    <p>
+      <strong>Shipping restrictions:</strong> We do not ship this category to {noShipStateNames.join(', ')}.
+      <a href="/policies/restricted-states/">See full list →</a>
+    </p>
+  )}
+  {showProp65 && (
+    <p class="prop65">
+      <span aria-hidden="true">⚠</span> <strong>California Prop 65:</strong> {prop65Text}
+    </p>
+  )}
+  <p class="age">Must be {MIN_AGE}+ to purchase. Buyers are responsible for knowing and obeying all local laws.</p>
+</div>
+
+<style>
+  .compliance-notice {
+    margin-top: var(--space-lg, 1.5rem);
+    padding: var(--space-md, 1rem);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--cpg-steel, #3a3a3a);
+    border-left: 3px solid var(--cpg-accent, #c8102e);
+    border-radius: var(--radius-md, 8px);
+    font-size: 0.82rem;
+    color: var(--cpg-light, #ccc);
+    line-height: 1.6;
+  }
+  .compliance-notice p { margin: 0 0 0.5rem; }
+  .compliance-notice p:last-child { margin-bottom: 0; }
+  .compliance-notice strong { color: var(--cpg-white, #fff); }
+  .compliance-notice a { color: var(--cpg-accent, #c8102e); text-decoration: underline; }
+  .compliance-notice .age { color: var(--cpg-silver, #8a8a8a); font-size: 0.78rem; }
+</style>

@@ -1,4 +1,7 @@
 ---
+import AgeGate from '../components/AgeGate.astro';
+import { prop65Text } from '../data/compliance';
+
 interface Props {
   title: string;
   description?: string;
@@ -1325,6 +1328,7 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
   </style>
 </head>
 <body>
+  <AgeGate />
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -1474,6 +1478,7 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
           <ul>
             <li><a href="/policies/shipping/">Shipping & Delivery</a></li>
             <li><a href="/policies/returns/">Return Policy</a></li>
+            <li><a href="/policies/restricted-states/">Restricted States</a></li>
             <li><a href="/policies/terms/">Terms & Conditions</a></li>
             <li><a href="/policies/privacy/">Privacy Policy</a></li>
           </ul>
@@ -1482,7 +1487,8 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
 
       <div class="footer-bottom">
         <p>&copy; {new Date().getFullYear()} Cybex Precision Gunworx. All rights reserved.</p>
-        <p>All firearm purchases require valid FFL for transfer. Must be 21+ years of age.</p>
+        <p>All firearm purchases require valid FFL for transfer. Must be 21+ years of age. Not sold to <a href="/policies/restricted-states/">restricted states</a>.</p>
+        <p class="prop65-footer"><strong>California Prop 65:</strong> {prop65Text}</p>
       </div>
     </div>
   </footer>

@@ -1,0 +1,81 @@
+---
+import { MIN_AGE } from '../data/compliance';
+---
+
+<!-- Skip the gate instantly if already verified (runs before first paint) -->
+<script is:inline define:vars={{ MIN_AGE }}>
+  try {
+    const raw = localStorage.getItem('cpg-age-verified');
+    if (raw && Date.now() - Number(raw) < 1000 * 60 * 60 * 24 * 30) {
+      document.documentElement.classList.add('age-ok');
+    }
+  } catch (e) {}
+</script>
+<noscript><style>#age-gate { display: none !important; }</style></noscript>
+
+<div id="age-gate" class="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-title" aria-describedby="age-gate-desc">
+  <div class="age-gate-card">
+    <div class="age-gate-badge">{MIN_AGE}+</div>
+    <h2 id="age-gate-title">Age Verification</h2>
+    <p id="age-gate-desc">
+      This website offers firearms, firearm components and related products. You must be at least
+      <strong>{MIN_AGE} years old</strong> to enter. Purchases of long guns require buyers to be 18+ and handguns 21+,
+      and all firearm sales are subject to federal, state and local law.
+    </p>
+    <div class="age-gate-actions">
+      <button type="button" id="age-gate-yes" class="btn btn-primary">I am {MIN_AGE} or older – Enter</button>
+      <a id="age-gate-no" class="btn btn-outline" href="https://www.google.com" rel="noopener">I am under {MIN_AGE} – Exit</a>
+    </div>
+    <p class="age-gate-fine">
+      By entering you confirm you are of legal age and agree to our <a href="/policies/terms/">Terms</a>.
+      Firearms ship only to licensed FFLs and not to <a href="/policies/restricted-states/">restricted states</a>.
+    </p>
+  </div>
+</div>
+
+<style is:global>
+  .age-gate {
+    position: fixed; inset: 0; z-index: 10000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    background: rgba(5, 5, 5, 0.94);
+    backdrop-filter: blur(10px);
+  }
+  html.age-ok .age-gate { display: none; }
+  .age-gate-card {
+    max-width: 480px; width: 100%; text-align: center;
+    background: var(--cpg-charcoal, #1a1a1a);
+    border: 1px solid var(--cpg-steel, #3a3a3a);
+    border-top: 3px solid var(--cpg-accent, #c8102e);
+    border-radius: 10px; padding: 2.25rem 2rem;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+  }
+  .age-gate-badge {
+    width: 72px; height: 72px; margin: 0 auto 1rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.5rem;
+    color: #fff; background: var(--cpg-accent, #c8102e);
+  }
+  .age-gate-card h2 { font-size: 1.6rem; margin-bottom: 0.75rem; }
+  .age-gate-card p { color: var(--cpg-light, #ccc); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem; }
+  .age-gate-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .age-gate-actions .btn { justify-content: center; width: 100%; }
+  .age-gate-card .age-gate-fine { font-size: 0.78rem; color: var(--cpg-silver, #8a8a8a); margin: 0; }
+  .age-gate-fine a { color: var(--cpg-accent, #c8102e); text-decoration: underline; }
+  html:not(.age-ok) body { overflow: hidden; }
+</style>
+
+<script is:inline>
+  (function () {
+    var gate = document.getElementById('age-gate');
+    var yes = document.getElementById('age-gate-yes');
+    if (!gate || !yes) return;
+    if (!document.documentElement.classList.contains('age-ok')) {
+      setTimeout(function () { yes.focus(); }, 50);
+    }
+    yes.addEventListener('click', function () {
+      try { localStorage.setItem('cpg-age-verified', String(Date.now())); } catch (e) {}
+      document.documentElement.classList.add('age-ok');
+    });
+  })();
+</script>

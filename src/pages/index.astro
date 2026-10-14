@@ -3,6 +3,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { products, categories } from '../data/products';
 
 const featuredProducts = products.filter(p => p.featured);
+
+// Partner / brand logos (files in public/images). `dark` = white logo needing a dark tile.
+const brands = [
+  { name: 'Tactical Tailor', src: '/images/TT-Main-CMYK_RedGrey.avif' },
+  { name: 'Ultimate Muzzle', src: '/images/UMLogoWhite-1024x253.png', dark: true },
+  { name: 'ZA Machining', src: '/images/ZA-MACHINING-ACCURACY-LONG-WHITE-1980x333.png', dark: true },
+  { name: 'American Rim', src: '/images/americanrim.png' },
+  { name: 'Arken Optics', src: '/images/arkenlogo.webp' },
+  { name: 'BAT Machine Co', src: '/images/bat-machine-co-logo.svg' },
+  { name: 'MPA', src: '/images/cropped-MPA-Logo.webp' },
+  { name: 'Gunfoam', src: '/images/gunfoam-logo.svg' },
+  { name: "Kelbey's", src: '/images/kellbeyslogo.png' },
+  { name: 'Krieger Barrels', src: '/images/kreigerlogo.png' },
+  { name: 'Precision Quest', src: '/images/precisionquestlogo.png' },
+  { name: 'ProShot', src: '/images/professhead-logo.jpg' },
+];
 ---
 
 <BaseLayout title="Home">
@@ -153,6 +169,24 @@ const featuredProducts = products.filter(p => p.featured);
     </div>
   </section>
 
+  <!-- BRANDS -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Our Partners</span>
+        <h2>Brands We Trust</h2>
+        <p>Quality components from the names serious shooters rely on.</p>
+      </div>
+      <div class="brand-grid">
+        {brands.map(b => (
+          <div class={`brand-tile${b.dark ? ' brand-tile-dark' : ''}`}>
+            <img src={b.src} alt={`${b.name} logo`} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- FFL TRANSFER CALLOUT -->
   <section class="section">
     <div class="container">
@@ -196,3 +230,28 @@ const featuredProducts = products.filter(p => p.featured);
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  .brand-tile {
+    background: #f2f2f2;
+    border-radius: 8px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    transition: transform 0.2s ease;
+  }
+  .brand-tile:hover { transform: translateY(-3px); }
+  .brand-tile-dark { background: #1a1a1a; border: 1px solid #333; }
+  .brand-tile img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+</style>
