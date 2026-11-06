@@ -1,5 +1,6 @@
 ---
 import AgeGate from '../components/AgeGate.astro';
+import CartDrawer from '../components/CartDrawer.astro';
 import { prop65Text } from '../data/compliance';
 
 interface Props {
@@ -8,18 +9,21 @@ interface Props {
   ogImage?: string;
   canonicalUrl?: string;
   type?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
-  description = 'Cybex Precision Gunworx – Custom-built AR-15 rifles, uppers, lowers, and accessories. Precision-machined firearms built in the USA. Shop online or visit us today.',
-  ogImage = '/images/og-default.webp',
+  description = 'Cybex Precision Gunworx – Hand-built competition-ready rimfire & centerfire precision rifles, PQP benchrest rests, front tops, and precision accessories in stock now.',
+  ogImage = '/images/og-default.jpg',
   canonicalUrl = Astro.url.href,
   type = 'website',
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = 'https://cybexprecisiongunworx.com';
-const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rifles & Precision Firearms' : `${title} | Cybex Precision Gunworx`;
+const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Precision Rimfire & Centerfire Rifles & Benchrest Equipment' : `${title} | Cybex Precision Gunworx`;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 ---
 
 <!DOCTYPE html>
@@ -28,11 +32,18 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="Cybex Precision Gunworx" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
   <title>{fullTitle}</title>
 
-  <!-- Canonical -->
+  <!-- Canonical & Sitemap -->
   <link rel="canonical" href={canonicalUrl} />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+  <!-- AI / LLM Context Discovery -->
+  <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt" />
+  <link rel="alternate" type="text/plain" title="LLMs Full Knowledge Base" href="/llms-full.txt" />
 
   <!-- Open Graph -->
   <meta property="og:locale" content="en_US" />
@@ -41,7 +52,8 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:site_name" content="Cybex Precision Gunworx" />
-  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:alt" content={fullTitle} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
@@ -49,7 +61,8 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+  <meta name="twitter:image" content={ogImageUrl} />
+  <meta name="twitter:image:alt" content={fullTitle} />
 
   <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,10 +71,6 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-  <!-- Snipcart -->
-  <link rel="preconnect" href="https://cdn.snipcart.com" />
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="Cybex Precision Gunworx" href="/rss.xml" />
@@ -165,7 +174,7 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
 
     .container {
       width: 100%;
-      max-width: 1280px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 var(--space-lg);
     }
@@ -211,6 +220,11 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
       text-underline-offset: 2px;
     }
 
+    @media (max-width: 640px) {
+      .header-info-bar { font-size: 0.65rem; letter-spacing: 0.04em; padding: 5px var(--space-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .info-bar-extra { display: none; }
+    }
+
     .logo {
       display: flex;
       align-items: center;
@@ -235,6 +249,36 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
       color: var(--cpg-accent);
       font-weight: 500;
       letter-spacing: 0.15em;
+    }
+
+    /* Brand logo image — dark lettering needs a light plate on the dark theme */
+    .logo-plate {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      background: linear-gradient(180deg, #ffffff 0%, #e9ebee 100%);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.6);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .logo:hover .logo-plate {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 0 0 1px rgba(200,16,46,0.35);
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      max-width: none;
+    }
+
+    .site-header .logo { padding: 10px 0; }
+    .site-footer .logo-img { height: 56px; }
+
+    @media (max-width: 640px) {
+      .logo-plate { padding: 4px 10px; }
+      .logo-img { height: 36px; }
     }
 
     .nav-desktop {
@@ -266,6 +310,22 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
     .nav-desktop a[aria-current="page"] {
       color: var(--cpg-pure-white);
       background: rgba(255,255,255,0.06);
+    }
+
+    .nav-desktop .nav-rts {
+      color: var(--cpg-pure-white);
+      border: 1px solid rgba(200,16,46,0.6);
+      background: rgba(200,16,46,0.12);
+    }
+
+    .nav-desktop .nav-rts:hover {
+      background: var(--cpg-accent);
+      border-color: var(--cpg-accent);
+    }
+
+    @media (min-width: 1024px) and (max-width: 1279px) {
+      .nav-desktop a { padding: var(--space-sm) 10px; font-size: 0.82rem; }
+      .site-header .logo-img { height: 40px; }
     }
 
     .header-actions {
@@ -553,7 +613,7 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
     ============================================ */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
       gap: var(--space-xl);
     }
 
@@ -575,20 +635,25 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
 
     .product-card-image {
       position: relative;
-      aspect-ratio: 4/3;
+      aspect-ratio: 4 / 3;
+      min-height: 250px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
-      background: var(--cpg-gunmetal);
+      background: #ffffff;
     }
 
     .product-card-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform var(--transition-slow);
     }
 
     .product-card:hover .product-card-image img {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
 
     .product-badge {
@@ -1101,17 +1166,22 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
       gap: var(--space-3xl);
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 900px) {
       .product-detail-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1.35fr 1fr;
+        align-items: start;
       }
     }
 
     .product-detail-image {
-      background: var(--cpg-charcoal);
+      position: relative;
+      background: #ffffff;
       border-radius: var(--radius-lg);
+      border: 1px solid var(--cpg-border);
       overflow: hidden;
-      aspect-ratio: 1;
+      aspect-ratio: 4 / 3;
+      min-height: clamp(280px, 38vw, 520px);
+      padding: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1120,7 +1190,7 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
     .product-detail-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .product-detail-info h1 {
@@ -1272,11 +1342,6 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
     .delay-3 { animation-delay: 0.3s; opacity: 0; }
     .delay-4 { animation-delay: 0.4s; opacity: 0; }
 
-    /* Snipcart overrides */
-    .snipcart-modal__container {
-      z-index: 10000 !important;
-    }
-
     /* ============================================
        SCROLL TO TOP
     ============================================ */
@@ -1328,35 +1393,55 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
   </style>
 </head>
 <body>
-  <AgeGate />
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "LocalBusiness",
+        "@type": ["Store", "LocalBusiness"],
         "@id": `${siteUrl}/#business`,
         "name": "Cybex Precision Gunworx",
-        "description": "Custom-built AR-15 rifles, uppers, lowers, and precision firearms accessories. Built with precision in the USA.",
+        "description": "Hand-built competition-ready rimfire and centerfire precision rifles, Precision Quest Products (PQP) benchrest rests and tools, and $25 FFL transfer services in Toledo, Ohio.",
         "url": siteUrl,
-        "telephone": "+1-419-350-8484",
-        "email": "sales@cybexprecisiongunworx.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${siteUrl}/images/cybex-logo-full.png`
+        },
+        "image": `${siteUrl}/images/og-default.jpg`,
+        "telephone": "+1-419-740-0456",
+        "email": "jmurphy@cybexinc.com",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Toledo",
           "addressRegion": "OH",
           "addressCountry": "US"
         },
-        "priceRange": "$$",
-        "sameAs": [
-          "https://www.facebook.com/CybexPrecisionGunworx"
+        "areaServed": {
+          "@type": "Country",
+          "name": "United States"
+        },
+        "priceRange": "$$$",
+        "knowsAbout": [
+          "Rimfire Benchrest Rifles (ARA & IR 50/50)",
+          "PRS Rimfire & NRL22 Competition Rifles",
+          "Centerfire PRS & Long-Range Precision Rifles",
+          "6mm PPC Short-Range Benchrest Rifles",
+          "6.5 Creedmoor & .223 Wylde Match Rifles",
+          "Precision Quest Products (PQP) Benchrest Rests & Front Tops",
+          "Rimfire Barrel Tuners",
+          "FFL Firearm Transfers"
         ],
+        "sameAs": [
+          "https://www.facebook.com/CybexPrecisionGunworx",
+          "https://www.instagram.com/cybexprecisiongunworx"
+        ]
       },
       {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
         "url": siteUrl,
         "name": "Cybex Precision Gunworx",
+        "publisher": { "@id": `${siteUrl}/#business` },
         "inLanguage": "en-US",
         "potentialAction": {
           "@type": "SearchAction",
@@ -1371,38 +1456,34 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
   })} />
 
   <!-- Header -->
-  <div class="header-info-bar">
-    ⚡ Free Shipping on Orders Over $500 &nbsp;|&nbsp; FFL Transfer Available &nbsp;|&nbsp; <a href="tel:+14193508484">Call (419) 350-8484</a>
-  </div>
-
   <header class="site-header" id="site-header">
+    <div class="header-info-bar">
+      ⚡ FFL Transfer Available &nbsp;|&nbsp; <a href="tel:+14197400456">Call (419) 740-0456</a> &nbsp;|&nbsp; <a href="mailto:jmurphy@cybexinc.com">jmurphy@cybexinc.com</a>
+    </div>
     <div class="header-top">
       <a href="/" class="logo" aria-label="Cybex Precision Gunworx Home">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <rect width="40" height="40" rx="6" fill="#c8102e"/>
-          <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Oswald" font-weight="700" font-size="18">CPG</text>
-        </svg>
-        <div class="logo-text">
-          Cybex Precision
-          <span>Gunworx</span>
-        </div>
+        <span class="logo-plate">
+          <img src="/images/cybex-logo.webp" alt="Cybex Precision Gunworx" class="logo-img" width="720" height="177" fetchpriority="high" />
+        </span>
       </a>
 
       <nav class="nav-desktop" aria-label="Main Navigation">
         <a href="/">Home</a>
+        <a href="/ready-to-ship/" class="nav-rts">Ready to Ship</a>
         <a href="/shop/">Shop</a>
         <a href="/about/">About</a>
         <a href="/ffl-transfer/">FFL Transfer</a>
+        <a href="/blog/">Blog</a>
         <a href="/contact/">Contact</a>
       </nav>
 
       <div class="header-actions">
-        <button class="snipcart-checkout cart-btn" aria-label="Shopping Cart">
+        <button class="cart-btn" id="cart-toggle" type="button" aria-label="Shopping Cart">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
-          <span class="snipcart-items-count cart-count">0</span>
+          <span class="cart-count">0</span>
         </button>
 
         <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
@@ -1417,9 +1498,11 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
   <!-- Mobile Nav -->
   <nav class="nav-mobile" id="nav-mobile" aria-label="Mobile Navigation">
     <a href="/">Home</a>
+    <a href="/ready-to-ship/">Ready to Ship</a>
     <a href="/shop/">Shop All</a>
     <a href="/about/">About Us</a>
     <a href="/ffl-transfer/">FFL Transfer</a>
+    <a href="/blog/">Blog</a>
     <a href="/contact/">Contact</a>
   </nav>
 
@@ -1432,17 +1515,15 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="logo">
-            <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
-              <rect width="40" height="40" rx="6" fill="#c8102e"/>
-              <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Oswald" font-weight="700" font-size="18">CPG</text>
-            </svg>
-            <div class="logo-text">
-              Cybex Precision
-              <span>Gunworx</span>
-            </div>
+          <a href="/" class="logo" aria-label="Cybex Precision Gunworx Home">
+            <span class="logo-plate">
+              <img src="/images/cybex-logo.webp" alt="Cybex Precision Gunworx" class="logo-img" width="720" height="177" loading="lazy" />
+            </span>
           </a>
           <p>Custom-built precision firearms crafted with uncompromising quality. Every build is a statement of accuracy and reliability.</p>
+          <p style="font-size: 0.85rem; color: var(--cpg-light); margin-top: var(--space-sm);">
+            Toledo, OH &nbsp;·&nbsp; <a href="tel:+14197400456" style="color: var(--cpg-light);">(419) 740-0456</a> &nbsp;·&nbsp; <a href="mailto:jmurphy@cybexinc.com" style="color: var(--cpg-light);">jmurphy@cybexinc.com</a>
+          </p>
           <div class="footer-social">
             <a href="https://www.facebook.com/CybexPrecisionGunworx" target="_blank" rel="noopener" aria-label="Facebook">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -1456,11 +1537,13 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
         <div class="footer-col">
           <h4>Shop</h4>
           <ul>
-            <li><a href="/shop/">All Products</a></li>
-            <li><a href="/shop/?category=complete-firearms">Complete Firearms</a></li>
-            <li><a href="/shop/?category=ar-15-uppers">AR-15 Uppers</a></li>
-            <li><a href="/shop/?category=ar-15-lowers">AR-15 Lowers</a></li>
-            <li><a href="/shop/?category=accessories">Accessories</a></li>
+            <li><a href="/ready-to-ship/">Ready to Ship Rifles</a></li>
+            <li><a href="/ready-to-ship/?type=rimfire">Rimfire Rifles</a></li>
+            <li><a href="/ready-to-ship/?type=centerfire">Centerfire Rifles</a></li>
+            <li><a href="/shop/">All Accessories</a></li>
+            <li><a href="/shop/?category=rests-tops">Rests &amp; Front Tops</a></li>
+            <li><a href="/shop/?category=tools-parts">Tools &amp; Accessories</a></li>
+            <li><a href="/guides/rimfire-vs-centerfire/">Rimfire vs. Centerfire Guide</a></li>
           </ul>
         </div>
 
@@ -1469,6 +1552,7 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
           <ul>
             <li><a href="/about/">About Us</a></li>
             <li><a href="/ffl-transfer/">FFL Transfers</a></li>
+            <li><a href="/blog/">Blog</a></li>
             <li><a href="/contact/">Contact</a></li>
           </ul>
         </div>
@@ -1500,10 +1584,9 @@ const fullTitle = title === 'Home' ? 'Cybex Precision Gunworx | Custom AR-15 Rif
     </svg>
   </button>
 
-  <!-- Snipcart -->
-  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_API_KEY" data-config-modal-style="side" data-currency="usd">
-  </div>
-  <script src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js" defer></script>
+  <!-- WooCommerce Headless Cart Drawer & Age Verification -->
+  <CartDrawer />
+  <AgeGate />
 
   <!-- Mobile Menu & Scroll -->
   <script is:inline>

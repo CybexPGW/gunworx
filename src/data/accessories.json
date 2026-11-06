@@ -1,0 +1,386 @@
+[
+  {
+    "id": "wc-31582",
+    "wooId": 31582,
+    "name": "Superfeet (Set of 3)",
+    "slug": "superfeet-set-of-3",
+    "sku": "CPG-31582",
+    "price": 40.0,
+    "image": "/images/products/superfeet-set-of-3.webp",
+    "images": [
+      "/images/products/superfeet-set-of-3.webp"
+    ],
+    "category": "rests-tops",
+    "wooCategory": "accessories",
+    "description": "Use with PQP Superfeet · Comes with 1/4-28 Screw for attachment · Holds 3 Superfeet 1-3/4″ in Diameter",
+    "fullDescription": [],
+    "highlights": [
+      "Use with PQP Superfeet",
+      "Comes with 1/4-28 Screw for attachment",
+      "Holds 3 Superfeet 1-3/4″ in Diameter",
+      "Anodized Aluminum – Black or Silver"
+    ],
+    "inStock": true,
+    "featured": false,
+    "specs": {
+      "Feature 1": "Use with PQP Superfeet",
+      "Feature 2": "Comes with 1/4-28 Screw for attachment",
+      "Feature 3": "Holds 3 Superfeet 1-3/4″ in Diameter",
+      "Anodized Aluminum": "Black or Silver"
+    }
+  },
+  {
+    "id": "wc-31409",
+    "wooId": 31409,
+    "name": "Rear Mechanical Rest 2.0",
+    "slug": "rear-mechanical-rest-2-0",
+    "sku": "CPG-31409",
+    "price": 275.0,
+    "image": "/images/products/rear-mechanical-rest-2-0.webp",
+    "images": [
+      "/images/products/rear-mechanical-rest-2-0.webp"
+    ],
+    "category": "rests-tops",
+    "wooCategory": "accessories",
+    "description": "Now Anodized Hard Black to keep from easily scratching the aluminum. Now 1.2″ Rear Dog Bone to allow larger stocks. Previously was 1.0″",
+    "fullDescription": [
+      "Now Anodized Hard Black to keep from easily scratching the aluminum. Now 1.2″ Rear Dog Bone to allow larger stocks. Previously was 1.0″"
+    ],
+    "highlights": [
+      "Aluminum Rear Rest",
+      "Angled Delrin Contact with Stock to accommodate Various sizes of stocks",
+      "3 Locking Leveling Legs for Coarse Elevation Adjustment",
+      "Weight is 5.7lbs",
+      "Dog Bone is removable – the arm it is attached to is 2-1/4″ Wide",
+      "The rear Fine Elevation has 0.6″ of Vertical Travel",
+      "The Center of the Dog Bone Lowest Possible Height is 3.5″ and Maximum Height is 5.5″",
+      "Fine Windage & Elevation Adjustment with adequate travel for 50 yard Targets",
+      "Can be easily changed to accommodate both Left Handed and Right Handed Adjustments"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Feature 1": "Aluminum Rear Rest",
+      "Feature 2": "Angled Delrin Contact with Stock to accommodate Various sizes of stocks",
+      "Feature 3": "3 Locking Leveling Legs for Coarse Elevation Adjustment",
+      "Feature 4": "Weight is 5.7lbs",
+      "Dog Bone is removable": "the arm it is attached to is 2-1/4″ Wide",
+      "Feature 6": "The rear Fine Elevation has 0.6″ of Vertical Travel",
+      "Feature 7": "The Center of the Dog Bone Lowest Possible Height is 3.5″ and Maximum Height is 5.5″",
+      "Feature 8": "Fine Windage & Elevation Adjustment with adequate travel for 50 yard Targets",
+      "Feature 9": "Can be easily changed to accommodate both Left Handed and Right Handed Adjustments"
+    }
+  },
+  {
+    "id": "wc-31407",
+    "wooId": 31407,
+    "name": "Heavy Rest 1-Piece Rest",
+    "slug": "heavy-rest-1-piece-rest",
+    "sku": "CPG-31407",
+    "price": 900.0,
+    "image": "/images/products/heavy-rest-1-piece-rest.webp",
+    "images": [
+      "/images/products/heavy-rest-1-piece-rest.webp"
+    ],
+    "category": "rests-tops",
+    "wooCategory": "accessories",
+    "description": "Weighs in at 34lbs · Aluminum One-Piece Competition Rifle Rest · Interchangeable Front Tops SOLD SEPARATELY",
+    "fullDescription": [],
+    "highlights": [
+      "Weighs in at 34lbs",
+      "Aluminum One-Piece Competition Rifle Rest",
+      "Interchangeable Front Tops SOLD SEPARATELY",
+      "Compatible with PQP Front Tops, Arnold Machine Tops, Randolph Machine Tops, & Pappas Tops",
+      "3 Lockable Leveling Legs for Coarse adjustment of Elevation",
+      "Adjustable Height on Front Top for Coarse Adjustment of Elevation",
+      "Roller Bearings on Mariner Wheel for easy Coarse Elevation Adjustment of the front Top",
+      "Rear Fine Elevation Adjustment and Rear Joystick Windage Adjustment",
+      "Large Knob for Fine Windage adjustment",
+      "Integrated Hand Rest",
+      "Weighs 34lbs without the Front Top, Carry Handle, and Superfeet Holder"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Feature 1": "Weighs in at 34lbs",
+      "Feature 2": "Aluminum One-Piece Competition Rifle Rest",
+      "Feature 3": "Interchangeable Front Tops SOLD SEPARATELY",
+      "Feature 4": "Compatible with PQP Front Tops, Arnold Machine Tops, Randolph Machine Tops, & Pappas Tops",
+      "Feature 5": "3 Lockable Leveling Legs for Coarse adjustment of Elevation",
+      "Feature 6": "Adjustable Height on Front Top for Coarse Adjustment of Elevation",
+      "Feature 7": "Roller Bearings on Mariner Wheel for easy Coarse Elevation Adjustment of the front Top",
+      "Feature 8": "Rear Fine Elevation Adjustment and Rear Joystick Windage Adjustment",
+      "Feature 9": "Large Knob for Fine Windage adjustment",
+      "Feature 10": "Integrated Hand Rest",
+      "Feature 11": "Weighs 34lbs without the Front Top, Carry Handle, and Superfeet Holder"
+    }
+  },
+  {
+    "id": "wc-31405",
+    "wooId": 31405,
+    "name": "Fuzz Button Front Top",
+    "slug": "fuzz-button-front-top",
+    "sku": "CPG-31405",
+    "price": 250.0,
+    "image": "/images/products/fuzz-button-front-top.webp",
+    "images": [
+      "/images/products/fuzz-button-front-top.webp"
+    ],
+    "category": "rests-tops",
+    "wooCategory": "accessories",
+    "description": "Fuzz Button Front Top by PQP. This top is interchangeable on the PQP Joystick Rest, Pappas Rest, and Randolph Machine Rests. The Fuzz Button top works for 3.0″ Wide Forearm that is flat. It has soft contact points with the stock to ensure the finish on the stock is not damaged. Works with Painted Stocks, High Gloss Wood Stocks, and Fiberglass Stocks. The tension on the side of the stock is easily adjusted and locked. This provides the ultimate in stability for your stock while protecting your expensive stock finish.",
+    "fullDescription": [
+      "Fuzz Button Front Top by PQP. This top is interchangeable on the PQP Joystick Rest, Pappas Rest, and Randolph Machine Rests. The Fuzz Button top works for 3.0″ Wide Forearm that is flat. It has soft contact points with the stock to ensure the finish on the stock is not damaged. Works with Painted Stocks, High Gloss Wood Stocks, and Fiberglass Stocks. The tension on the side of the stock is easily adjusted and locked. This provides the ultimate in stability for your stock while protecting your expensive stock finish."
+    ],
+    "highlights": [
+      "Soft Fabric contact to forearm of stock",
+      "Works with 3.0″ Wide and Flat Stock Forearms",
+      "Ideal for Painted or clear coated fiberglass and wood stocks",
+      "Provides stable surface for your rifle",
+      "Outside Dimensions are 7.5″W x 3.0″ Long",
+      "Fits 2″x4″ Adapter Plate"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Feature 1": "Soft Fabric contact to forearm of stock",
+      "Feature 2": "Works with 3.0″ Wide and Flat Stock Forearms",
+      "Feature 3": "Ideal for Painted or clear coated fiberglass and wood stocks",
+      "Feature 4": "Provides stable surface for your rifle",
+      "Feature 5": "Outside Dimensions are 7.5″W x 3.0″ Long",
+      "Feature 6": "Fits 2″x4″ Adapter Plate"
+    }
+  },
+  {
+    "id": "wc-31402",
+    "wooId": 31402,
+    "name": "Delrin Front Top",
+    "slug": "delrin-front-top",
+    "sku": "CPG-31402",
+    "price": 200.0,
+    "image": "/images/products/delrin-front-top.webp",
+    "images": [
+      "/images/products/delrin-front-top.webp"
+    ],
+    "category": "rests-tops",
+    "wooCategory": "accessories",
+    "description": "Delrin Front Top by PQP. This top is interchangeable on the PQP Joystick Rest, Pappas Rest, and Randolph Machine Rests. The Delrin top works best with non-painted fiberglass stocks. It has a delrin piece on bottom for the forearm of the stock to ride on as well as Delrin pieces on each side to securely hold the rifle in place. The side pieces are spring loaded and the amount of tension is variable. This is ideal for 3.0″ Wide Forearm that is flat.",
+    "fullDescription": [
+      "Delrin Front Top by PQP. This top is interchangeable on the PQP Joystick Rest, Pappas Rest, and Randolph Machine Rests. The Delrin top works best with non-painted fiberglass stocks. It has a delrin piece on bottom for the forearm of the stock to ride on as well as Delrin pieces on each side to securely hold the rifle in place. The side pieces are spring loaded and the amount of tension is variable. This is ideal for 3.0″ Wide Forearm that is flat."
+    ],
+    "highlights": [
+      "Delrin contact to forearm of stock",
+      "Works with 3.0″ Wide and Flat Stock Forearms",
+      "Ideal for Non-Painted Fiberglass Stock",
+      "Outside Dimensions are 7.5″W x 3.0″ Long",
+      "Fits 2″x4″ Adapter Plate",
+      "Provides stable surface for your rifle"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Feature 1": "Delrin contact to forearm of stock",
+      "Feature 2": "Works with 3.0″ Wide and Flat Stock Forearms",
+      "Feature 3": "Ideal for Non-Painted Fiberglass Stock",
+      "Feature 4": "Outside Dimensions are 7.5″W x 3.0″ Long",
+      "Feature 5": "Fits 2″x4″ Adapter Plate",
+      "Feature 6": "Provides stable surface for your rifle"
+    }
+  },
+  {
+    "id": "wc-31211",
+    "wooId": 31211,
+    "name": "Lite 1- Piece Rifle Rest",
+    "slug": "lite-1-piece-rifle-rest",
+    "sku": "PQP-PRL",
+    "price": 599.95,
+    "image": "/images/products/lite-1-piece-rifle-rest.webp",
+    "images": [
+      "/images/products/lite-1-piece-rifle-rest.webp"
+    ],
+    "category": "rests-tops",
+    "wooCategory": "accessories",
+    "description": "Uses the PQP front tops · Lightweight yet sturdy – 23 lbs · 3 Individual Leveling Legs",
+    "fullDescription": [],
+    "highlights": [
+      "Uses the PQP front tops",
+      "Lightweight yet sturdy – 23 lbs",
+      "3 Individual Leveling Legs",
+      "Adjust Front Post to set Coarse Elevation",
+      "Fine Adjustment for Windage and Elevation with no slop",
+      "Ambidextrous",
+      "Carry Handle is NOW Available Separately!!!",
+      "Hand Rest is NOW Available Separately!!!",
+      "Superfeet Holder NOW Available Separately!!!",
+      "Perfect for ARA, PSL, IR-5050, ABRA, USBR Competition"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Feature 1": "Uses the PQP front tops",
+      "Lightweight yet sturdy": "23 lbs",
+      "Feature 3": "3 Individual Leveling Legs",
+      "Feature 4": "Adjust Front Post to set Coarse Elevation",
+      "Feature 5": "Fine Adjustment for Windage and Elevation with no slop",
+      "Feature 6": "Ambidextrous",
+      "Feature 7": "Carry Handle is NOW Available Separately!!!",
+      "Feature 8": "Hand Rest is NOW Available Separately!!!",
+      "Feature 9": "Superfeet Holder NOW Available Separately!!!",
+      "Feature 10": "Perfect for ARA, PSL, IR-5050, ABRA, USBR Competition"
+    }
+  },
+  {
+    "id": "wc-31182",
+    "wooId": 31182,
+    "name": "Boreguide (2500X-Trident)",
+    "slug": "boreguide",
+    "sku": "PQP-Boreguide",
+    "price": 35.0,
+    "image": "/images/products/boreguide.webp",
+    "images": [
+      "/images/products/boreguide.webp"
+    ],
+    "category": "tools-parts",
+    "wooCategory": "accessories",
+    "description": "Small for .187″ Dia Rod · Large for standard 22 Cal rods · Guide Stops at Loading Ramp",
+    "fullDescription": [],
+    "highlights": [
+      "Small for .187″ Dia Rod",
+      "Large for standard 22 Cal rods",
+      "Guide Stops at Loading Ramp",
+      "Clear View of Breech"
+    ],
+    "inStock": true,
+    "featured": false,
+    "specs": {
+      "Feature 1": "Small for .187″ Dia Rod",
+      "Feature 2": "Large for standard 22 Cal rods",
+      "Feature 3": "Guide Stops at Loading Ramp",
+      "Feature 4": "Clear View of Breech"
+    }
+  },
+  {
+    "id": "wc-31160",
+    "wooId": 31160,
+    "name": "Action Wrench",
+    "slug": "action-wrench",
+    "sku": "PQP-AW",
+    "price": 75.0,
+    "image": "/images/products/action-wrench.webp",
+    "images": [
+      "/images/products/action-wrench.webp"
+    ],
+    "category": "tools-parts",
+    "wooCategory": "accessories",
+    "description": "Tool to aid in removing action from barrel · .688″ Diameter · Compatible with 2500x/Trident, Turbo, X-III, 40X, & Many others",
+    "fullDescription": [],
+    "highlights": [
+      "Tool to aid in removing action from barrel",
+      ".688″ Diameter",
+      "Compatible with 2500x/Trident, Turbo, X-III, 40X, & Many others",
+      "Requires 9/16 Wrench and Barrel Vise (Sold Separately)"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Feature 1": "Tool to aid in removing action from barrel",
+      "Feature 2": ".688″ Diameter",
+      "Feature 3": "Compatible with 2500x/Trident, Turbo, X-III, 40X, & Many others",
+      "Feature 4": "Requires 9/16 Wrench and Barrel Vise (Sold Separately)"
+    }
+  },
+  {
+    "id": "wc-31156",
+    "wooId": 31156,
+    "name": "2500X/Trident Bolt Tool",
+    "slug": "2500x-trident-bolt-tool",
+    "sku": "PQP-BT",
+    "price": 60.0,
+    "image": "/images/products/2500x-trident-bolt-tool.webp",
+    "images": [
+      "/images/products/2500x-trident-bolt-tool.webp",
+      "/images/products/2500x-trident-bolt-tool-2.webp",
+      "/images/products/2500x-trident-bolt-tool-3.webp"
+    ],
+    "category": "tools-parts",
+    "wooCategory": "accessories",
+    "description": "2500X/Trident Bolt Tool is used to disassemble the action bolt and to change out the firing pin spring on the 2500X and Trident actions.",
+    "fullDescription": [
+      "2500X/Trident Bolt Tool is used to disassemble the action bolt and to change out the firing pin spring on the 2500X and Trident actions."
+    ],
+    "highlights": [
+      "Bolt Dis-Assembly Tool for 2500X/Trident",
+      "Firing Pin Spring Compression tool for 2500X/Trident"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Feature 1": "Bolt Dis-Assembly Tool for 2500X/Trident",
+      "Feature 2": "Firing Pin Spring Compression tool for 2500X/Trident"
+    }
+  },
+  {
+    "id": "wc-31144",
+    "wooId": 31144,
+    "name": "Superfeet Holder",
+    "slug": "superfeet-holder",
+    "sku": "PQP-SFH",
+    "price": 40.0,
+    "image": "/images/products/superfeet-holder.webp",
+    "images": [
+      "/images/products/superfeet-holder.webp"
+    ],
+    "category": "rests-tops",
+    "wooCategory": "accessories",
+    "description": "Use with PQP Superfeet · Comes with 1/4-28 Screw for attachment · Holds 3 Superfeet 1-3/4″ in Diameter",
+    "fullDescription": [],
+    "highlights": [
+      "Use with PQP Superfeet",
+      "Comes with 1/4-28 Screw for attachment",
+      "Holds 3 Superfeet 1-3/4″ in Diameter",
+      "Anodized Aluminum – Black or Silver"
+    ],
+    "inStock": true,
+    "featured": false,
+    "specs": {
+      "Feature 1": "Use with PQP Superfeet",
+      "Feature 2": "Comes with 1/4-28 Screw for attachment",
+      "Feature 3": "Holds 3 Superfeet 1-3/4″ in Diameter",
+      "Anodized Aluminum": "Black or Silver"
+    }
+  },
+  {
+    "id": "wc-31137",
+    "wooId": 31137,
+    "name": "Rest Handle for 1-Piece Rest",
+    "slug": "rest-handle-for-1-piece-rest",
+    "sku": "PQP-RH",
+    "price": 40.0,
+    "image": "/images/products/rest-handle-for-1-piece-rest.webp",
+    "images": [
+      "/images/products/rest-handle-for-1-piece-rest.webp",
+      "/images/products/rest-handle-for-1-piece-rest-2.webp",
+      "/images/products/rest-handle-for-1-piece-rest-3.webp",
+      "/images/products/rest-handle-for-1-piece-rest-4.webp",
+      "/images/products/rest-handle-for-1-piece-rest-5.webp"
+    ],
+    "category": "rests-tops",
+    "wooCategory": "accessories",
+    "description": "Handle to attach to your rest · Allows for one-handed rest carry · Works with Joystick/Heavy Rest or Lite Rest",
+    "fullDescription": [],
+    "highlights": [
+      "Handle to attach to your rest",
+      "Allows for one-handed rest carry",
+      "Works with Joystick/Heavy Rest or Lite Rest",
+      "Rest sold separately"
+    ],
+    "inStock": true,
+    "featured": false,
+    "specs": {
+      "Feature 1": "Handle to attach to your rest",
+      "Feature 2": "Allows for one-handed rest carry",
+      "Feature 3": "Works with Joystick/Heavy Rest or Lite Rest",
+      "Feature 4": "Rest sold separately"
+    }
+  }
+]

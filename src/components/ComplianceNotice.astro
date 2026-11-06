@@ -1,5 +1,5 @@
 ---
-import { MIN_AGE, noShipStateNames, prop65Text, isFFLProduct, isRestrictedProduct } from '../data/compliance';
+import { MIN_AGE, prop65Text, isFFLProduct, isRestrictedProduct } from '../data/compliance';
 
 interface Props {
   /** Product category slug. Omit for a general (shop-wide) notice. */
@@ -21,8 +21,7 @@ const showProp65 = category ? category !== 'apparel' : true;
   )}
   {showRestricted && (
     <p>
-      <strong>Shipping restrictions:</strong> We do not ship this category to {noShipStateNames.join(', ')}.
-      <a href="/policies/restricted-states/">See full list →</a>
+      <strong>Shipping restrictions:</strong> We do not ship where restrictions apply. All shipment of firearms MUST COMPLY with ATF constraints and state mandated restrictions.
     </p>
   )}
   {showProp65 && (

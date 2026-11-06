@@ -1,0 +1,115 @@
+---
+import { type Post, postUrl, readingTime, formatDate, categorySlug } from '../data/blog';
+
+interface Props { post: Post; eager?: boolean }
+const { post, eager = false } = Astro.props;
+const { title, description, heroImage, heroAlt, category, pubDate } = post.data;
+const url = postUrl(post);
+---
+
+<article class="post-card" data-category={categorySlug(category)}>
+  <a href={url} class="post-card-media" tabindex="-1" aria-hidden="true">
+    <img src={heroImage} alt={heroAlt} loading={eager ? 'eager' : 'lazy'} decoding="async" width="800" height="500" />
+    <span class="post-card-cat">{category}</span>
+  </a>
+  <div class="post-card-body">
+    <div class="post-card-meta">
+      <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+      <span aria-hidden="true">·</span>
+      <span>{readingTime(post.body)} min read</span>
+    </div>
+    <h3 class="post-card-title"><a href={url}>{title}</a></h3>
+    <p class="post-card-desc">{description}</p>
+    <a href={url} class="post-card-link">Read Article <span aria-hidden="true">→</span></a>
+  </div>
+</article>
+
+<style>
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--cpg-charcoal);
+    border: 1px solid var(--cpg-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+  .post-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200, 16, 46, 0.55);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  }
+  .post-card-media {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--cpg-darker);
+  }
+  .post-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .post-card:hover .post-card-media img { transform: scale(1.05); }
+  .post-card-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.55));
+  }
+  .post-card-cat {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+    padding: 5px 12px;
+    background: var(--cpg-accent);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 999px;
+  }
+  .post-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: var(--space-lg);
+    gap: var(--space-sm);
+  }
+  .post-card-meta {
+    display: flex;
+    gap: 8px;
+    color: var(--cpg-silver);
+    font-size: 0.8rem;
+  }
+  .post-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .post-card-title a { color: var(--cpg-pure-white); text-decoration: none; transition: color var(--transition-fast); }
+  .post-card-title a:hover { color: var(--cpg-accent); }
+  .post-card-desc {
+    color: var(--cpg-light);
+    font-size: 0.93rem;
+    line-height: 1.6;
+    flex: 1;
+  }
+  .post-card-link {
+    margin-top: var(--space-sm);
+    color: var(--cpg-accent);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .post-card-link span { display: inline-block; transition: transform var(--transition-fast); }
+  .post-card:hover .post-card-link span { transform: translateX(4px); }
+</style>

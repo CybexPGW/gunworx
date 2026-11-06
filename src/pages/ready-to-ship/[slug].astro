@@ -1,0 +1,559 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RifleCard from '../../components/RifleCard.astro';
+import ComplianceNotice from '../../components/ComplianceNotice.astro';
+import NotifyMe from '../../components/NotifyMe.astro';
+import {
+  rifles, rifleUrl, formatPrice, fromPrice, RTS_CATEGORY, type Rifle,
+} from '../../data/readyToShip';
+
+export function getStaticPaths() {
+  return rifles.map((rifle) => ({ params: { slug: rifle.slug }, props: { rifle } }));
+}
+
+const { rifle } = Astro.props as { rifle: Rifle };
+const site = 'https://cybexprecisiongunworx.com';
+const url = rifleUrl(rifle);
+const base = fromPrice(rifle);
+const hasPackages = rifle.packages.length > 0;
+const firstPackage = rifle.packages[0]?.label ?? '';
+const mainBg = rifle.imageBgs?.[0] ?? '#ffffff';
+const related = rifles
+  .filter((r) => r.id !== rifle.id)
+  .sort((a, b) => (a.platform === rifle.platform ? -1 : 1) - (b.platform === rifle.platform ? -1 : 1) || Math.abs(fromPrice(a) - base) - Math.abs(fromPrice(b) - base))
+  .slice(0, 4);
+const metaDesc = `${rifle.name}${rifle.code ? ` (${rifle.code})` : ''} – ${rifle.caliber} ${rifle.platform} precision rifle, in stock and ready to ship. ${rifle.summary}`.slice(0, 158);
+// Spec groups shown as cards; single-line groups (usage/condition) shown as chips
+const cardGroups = rifle.specGroups.filter((g) => !/^(primary usage|condition)/i.test(g.title));
+const condition = rifle.specGroups.find((g) => /^condition/i.test(g.title))?.items[0]?.value;
+
+const additionalProperties = [
+  { '@type': 'PropertyValue', name: 'Platform', value: rifle.platform === 'rimfire' ? 'Rimfire' : 'Centerfire' },
+  rifle.caliber ? { '@type': 'PropertyValue', name: 'Caliber', value: rifle.caliber } : null,
+  rifle.usage ? { '@type': 'PropertyValue', name: 'Primary Discipline', value: rifle.usage } : null,
+  ...cardGroups.flatMap((g) =>
+    g.items.map((it) => ({
+      '@type': 'PropertyValue',
+      name: it.label ? `${g.title} - ${it.label}` : g.title,
+      value: it.value,
+    }))
+  ),
+].filter(Boolean);
+
+const productOffers =
+  base > 0
+    ? hasPackages
+      ? {
+          '@type': 'AggregateOffer',
+          priceCurrency: 'USD',
+          lowPrice: base,
+          highPrice: Math.max(...rifle.packages.map((p) => p.price)),
+          offerCount: rifle.packages.length,
+          availability: 'https://schema.org/InStock',
+          url: `${site}${url}`,
+          seller: { '@id': `${site}/#business` },
+          offers: rifle.packages.map((pkg) => ({
+            '@type': 'Offer',
+            name: pkg.label,
+            price: pkg.price,
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+            itemCondition: 'https://schema.org/NewCondition',
+            url: `${site}${url}`,
+          })),
+        }
+      : {
+          '@type': 'Offer',
+          price: base,
+          priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
+          itemCondition: 'https://schema.org/NewCondition',
+          url: `${site}${url}`,
+          seller: { '@id': `${site}/#business` },
+        }
+    : undefined;
+---
+
+<BaseLayout title={rifle.name} description={metaDesc} type="product" ogImage={rifle.images[0]}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Product',
+        name: rifle.name,
+        sku: rifle.sku,
+        mpn: rifle.code ?? undefined,
+        category: rifle.platform === 'rimfire' ? 'Rimfire Precision Rifles' : 'Centerfire Precision Rifles',
+        description: (rifle.description.join(' ') || rifle.summary).slice(0, 5000),
+        image: rifle.images.map((i) => `${site}${i}`),
+        brand: { '@type': 'Brand', name: 'Cybex Precision Gunworx' },
+        itemCondition: 'https://schema.org/NewCondition',
+        additionalProperty: additionalProperties,
+        ...(productOffers ? { offers: productOffers } : {}),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+          { '@type': 'ListItem', position: 2, name: 'Ready to Ship', item: `${site}/ready-to-ship/` },
+          { '@type': 'ListItem', position: 3, name: rifle.name, item: `${site}${url}` },
+        ],
+      },
+    ],
+  })} />
+
+  <section class="section product-detail">
+    <div class="container">
+      <div class="breadcrumb" style="justify-content: flex-start; margin-bottom: var(--space-lg);">
+        <a href="/">Home</a>
+        <span>/</span>
+        <a href="/ready-to-ship/">Ready to Ship</a>
+        <span>/</span>
+        <span style="color: var(--cpg-light);">{rifle.name}</span>
+      </div>
+
+      <!-- Full-width Rifle Showcase Gallery -->
+      <div class="rd-gallery">
+        <div class="rd-main" id="rd-main" style={`background: ${mainBg};`} data-bg={mainBg}>
+          <img id="rd-main-img" src={rifle.images[0]} alt={`${rifle.name} – view 1`} width="1600" height="900" fetchpriority="high" />
+          <span class="rd-badge"><span class="rd-dot"></span>In Stock · Ready to Ship</span>
+          <button type="button" class="rd-zoom-btn" id="rd-zoom-btn" aria-label="Enlarge rifle photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            Click to enlarge
+          </button>
+        </div>
+        {rifle.images.length > 1 && (
+          <div class="rd-thumbs" role="list">
+            {rifle.images.map((src, i) => {
+              const bg = rifle.imageBgs?.[i] ?? '#ffffff';
+              return (
+                <button
+                  type="button"
+                  class={`rd-thumb${i === 0 ? ' active' : ''}`}
+                  style={`background: ${bg};`}
+                  data-src={src}
+                  data-bg={bg}
+                  data-alt={`${rifle.name} – view ${i + 1}`}
+                  aria-label={`Show image ${i + 1}`}
+                  id={`rd-thumb-${i + 1}`}
+                >
+                  <img src={src} alt="" loading="lazy" width="320" height="200" />
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      <!-- Details + Sticky Buy Box -->
+      <div class="rd-details-grid">
+        <div class="rd-overview">
+          <div class="rd-tags">
+            {rifle.code && <span class="rd-tag rd-tag-code">{rifle.code}</span>}
+            <span class={`rd-tag rd-tag-${rifle.platform}`}>{rifle.platform}</span>
+            {rifle.caliber && <span class="rd-tag">{rifle.caliber.replace(/ Bolt Action/i, '')}</span>}
+            {rifle.usage && <span class="rd-tag">{rifle.usage}</span>}
+            {condition && <span class="rd-tag">{condition}</span>}
+          </div>
+          <h1 class="rd-title">{rifle.name}</h1>
+          <p class="rd-summary">{rifle.summary}</p>
+
+          <div class="rd-specs-wrap">
+            <h2 class="rd-h2">Specifications</h2>
+            <div class="rd-specs">
+              {cardGroups.map((g) => (
+                <div class="rd-spec-card">
+                  <h3>{g.title}</h3>
+                  <dl>
+                    {g.items.map((it) => (
+                      <div class="rd-spec-row">
+                        {it.label ? <><dt>{it.label}</dt><dd>{it.value}</dd></> : <dd class="rd-spec-full">{it.value}</dd>}
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Buy box -->
+        <div class="rd-info">
+          <div class="rd-price-row">
+            <div class="rd-price" id="rd-price" aria-live="polite">{formatPrice(base)}</div>
+            <span class="rd-price-note">Ships to your FFL</span>
+          </div>
+
+          {hasPackages && (
+            <fieldset class="rd-packages">
+              <legend>Choose your package</legend>
+              {rifle.packages.map((p, i) => (
+                <label class="rd-package">
+                  <input type="radio" name="rd-package" value={p.label} data-price={p.price} checked={i === 0} id={`rd-pkg-${i + 1}`} />
+                  <span class="rd-package-body">
+                    <span class="rd-package-label">{p.label}</span>
+                    <span class="rd-package-price">
+                      {formatPrice(p.price)}
+                      {p.price > base && <small>+{formatPrice(p.price - base)}</small>}
+                    </span>
+                  </span>
+                </label>
+              ))}
+            </fieldset>
+          )}
+
+          {base > 0 ? (
+            <>
+              <button
+                id="rd-add"
+                type="button"
+                class="btn btn-primary rd-add"
+                data-wc-add
+                data-wc-id={rifle.wooId}
+                data-wc-image={rifle.images[0]}
+                data-wc-url={url}
+                data-wc-firearm="true"
+                data-wc-package={hasPackages ? firstPackage : ''}
+                data-wc-package-price={base}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                Add to Cart
+              </button>
+              <a href="tel:+14197400456" class="btn btn-outline rd-call">Questions? Call (419) 740-0456</a>
+            </>
+          ) : (
+            <a href="tel:+14197400456" class="btn btn-primary rd-add">Call (419) 740-0456 for Pricing &amp; Ordering</a>
+          )}
+
+          <ul class="rd-assure">
+            <li>Test-fired with match-grade ammo, then cleaned before shipping</li>
+            <li>Scoped rifles zeroed at {rifle.platform === 'rimfire' ? '50 yd' : '100 yd'} with match-grade ammo</li>
+            <li>In stock — ships to your FFL dealer, no build queue</li>
+          </ul>
+
+          <ComplianceNotice category={RTS_CATEGORY} />
+        </div>
+      </div>
+
+      <!-- Story -->
+      {rifle.description.length > 1 && (
+        <div class="rd-section rd-story">
+          <h2 class="rd-h2">About This Rifle</h2>
+          <div class="rd-story-body">
+            {rifle.description.map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+      )}
+
+      <p class="rd-disclaimer">
+        Product images are representative. Final configuration, components, finishes, and accessories may vary based on selected options or component availability.
+      </p>
+
+      <div class="rd-section">
+        <NotifyMe
+          source={`Rifle page – ${rifle.name}${rifle.code ? ` (${rifle.code})` : ''}`}
+          interest={rifle.platform === 'rimfire' ? 'Rimfire' : 'Centerfire'}
+          heading="Want One Like This?"
+          text={`Every rifle is one of a kind. Join the list and we’ll email you when the next ${rifle.platform} rifle is ready to ship.`}
+        />
+      </div>
+
+      {related.length > 0 && (
+        <div class="rd-section">
+          <div class="rd-related-head">
+            <h2 class="rd-h2" style="margin: 0;">More Ready to Ship Rifles</h2>
+            <a href="/ready-to-ship/" class="btn-add-cart">View All →</a>
+          </div>
+          <div class="rd-related">
+            {related.map((r) => <RifleCard rifle={r} />)}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Fullscreen Lightbox -->
+  <div class="rd-lightbox" id="rd-lightbox" hidden role="dialog" aria-modal="true" aria-label={`${rifle.name} enlarged view`}>
+    <button type="button" class="rd-lightbox-close" id="rd-lightbox-close" aria-label="Close enlarged photo">&times;</button>
+    <div class="rd-lightbox-stage" id="rd-lightbox-stage" style={`background: ${mainBg};`}>
+      <img id="rd-lightbox-img" src={rifle.images[0]} alt={rifle.name} />
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Gallery + Lightbox
+  const mainBox = document.getElementById('rd-main') as HTMLElement | null;
+  const main = document.getElementById('rd-main-img') as HTMLImageElement | null;
+  const lightbox = document.getElementById('rd-lightbox') as HTMLElement | null;
+  const lightboxStage = document.getElementById('rd-lightbox-stage') as HTMLElement | null;
+  const lightboxImg = document.getElementById('rd-lightbox-img') as HTMLImageElement | null;
+  const lightboxClose = document.getElementById('rd-lightbox-close');
+  const zoomBtn = document.getElementById('rd-zoom-btn');
+
+  document.querySelectorAll<HTMLButtonElement>('.rd-thumb').forEach((t) =>
+    t.addEventListener('click', () => {
+      if (!main) return;
+      main.src = t.dataset.src!;
+      main.alt = t.dataset.alt || '';
+      if (mainBox && t.dataset.bg) {
+        mainBox.style.background = t.dataset.bg;
+        mainBox.dataset.bg = t.dataset.bg;
+      }
+      document.querySelectorAll('.rd-thumb').forEach((x) => x.classList.remove('active'));
+      t.classList.add('active');
+    })
+  );
+
+  function openLightbox() {
+    if (!lightbox || !lightboxImg || !main) return;
+    lightboxImg.src = main.src;
+    lightboxImg.alt = main.alt;
+    if (lightboxStage && mainBox?.dataset.bg) {
+      lightboxStage.style.background = mainBox.dataset.bg;
+    }
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  main?.addEventListener('click', openLightbox);
+  zoomBtn?.addEventListener('click', (e) => { e.stopPropagation(); openLightbox(); });
+  lightboxClose?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox && !lightbox.hidden) closeLightbox();
+  });
+
+  // Package selector -> price display + WooCommerce cart package metadata
+  const addBtn = document.getElementById('rd-add');
+  const priceEl = document.getElementById('rd-price');
+  const fmt = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 2 });
+  document.querySelectorAll<HTMLInputElement>('input[name="rd-package"]').forEach((r) =>
+    r.addEventListener('change', () => {
+      if (!r.checked) return;
+      addBtn?.setAttribute('data-wc-package', r.value);
+      addBtn?.setAttribute('data-wc-package-price', r.dataset.price || '');
+      if (priceEl) priceEl.textContent = fmt(Number(r.dataset.price));
+    })
+  );
+</script>
+
+<style>
+  .rd-gallery {
+    margin-bottom: var(--space-2xl);
+  }
+  .rd-main {
+    position: relative;
+    width: 100%;
+    height: clamp(260px, 42vw, 560px);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid var(--cpg-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rd-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: clamp(8px, 1.8vw, 22px);
+    cursor: zoom-in;
+  }
+  .rd-badge {
+    position: absolute; top: 14px; left: 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #fff; background: rgba(10,10,10,0.82); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 999px;
+    pointer-events: none;
+  }
+  .rd-dot { width: 8px; height: 8px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 10px #3ddc84; }
+  .rd-zoom-btn {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+  }
+  .rd-zoom-btn:hover { background: var(--cpg-accent); transform: translateY(-1px); }
+
+  .rd-thumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 190px));
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+  .rd-thumb {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 2px solid var(--cpg-border);
+    opacity: 0.75;
+    transition: opacity var(--transition-base), border-color var(--transition-base), transform var(--transition-fast);
+    padding: 6px 10px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rd-thumb img { width: 100%; height: 100%; object-fit: contain; }
+  .rd-thumb:hover { opacity: 1; transform: translateY(-1px); }
+  .rd-thumb.active { opacity: 1; border-color: var(--cpg-accent); box-shadow: 0 0 0 1px var(--cpg-accent); }
+
+  .rd-details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3xl);
+  }
+  @media (min-width: 980px) {
+    .rd-details-grid {
+      grid-template-columns: 1.25fr 0.85fr;
+      align-items: start;
+    }
+    .rd-info {
+      position: sticky;
+      top: 120px;
+    }
+  }
+
+  .rd-info {
+    background: var(--cpg-charcoal);
+    border: 1px solid var(--cpg-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+  }
+
+  .rd-tags { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-bottom: var(--space-md); }
+  .rd-tag {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 9px; border-radius: 4px; color: var(--cpg-silver); background: rgba(255,255,255,0.06);
+  }
+  .rd-tag-code { font-family: var(--font-heading); color: var(--cpg-light); border: 1px solid var(--cpg-border); background: transparent; }
+  .rd-tag-rimfire { color: var(--cpg-accent); background: rgba(200,16,46,0.12); }
+  .rd-tag-centerfire { color: #f0b429; background: rgba(240,180,41,0.12); }
+  .rd-title { font-size: clamp(1.9rem, 3.8vw, 2.75rem); margin-bottom: var(--space-md); }
+  .rd-summary { color: var(--cpg-silver); font-size: 1.05rem; line-height: 1.75; margin-bottom: var(--space-2xl); }
+
+  .rd-specs-wrap { margin-top: var(--space-xl); }
+
+  .rd-price-row { display: flex; align-items: baseline; gap: var(--space-md); margin-bottom: var(--space-lg); flex-wrap: wrap; }
+  .rd-price { font-family: var(--font-heading); font-size: 2.4rem; font-weight: 700; color: var(--cpg-pure-white); }
+  .rd-price-note { font-size: 0.8rem; color: var(--cpg-silver); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .rd-packages { border: none; padding: 0; margin: 0 0 var(--space-lg); display: grid; gap: var(--space-sm); }
+  .rd-packages legend {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--cpg-silver); margin-bottom: var(--space-sm);
+  }
+  .rd-package { display: block; cursor: pointer; }
+  .rd-package input { position: absolute; opacity: 0; pointer-events: none; }
+  .rd-package-body {
+    display: flex; justify-content: space-between; align-items: center; gap: var(--space-md);
+    padding: 14px 16px; border: 1px solid var(--cpg-border); border-radius: var(--radius-md);
+    background: var(--cpg-dark); transition: border-color var(--transition-base), background var(--transition-base);
+  }
+  .rd-package:hover .rd-package-body { border-color: rgba(255,255,255,0.25); }
+  .rd-package input:checked + .rd-package-body { border-color: var(--cpg-accent); background: rgba(200,16,46,0.08); box-shadow: inset 3px 0 0 var(--cpg-accent); }
+  .rd-package input:focus-visible + .rd-package-body { outline: 2px solid var(--cpg-accent); outline-offset: 2px; }
+  .rd-package-label { font-weight: 600; color: var(--cpg-light); }
+  .rd-package-price { font-family: var(--font-heading); font-weight: 700; color: var(--cpg-pure-white); text-align: right; }
+  .rd-package-price small { display: block; font-family: inherit; font-size: 0.7rem; font-weight: 500; color: var(--cpg-silver); }
+
+  .rd-add { width: 100%; justify-content: center; font-size: 1.05rem; padding-top: 16px; padding-bottom: 16px; }
+  .rd-call { width: 100%; justify-content: center; margin-top: var(--space-sm); }
+  .rd-assure { margin: var(--space-lg) 0; display: grid; gap: var(--space-sm); }
+  .rd-assure li { position: relative; padding-left: 26px; color: var(--cpg-silver); font-size: 0.9rem; }
+  .rd-assure li::before {
+    content: ''; position: absolute; left: 0; top: 4px; width: 16px; height: 16px; border-radius: 50%;
+    background: rgba(61,220,132,0.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233ddc84' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 10px no-repeat;
+  }
+
+  .rd-section { margin-top: var(--space-4xl); }
+  .rd-h2 { font-size: 1.6rem; margin-bottom: var(--space-xl); }
+  .rd-specs { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-lg); }
+  .rd-spec-card { background: var(--cpg-charcoal); border: 1px solid var(--cpg-border); border-radius: var(--radius-lg); padding: var(--space-lg); }
+  .rd-spec-card h3 {
+    font-size: 0.85rem; letter-spacing: 0.14em; color: var(--cpg-accent);
+    padding-bottom: var(--space-sm); margin-bottom: var(--space-sm); border-bottom: 1px solid var(--cpg-border);
+  }
+  .rd-spec-row { display: flex; justify-content: space-between; gap: var(--space-md); padding: 7px 0; border-bottom: 1px dashed rgba(255,255,255,0.06); font-size: 0.88rem; }
+  .rd-spec-row:last-child { border-bottom: none; }
+  .rd-spec-row dt { color: var(--cpg-silver); }
+  .rd-spec-row dd { color: var(--cpg-light); font-weight: 600; text-align: right; margin: 0; }
+  .rd-spec-row .rd-spec-full { text-align: left; font-weight: 500; }
+
+  .rd-story-body { max-width: 860px; columns: 1; }
+  .rd-story-body p { color: var(--cpg-silver); line-height: 1.85; margin-bottom: var(--space-md); }
+  .rd-story-body p:first-child { font-size: 1.2rem; color: var(--cpg-light); font-weight: 600; }
+  .rd-disclaimer { margin-top: var(--space-2xl); font-size: 0.78rem; color: var(--cpg-silver); opacity: 0.7; font-style: italic; }
+
+  .rd-related-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-md); margin-bottom: var(--space-xl); flex-wrap: wrap; }
+  .rd-related { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr)); gap: var(--space-xl); }
+
+  /* Fullscreen Lightbox */
+  .rd-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 3vw, 40px);
+  }
+  .rd-lightbox[hidden] { display: none; }
+  .rd-lightbox-stage {
+    width: min(1600px, 96vw);
+    height: min(86vh, 960px);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 2vw, 28px);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+  }
+  .rd-lightbox-stage img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .rd-lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 1.8rem;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    transition: background var(--transition-fast);
+  }
+  .rd-lightbox-close:hover { background: var(--cpg-accent); }
+</style>

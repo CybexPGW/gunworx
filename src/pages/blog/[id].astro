@@ -1,0 +1,424 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import RifleCard from '../../components/RifleCard.astro';
+import NotifyMe from '../../components/NotifyMe.astro';
+import { getPosts, postUrl, readingTime, formatDate, SITE, type Post } from '../../data/blog';
+import { rifles } from '../../data/readyToShip';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { id: post.id }, props: { post, posts } }));
+}
+
+interface Props { post: Post; posts: Post[] }
+const { post, posts } = Astro.props;
+const { Content, headings } = await render(post);
+const { title, description, heroImage, heroAlt, category, pubDate, updatedDate, author, tags } = post.data;
+
+const minutes = readingTime(post.body);
+const toc = headings.filter((h) => h.depth === 2);
+const url = `${SITE}${postUrl(post)}`;
+
+// Related rifles from Ready to Ship, based on the post's `rifles` field
+const riflePool =
+  post.data.rifles === 'none' ? [] :
+  post.data.rifles === 'all' ? rifles :
+  rifles.filter((r) => r.platform === post.data.rifles);
+const relatedRifles = riflePool.slice(0, 3);
+
+// Related posts: same category first, then newest
+const others = posts.filter((p) => p.id !== post.id);
+const related = [
+  ...others.filter((p) => p.data.category === category),
+  ...others.filter((p) => p.data.category !== category),
+].slice(0, 3);
+---
+
+<BaseLayout title={title} description={description} type="article" ogImage={heroImage}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        headline: title,
+        description,
+        image: `${SITE}${heroImage}`,
+        datePublished: pubDate.toISOString(),
+        dateModified: (updatedDate ?? pubDate).toISOString(),
+        author: { '@type': 'Organization', name: author },
+        publisher: { '@type': 'Organization', name: 'Cybex Precision Gunworx', url: SITE },
+        mainEntityOfPage: url,
+        articleSection: category,
+        keywords: tags.join(', '),
+        wordCount: (post.body ?? '').split(/\s+/).length,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog/` },
+          { '@type': 'ListItem', position: 3, name: title, item: url },
+        ],
+      },
+    ],
+  })} />
+
+  <div class="read-progress" aria-hidden="true"><span id="read-progress-bar"></span></div>
+
+  <header class="page-header post-header">
+    <div class="post-header-bg" style={`background-image:url('${heroImage}')`} aria-hidden="true"></div>
+    <div class="container post-header-inner">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <a href="/blog/">Blog</a>
+        <span>/</span>
+        <span>{category}</span>
+      </div>
+      <span class="post-cat">{category}</span>
+      <h1>{title}</h1>
+      <p class="post-lede">{description}</p>
+      <div class="post-meta">
+        <span>By {author}</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+        {updatedDate && (<><span aria-hidden="true">·</span><span>Updated {formatDate(updatedDate)}</span></>)}
+        <span aria-hidden="true">·</span>
+        <span>{minutes} min read</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="section post-section">
+    <div class="container post-layout">
+      <article class="post-main">
+        <figure class="post-hero">
+          <img src={heroImage} alt={heroAlt} width="1200" height="750" loading="eager" />
+        </figure>
+        <div class="prose">
+          <Content />
+        </div>
+        {tags.length > 0 && (
+          <ul class="post-tags" aria-label="Tags">
+            {tags.map((t) => <li>#{t}</li>)}
+          </ul>
+        )}
+        <div class="post-share">
+          <span>Share:</span>
+          <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener" id="share-facebook">Facebook</a>
+          <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`} target="_blank" rel="noopener" id="share-x">X</a>
+          <a href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`} id="share-email">Email</a>
+        </div>
+      </article>
+
+      {toc.length > 1 && (
+        <aside class="post-aside">
+          <nav class="post-toc" aria-label="In this article">
+            <h2>In This Article</h2>
+            <ol>
+              {toc.map((h) => <li><a href={`#${h.slug}`} data-toc={h.slug}>{h.text}</a></li>)}
+            </ol>
+          </nav>
+          <div class="post-aside-cta">
+            <h3>Questions about a build?</h3>
+            <p>Talk to the builders directly. No sales scripts.</p>
+            <a href="/contact/" class="btn btn-primary">Contact Us</a>
+          </div>
+        </aside>
+      )}
+    </div>
+  </section>
+
+  {relatedRifles.length > 0 && (
+    <section class="section section-dark">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">In Stock · Ships Now</span>
+          <h2>Rifles for This Discipline</h2>
+        </div>
+        <div class="post-rifles">
+          {relatedRifles.map((r) => <RifleCard rifle={r} />)}
+        </div>
+        <div style="text-align:center; margin-top: var(--space-xl);">
+          <a href={post.data.rifles === 'all' ? '/ready-to-ship/' : `/ready-to-ship/?type=${post.data.rifles}`} class="btn btn-outline">See All Ready to Ship Rifles →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {related.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Keep Reading</span>
+          <h2>More From the Blog</h2>
+        </div>
+        <div class="post-related">
+          {related.map((p) => <PostCard post={p} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section section-darker">
+    <div class="container">
+      <NotifyMe source={`Blog – ${title}`} />
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Reading progress bar
+  const bar = document.getElementById('read-progress-bar');
+  const article = document.querySelector<HTMLElement>('.post-main');
+  const tocLinks = document.querySelectorAll<HTMLAnchorElement>('[data-toc]');
+  const onScroll = () => {
+    if (!bar || !article) return;
+    const rect = article.getBoundingClientRect();
+    const total = rect.height - window.innerHeight * 0.5;
+    const pct = Math.min(1, Math.max(0, -rect.top / Math.max(total, 1)));
+    bar.style.transform = `scaleX(${pct})`;
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Highlight active TOC entry
+  if (tocLinks.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            tocLinks.forEach((l) => l.classList.toggle('active', l.dataset.toc === e.target.id));
+          }
+        });
+      },
+      { rootMargin: '-140px 0px -65% 0px' }
+    );
+    tocLinks.forEach((l) => {
+      const el = document.getElementById(l.dataset.toc || '');
+      if (el) observer.observe(el);
+    });
+  }
+</script>
+
+<style>
+  .read-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 2000;
+    pointer-events: none;
+  }
+  .read-progress span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--cpg-accent), #ff4d6a);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.1s linear;
+  }
+
+  .post-header { position: relative; overflow: hidden; padding-bottom: var(--space-3xl); }
+  .post-header-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px) brightness(0.28) saturate(0.8);
+    transform: scale(1.1);
+  }
+  .post-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.3), var(--cpg-black));
+  }
+  .post-header-inner { position: relative; z-index: 1; max-width: 900px; }
+  .post-cat {
+    display: inline-block;
+    margin: var(--space-md) 0;
+    padding: 5px 14px;
+    background: var(--cpg-accent);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 999px;
+  }
+  .post-header h1 { font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.1; }
+  .post-lede { margin-top: var(--space-md); font-size: 1.15rem; color: var(--cpg-light); max-width: 760px; }
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: var(--space-lg);
+    color: var(--cpg-silver);
+    font-size: 0.9rem;
+  }
+
+  .post-section { padding-top: var(--space-2xl); }
+  .post-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+  .post-main { max-width: 760px; }
+  .post-hero { margin: 0 0 var(--space-2xl); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--cpg-border); background: var(--cpg-darker); }
+  .post-hero img { width: 100%; height: auto; display: block; aspect-ratio: 16 / 10; object-fit: cover; }
+
+  .post-aside { position: sticky; top: 130px; display: flex; flex-direction: column; gap: var(--space-lg); }
+  .post-toc {
+    padding: var(--space-lg);
+    background: var(--cpg-charcoal);
+    border: 1px solid var(--cpg-border);
+    border-radius: var(--radius-md);
+  }
+  .post-toc h2 {
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    color: var(--cpg-silver);
+    margin-bottom: var(--space-md);
+  }
+  .post-toc ol { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .post-toc a {
+    display: block;
+    padding: 6px 10px;
+    border-left: 2px solid var(--cpg-border);
+    color: var(--cpg-light);
+    font-size: 0.88rem;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+  }
+  .post-toc a:hover, .post-toc a.active {
+    color: var(--cpg-pure-white);
+    border-left-color: var(--cpg-accent);
+    background: rgba(200, 16, 46, 0.08);
+  }
+  .post-aside-cta {
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    background: linear-gradient(145deg, rgba(200, 16, 46, 0.2), var(--cpg-charcoal));
+    border: 1px solid rgba(200, 16, 46, 0.35);
+  }
+  .post-aside-cta h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .post-aside-cta p { color: var(--cpg-light); font-size: 0.9rem; margin-bottom: var(--space-md); }
+
+  .post-tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: var(--space-2xl) 0 0; }
+  .post-tags li {
+    padding: 4px 12px;
+    border: 1px solid var(--cpg-border);
+    border-radius: 999px;
+    color: var(--cpg-silver);
+    font-size: 0.8rem;
+  }
+  .post-share {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--cpg-border);
+    color: var(--cpg-silver);
+    font-size: 0.9rem;
+  }
+  .post-share a { color: var(--cpg-light); text-decoration: none; font-weight: 600; }
+  .post-share a:hover { color: var(--cpg-accent); }
+
+  .post-rifles, .post-related {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: var(--space-xl);
+  }
+
+  @media (max-width: 1024px) {
+    .post-layout { grid-template-columns: 1fr; }
+    .post-aside { position: static; order: -1; }
+    .post-aside-cta { display: none; }
+    .post-main { max-width: none; }
+  }
+</style>
+
+<style is:global>
+  .prose { color: var(--cpg-light); font-size: 1.07rem; line-height: 1.8; }
+  .prose > * + * { margin-top: 1.15em; }
+  .prose h2 {
+    margin-top: 2.2em;
+    padding-top: 0.4em;
+    font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+    color: var(--cpg-pure-white);
+    scroll-margin-top: 130px;
+    position: relative;
+  }
+  .prose h2::before {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 3px;
+    margin-bottom: 0.6em;
+    background: var(--cpg-accent);
+  }
+  .prose h3 {
+    margin-top: 1.8em;
+    font-size: 1.25rem;
+    color: var(--cpg-pure-white);
+    scroll-margin-top: 130px;
+  }
+  .prose strong { color: var(--cpg-pure-white); }
+  .prose a {
+    color: #ff4d6a;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 77, 106, 0.4);
+    text-underline-offset: 3px;
+    transition: text-decoration-color var(--transition-fast);
+  }
+  .prose a:hover { text-decoration-color: currentColor; }
+  .prose ul, .prose ol { padding-left: 1.4em; }
+  .prose li + li { margin-top: 0.45em; }
+  .prose ul li::marker { color: var(--cpg-accent); }
+  .prose ol li::marker { color: var(--cpg-accent); font-weight: 700; }
+  .prose blockquote {
+    margin-left: 0;
+    margin-right: 0;
+    padding: var(--space-md) var(--space-lg);
+    border-left: 4px solid var(--cpg-accent);
+    background: rgba(200, 16, 46, 0.08);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    color: var(--cpg-light);
+  }
+  .prose blockquote p { margin: 0; }
+  .prose blockquote p + p { margin-top: 0.6em; }
+  .prose hr { border: 0; border-top: 1px solid var(--cpg-border); margin: 2.5em 0; }
+  .prose code {
+    padding: 2px 6px;
+    background: var(--cpg-charcoal);
+    border: 1px solid var(--cpg-border);
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    display: block;
+    overflow-x: auto;
+  }
+  .prose th, .prose td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--cpg-border); }
+  .prose th {
+    background: var(--cpg-charcoal);
+    color: var(--cpg-pure-white);
+    font-family: var(--font-heading);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+  }
+  .prose tr:hover td { background: rgba(255, 255, 255, 0.02); }
+  .prose img { border-radius: var(--radius-md); max-width: 100%; height: auto; }
+</style>

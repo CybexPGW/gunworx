@@ -1,0 +1,2037 @@
+[
+  {
+    "id": "rts-bronxe-meridian-6-5cm",
+    "wooId": 32005,
+    "sku": "KB 10-2",
+    "code": "KB 10-2",
+    "name": "Bronxe Meridian 6.5CM",
+    "slug": "bronxe-meridian-6-5cm",
+    "price": 3807.0,
+    "packages": [],
+    "inStock": true,
+    "platform": "centerfire",
+    "caliber": "6.5 Creedmoor",
+    "usage": "PRS/ELR/Most Centerfire Competitions",
+    "images": [
+      "/images/ready-to-ship/bronxe-meridian-6-5cm-1.webp",
+      "/images/ready-to-ship/bronxe-meridian-6-5cm-2.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #cecfd3 0%, #d3d5d9 100%)",
+      "linear-gradient(180deg, #c8c7cc 0%, #d2d1d4 100%)"
+    ],
+    "summary": "Built for shooters who value carefully selected components and purposeful design, the Cybex Axiom 6.5 brings together a Kelbly’s Prometheus action, a heavy-profile barrel, and an adjustable competition trigger in a distinctive charcoal green package.",
+    "description": [
+      "Built for shooters who value carefully selected components and purposeful design, the Cybex Axiom 6.5 brings together a Kelbly’s Prometheus action, a heavy-profile barrel, and an adjustable competition trigger in a distinctive charcoal green package.",
+      "Chambered in 6.5 Creedmoor, the Axiom features a 26-inch Lothar Walther Heavy Varmint barrel with a 1:8 twist. Its substantial contour tapers from 1.200 inches to .920 inches, while 5/8×24 muzzle threads accommodate compatible muzzle accessories.",
+      "A 20-MOA Picatinny rail provides the mounting foundation for your preferred optic.",
+      "The TriggerTech Diamond trigger, adjustable from 4 to 32 ounces, lets you tailor trigger pull to your preferences.",
+      "An MDT Gen II folding stock completes the configuration, offering the convenience of a folding design for transport and storage.",
+      "For an optional optics package, choose the Arken EP-5 5–25×56 scope, featuring a 34mm tube, first focal plane design, and illuminated MIL reticle. Rifles purchased with a scope arrive zeroed at 100 yards using factory ammunition."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Kelbey’s"
+          },
+          {
+            "label": "Model",
+            "value": "Prometheus"
+          },
+          {
+            "label": "Bolt Lug/Angle/Style",
+            "value": "2/75°/RB-RP"
+          },
+          {
+            "label": "Picatinny Rail",
+            "value": "20MOA"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "6.5 Creedmoor"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "Lothar Walther"
+          },
+          {
+            "label": "Length",
+            "value": "26”"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": "Heavy Varmint (1.2” to .920”)"
+          },
+          {
+            "label": "Twist",
+            "value": "1:8"
+          },
+          {
+            "label": "Muzzle thread size",
+            "value": "5/8×24"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "MDT"
+          },
+          {
+            "label": "Model",
+            "value": "Gen II Folding Stock"
+          },
+          {
+            "label": "Color",
+            "value": "Charcoal Green"
+          },
+          {
+            "label": "Bedded",
+            "value": "N/A"
+          }
+        ]
+      },
+      {
+        "title": "Scope – Optional",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Arken"
+          },
+          {
+            "label": "Model",
+            "value": "EP-5"
+          },
+          {
+            "label": "Specs",
+            "value": "5-25×56"
+          },
+          {
+            "label": "Tube",
+            "value": "34mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF1"
+          },
+          {
+            "label": "Recital",
+            "value": "VHR, MIL, Luminated"
+          }
+        ]
+      },
+      {
+        "title": "Primary Usage",
+        "items": [
+          {
+            "label": null,
+            "value": "PRS/ELR/Most Centerfire Competitions"
+          }
+        ]
+      },
+      {
+        "title": "Condition",
+        "items": [
+          {
+            "label": null,
+            "value": "New"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-cybex-axiom-6-5",
+    "wooId": 31947,
+    "sku": "KB 10-1",
+    "code": "KB 10-1",
+    "name": "Axiom 6.5",
+    "slug": "cybex-axiom-6-5",
+    "price": 3807.0,
+    "packages": [],
+    "inStock": true,
+    "platform": "centerfire",
+    "caliber": "6.5 Creedmoor",
+    "usage": "PRS/ELR/Most Centerfire Competitions",
+    "images": [
+      "/images/ready-to-ship/cybex-axiom-6-5-1.webp",
+      "/images/ready-to-ship/cybex-axiom-6-5-2.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #c0c1c5 0%, #c8c9cd 100%)",
+      "linear-gradient(180deg, #caccd0 0%, #d3d5d9 100%)"
+    ],
+    "summary": "Built for shooters who value carefully selected components and purposeful design, the Cybex Axiom 6.5 brings together a Kelbly’s Prometheus action, a heavy-profile barrel, and an adjustable competition trigger in a distinctive charcoal green package.",
+    "description": [
+      "Built for shooters who value carefully selected components and purposeful design, the Cybex Axiom 6.5 brings together a Kelbly’s Prometheus action, a heavy-profile barrel, and an adjustable competition trigger in a distinctive charcoal green package.",
+      "Chambered in 6.5 Creedmoor, the Axiom features a 26-inch Lothar Walther Heavy Varmint barrel with a 1:8 twist. Its substantial contour tapers from 1.200 inches to .920 inches, while 5/8×24 muzzle threads accommodate compatible muzzle accessories.",
+      "A 20-MOA Picatinny rail provides the mounting foundation for your preferred optic.",
+      "The TriggerTech Diamond trigger, adjustable from 4 to 32 ounces, lets you tailor trigger pull to your preferences.",
+      "An MDT Gen II folding stock completes the configuration, offering the convenience of a folding design for transport and storage.",
+      "For an optional optics package, choose the Arken EP-5 5–25×56 scope, featuring a 34mm tube, first focal plane design, and illuminated MIL reticle. Rifles purchased with a scope arrive zeroed at 100 yards using factory ammunition."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Kelbey’s"
+          },
+          {
+            "label": "Model",
+            "value": "Prometheus"
+          },
+          {
+            "label": "Bolt Lug/Angle/Style",
+            "value": "2/75°/RB-RP"
+          },
+          {
+            "label": "Picatinny Rail",
+            "value": "20MOA"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "6.5 Creedmoor"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "Lothar Walther"
+          },
+          {
+            "label": "Length",
+            "value": "26”"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": "Heavy Varmint (1.2” to .920”)"
+          },
+          {
+            "label": "Twist",
+            "value": "1:8"
+          },
+          {
+            "label": "Muzzle thread size",
+            "value": "5/8×24"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "MDT"
+          },
+          {
+            "label": "Model",
+            "value": "Gen II Folding Stock"
+          },
+          {
+            "label": "Color",
+            "value": "Charcoal Green"
+          },
+          {
+            "label": "Bedded",
+            "value": "N/A"
+          }
+        ]
+      },
+      {
+        "title": "Scope – Optional",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Arken"
+          },
+          {
+            "label": "Model",
+            "value": "EP-5"
+          },
+          {
+            "label": "Specs",
+            "value": "5-25×56"
+          },
+          {
+            "label": "Tube",
+            "value": "34mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF1"
+          },
+          {
+            "label": "Recital",
+            "value": "VHR, MIL, Luminated"
+          }
+        ]
+      },
+      {
+        "title": "Primary Usage",
+        "items": [
+          {
+            "label": null,
+            "value": "PRS/ELR/Most Centerfire Competitions"
+          }
+        ]
+      },
+      {
+        "title": "Condition",
+        "items": [
+          {
+            "label": null,
+            "value": "New"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-trident-eclipse",
+    "wooId": 31934,
+    "sku": "BR 07-2",
+    "code": "BR 07-2",
+    "name": "Trident Eclipse",
+    "slug": "trident-eclipse",
+    "price": 4476.0,
+    "packages": [],
+    "inStock": true,
+    "platform": "rimfire",
+    "caliber": "22LR",
+    "usage": "Benchrest",
+    "images": [
+      "/images/ready-to-ship/trident-eclipse-1.webp",
+      "/images/ready-to-ship/trident-eclipse-2.webp",
+      "/images/ready-to-ship/trident-eclipse-3.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #c1c2c6 0%, #d4d4d6 100%)",
+      "linear-gradient(180deg, #c9cbcf 0%, #cfd0d4 100%)",
+      "linear-gradient(180deg, #d7d9db 0%, #dfe1e3 100%)"
+    ],
+    "summary": "A premium .22 LR benchrest rifle engineered for shooters who demand unwavering consistency and exacting precision.",
+    "description": [
+      "A premium .22 LR benchrest rifle engineered for shooters who demand unwavering consistency and exacting precision.",
+      "At its heart is a PQP/Trident three-lug action paired with a 24-inch MullerWorks barrel featuring a 1:16 twist and substantial 1.20-to-.920-inch contour for excellent stability. A lockable, anodized-aluminum tuner provides an adjustment range of 0–500 and is threaded to accept additional accessories, allowing the rifle to be carefully tuned to its preferred match ammunition.",
+      "The rifle rests in a low-profile Precision WoodCraft stock finished in a rich Walnut color—an elegant contrast to the rifle’s dark competition hardware.",
+      "A TriggerTech Diamond trigger, adjustable from 4 to 32 ounces, delivers the light, crisp release essential for precision benchrest shooting.",
+      "The scoped configuration is crowned with a Nightforce Benchrest 12–42×56 optic, mounted on a 20-MOA Picatinny rail for exceptional clarity and precise target definition at 50 yards.",
+      "The name “Trident Eclipse” reflects the rifle’s foundation—the formidable PQP/Trident action—while “Eclipse” captures its dark accents, commanding presence, and ability to place shot after shot into one nearly indistinguishable point."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "PQP (Dan Killough)"
+          },
+          {
+            "label": "Model",
+            "value": "Trident"
+          },
+          {
+            "label": "Bolt Lug/Angle/Style",
+            "value": "3 Lug/75°/RB-LP"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "22LR"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "MullerWorks"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": "1.2”-.905”/24”"
+          },
+          {
+            "label": "Twist",
+            "value": "1:16"
+          },
+          {
+            "label": "Other",
+            "value": "20 MOA Pic Rail"
+          },
+          {
+            "label": "Barrel thread size",
+            "value": "N/A"
+          }
+        ]
+      },
+      {
+        "title": "Tuner",
+        "items": [
+          {
+            "label": null,
+            "value": "Adjustable from 0-500 and lockable"
+          },
+          {
+            "label": null,
+            "value": "Anodized Aluminum"
+          },
+          {
+            "label": null,
+            "value": "Black Numbering"
+          },
+          {
+            "label": null,
+            "value": "Threaded on the end for accessories"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Precision WoodCraft (PWC)"
+          },
+          {
+            "label": "Profile",
+            "value": "Low"
+          },
+          {
+            "label": "Color",
+            "value": "Walnut"
+          }
+        ]
+      },
+      {
+        "title": "Scope",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Night Force"
+          },
+          {
+            "label": "Model",
+            "value": "Benchrest"
+          },
+          {
+            "label": "Specs",
+            "value": "12-42×56"
+          },
+          {
+            "label": "Tube",
+            "value": "30mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF2"
+          },
+          {
+            "label": "Recital",
+            "value": "2DD, Luminated"
+          }
+        ]
+      },
+      {
+        "title": "Primary Usage",
+        "items": [
+          {
+            "label": null,
+            "value": "Benchrest"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-prometheus-blackforge-6-5cm",
+    "wooId": 31806,
+    "sku": "KB 07-2",
+    "code": "KB 07-2",
+    "name": "Bronze Prometheus 6.5CM",
+    "slug": "prometheus-blackforge-6-5cm",
+    "price": 3818.0,
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 3818.0
+      },
+      {
+        "label": "Rifle + Arken Scope",
+        "price": 4317.0
+      },
+      {
+        "label": "Rifle + Scope + Custom Case",
+        "price": 4837.0
+      }
+    ],
+    "inStock": true,
+    "platform": "centerfire",
+    "caliber": "6.5 Creedmoor",
+    "usage": "PRS/ELR/Most Centerfire Competitions",
+    "images": [
+      "/images/ready-to-ship/prometheus-blackforge-6-5cm-1.webp",
+      "/images/ready-to-ship/prometheus-blackforge-6-5cm-2.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #c4c6ca 0%, #d0d2d6 100%)",
+      "linear-gradient(180deg, #c9cbcf 0%, #c8c9cd 100%)"
+    ],
+    "summary": "Forged for precision. Built to perform at distance.",
+    "description": [
+      "Forged for precision. Built to perform at distance.",
+      "The Prometheus BlackForge 6.5 is a purpose-built precision rifle engineered for PRS competition and extended-range shooting.",
+      "At its core is a Kelbly’s Prometheus action paired with a 26-inch Krieger Heavy Varmint barrel chambered in 6.5 Creedmoor. The 1:8 twist delivers the stability needed for today’s high-ballistic-coefficient match bullets, while the barrel’s substantial contour helps maintain consistency through demanding shot strings.",
+      "The rifle is anchored in a black MDT ACC Elite chassis, providing a rigid, highly adjustable platform that shooters can tailor for balance, fit, and positional control.",
+      "A TriggerTech Diamond trigger—adjustable from 4 to 32 ounces—offers the crisp, predictable break expected from a competition-grade rifle.",
+      "A 20-MOA Picatinny rail provides additional elevation for longer engagements, while the threaded muzzle allows easy installation of compatible brakes or suppressors.",
+      "For a complete, range-ready package, the BlackForge is available with an optional Arken EP-5 5–25×56 first-focal-plane scope featuring an illuminated VPR MIL reticle and 34mm tube."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Kelbey’s"
+          },
+          {
+            "label": "Model",
+            "value": "Prometheus"
+          },
+          {
+            "label": "Bolt Lug/Angle/Style",
+            "value": "2/75°/RB-RP"
+          },
+          {
+            "label": "Picatinny Rail",
+            "value": "20MOA"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "6.5 Creedmoor"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "Krieger"
+          },
+          {
+            "label": "Length",
+            "value": "26”"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": "Heavy Varmint (1.2” to .920”)"
+          },
+          {
+            "label": "Twist",
+            "value": "1:8"
+          },
+          {
+            "label": "Muzzle thread size",
+            "value": "5/8×24"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "MDT"
+          },
+          {
+            "label": "Model",
+            "value": "Elite ACC"
+          },
+          {
+            "label": "Color",
+            "value": "Black"
+          },
+          {
+            "label": "Bedded",
+            "value": "N/A"
+          }
+        ]
+      },
+      {
+        "title": "Scope – Optional",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Arken"
+          },
+          {
+            "label": "Model",
+            "value": "EP-5"
+          },
+          {
+            "label": "Specs",
+            "value": "5-25×56"
+          },
+          {
+            "label": "Tube",
+            "value": "34mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF1"
+          },
+          {
+            "label": "Recital",
+            "value": "VHR, MIL, Luminated"
+          }
+        ]
+      },
+      {
+        "title": "Primary Usage",
+        "items": [
+          {
+            "label": null,
+            "value": "PRS/ELR/Most Centerfire Competitions"
+          }
+        ]
+      },
+      {
+        "title": "Condition",
+        "items": [
+          {
+            "label": null,
+            "value": "New"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-bronze-reaper",
+    "wooId": 31762,
+    "sku": "RX 03-1A",
+    "code": "RX 03-1A",
+    "name": "Bronze Reaper-22",
+    "slug": "bronze-reaper",
+    "price": 3968.0,
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 3968.0
+      },
+      {
+        "label": "Rifle + Custom Case",
+        "price": 4488.0
+      },
+      {
+        "label": "Rifle + Scope + Custom Case",
+        "price": 4987.0
+      }
+    ],
+    "inStock": true,
+    "platform": "rimfire",
+    "caliber": "22LR",
+    "usage": "",
+    "images": [
+      "/images/ready-to-ship/bronze-reaper-1.webp",
+      "/images/ready-to-ship/bronze-reaper-2.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #c9cbcf 0%, #d8dade 100%)",
+      "linear-gradient(180deg, #cdced2 0%, #e4e5e9 100%)"
+    ],
+    "summary": "Forged for competitors. Refined for marksmen. Built to dominate.",
+    "description": [
+      "Forged for competitors. Refined for marksmen. Built to dominate.",
+      "The Bronze Reaper is the embodiment of modern precision rimfire engineering—a rifle designed to blur the line between rimfire training and centerfire performance. At its heart lies the renowned Zermatt RimX action , delivering the smooth cycling, reliability, and consistency that have made it a benchmark among elite precision shooters.",
+      "Paired with a hand-selected 23-inch Benchmark match barrel featuring a heavy 1.20″ contour and optimized 1:15 twist, the Bronze Reaper is engineered to produce exceptional accuracy and maintain stability shot after shot.",
+      "Every detail of the rifle has been selected with competitive performance in mind. The TriggerTech Diamond trigger , adjustable from an ultra-light 4 ounces to 32 ounces, provides a crisp, glass-rod break that allows the shooter to fully exploit the rifle’s precision potential. Whether engaging KYL racks, tiny PRS Rimfire targets, or challenging positional stages, the trigger delivers confidence when fractions of an inch matter.",
+      "The rifle is housed in the flagship MDT Premier Gen II chassis , finished in the distinctive War-Torn Bronze color that inspired its name. More than aesthetics, the chassis incorporates a precision-tuned system of forend weighting, buttstock dampers, and a competition-ready bag rider to create a platform that tracks smoothly, settles quickly, and remains stable through every shot sequence. The result is a rifle that feels planted on barricades, predictable from bags, and exceptionally balanced in the hands.",
+      "Topping the system is the Arken EP-5 5-25×56 FFP optic , providing the magnification range and first focal plane precision needed to confidently engage targets from close-range NRL22 stages to the outer limits of rimfire ballistics. The illuminated MIL reticle offers rapid holdovers and precise corrections, ensuring the shooter remains in control regardless of distance or conditions.",
+      "Every Bronze Reaper is test-fired, verified, and prepared before delivery, ensuring it arrives ready to perform. More than a rifle, it is a purpose-built precision instrument designed for competitors, trainers, and enthusiasts who refuse to compromise.",
+      "The Bronze Reaper doesn’t simply hit targets—it methodically collects them."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Zermatt"
+          },
+          {
+            "label": "Model",
+            "value": "Rim-X"
+          },
+          {
+            "label": "Bolt Lug/Angle",
+            "value": "2 / 90°"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "22LR"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "Benchmark"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": "1.20” / 23”"
+          },
+          {
+            "label": "Twist",
+            "value": "1:15"
+          },
+          {
+            "label": "Barrel thread size",
+            "value": "N/A"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "MDT"
+          },
+          {
+            "label": "Model",
+            "value": "Premier Gen II"
+          },
+          {
+            "label": "Color",
+            "value": "War-Torn Bronz (WTB)"
+          },
+          {
+            "label": "Other",
+            "value": "Bag Rider, Forend Weight, Butt Stock Dampers"
+          }
+        ]
+      },
+      {
+        "title": "Scope",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Arken"
+          },
+          {
+            "label": "Model",
+            "value": "EP-5"
+          },
+          {
+            "label": "Specs",
+            "value": "5-25×56"
+          },
+          {
+            "label": "Tube",
+            "value": "34mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF1"
+          },
+          {
+            "label": "Recital",
+            "value": "VHR, MIL, Luminated"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-green-reaper-gen-ii-precision-forged-long-range-ready",
+    "wooId": 31712,
+    "sku": "CF 02-2",
+    "code": "CF 02-2",
+    "name": "Hammerhead Pro Match .223",
+    "slug": "green-reaper-gen-ii-precision-forged-long-range-ready",
+    "price": 5690.0,
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 5690.0
+      },
+      {
+        "label": "Rifle + Custom Case",
+        "price": 6216.0
+      },
+      {
+        "label": "Rifle + Arken Scope + Custom Case",
+        "price": 6715.0
+      }
+    ],
+    "inStock": true,
+    "platform": "centerfire",
+    "caliber": ".223 REM Bolt Action",
+    "usage": "",
+    "images": [
+      "/images/ready-to-ship/green-reaper-gen-ii-precision-forged-long-range-ready-1.webp",
+      "/images/ready-to-ship/green-reaper-gen-ii-precision-forged-long-range-ready-2.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #bbbdc1 0%, #c0c1c5 100%)",
+      "linear-gradient(180deg, #bfc0c4 0%, #dcdde1 100%)"
+    ],
+    "summary": "Every once in a while, a rifle comes across the bench that feels less like an assembly of parts and more like a purpose-built instrument. The CF 02-2 is exactly that—a precision-built .223 Remington designed for shooters who demand repeatability, refinement, and uncompromising performance.",
+    "description": [
+      "Every once in a while, a rifle comes across the bench that feels less like an assembly of parts and more like a purpose-built instrument. The CF 02-2 is exactly that—a precision-built .223 Remington designed for shooters who demand repeatability, refinement, and uncompromising performance.",
+      "At the heart of this build is the legendary BAT Machine Hammer Head action. Renowned in the precision rifle world for its exceptional rigidity, smooth cycling, and rock-solid consistency, the dual-lug 75° bolt throw design provides the foundation serious accuracy requires. This action was selected for one reason: absolute confidence behind the trigger.",
+      "Mated to the action is a 26-inch heavy contour barrel from Krieger Barrels chambered in .223 Remington with a fast 1:8 twist rate. This configuration allows the rifle to stabilize a broad spectrum of bullet weights—from lightweight varmint projectiles to heavy match bullets capable of stretching the cartridge well beyond typical expectations. Enhancing the system further is ACE (Accurize Chamber Enhancement) work performed by Wolf Precision, delivering tighter tolerances and elevated consistency shot after shot.",
+      "The barrel is threaded 5/8×24 and fitted with an EC Tuner muzzle brake, allowing the shooter to fine-tune barrel harmonics and recoil impulse for maximum precision.",
+      "The trigger system is equally refined. A TriggerTech Diamond trigger adjustable from 4 to 32 ounces provides an exceptionally crisp, clean break with virtually zero creep. Whether shooting from the bench, prone in competition, or engaging targets in the field, the trigger delivers the consistency and control precision shooters expect.",
+      "The entire system is housed in an MDT Sporting Goods XRS chassis finished in Flat Dark Earth. Combining the ergonomics of a traditional stock with the modular advantages of a modern chassis system, the XRS offers outstanding shooter comfort and adaptability. This rifle is equipped with the enclosed forend and additional XRS forend weight, creating exceptional balance and stability for prone shooting, barricade work, or long days on the range.",
+      "Optional: Topping the package is an Arken Optics EP-5 5-25×56 optic featuring a 34mm tube, first focal plane design, illuminated VHR MIL reticle, and the clarity needed to maximize the rifle’s long-range capability.",
+      "The CF 02-2 was never intended to be a safe queen. It was built to perform—whether on the competition line, in a prairie dog town, or on steel at distance. Every component was selected with purpose, and every detail reflects a commitment to precision craftsmanship."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "BAT"
+          },
+          {
+            "label": "Model",
+            "value": "Hammer Head"
+          },
+          {
+            "label": "Bolt Lug & Angle",
+            "value": "2 & 75°"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": ".223 REM Bolt Action"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "Krieger"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": "Heavy & 26”"
+          },
+          {
+            "label": "Twist",
+            "value": "1:8"
+          },
+          {
+            "label": "Other",
+            "value": "ACE [Accurize Chamber Enhancement] by Wolf Precision"
+          },
+          {
+            "label": "Barrel thread size",
+            "value": "5/8”x24"
+          },
+          {
+            "label": "Muzzle Break",
+            "value": "EC Tunner"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "MDT"
+          },
+          {
+            "label": "Model",
+            "value": "XRS w/standard + Enclosed Forend & XRS Forend Weight"
+          },
+          {
+            "label": "Color",
+            "value": "FDE"
+          }
+        ]
+      },
+      {
+        "title": "Scope – Optional",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Arken"
+          },
+          {
+            "label": "Model",
+            "value": "EP-5"
+          },
+          {
+            "label": "Specs",
+            "value": "5-25×56"
+          },
+          {
+            "label": "Tube",
+            "value": "34mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF1"
+          },
+          {
+            "label": "Recital",
+            "value": "VHR, MIL, Luminated"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-rx-03-2a-prairie-ghost",
+    "wooId": 31705,
+    "sku": "RX 03-2",
+    "code": "RX 03-2",
+    "name": "RimX Overwatch 24",
+    "slug": "rx-03-2a-prairie-ghost",
+    "price": 3732.0,
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 3732.0
+      },
+      {
+        "label": "Rifle + Custom Case",
+        "price": 4552.0
+      },
+      {
+        "label": "Rifle + Scope + Custom Case",
+        "price": 4751.0
+      }
+    ],
+    "inStock": true,
+    "platform": "rimfire",
+    "caliber": "22LR",
+    "usage": "",
+    "images": [
+      "/images/ready-to-ship/rx-03-2a-prairie-ghost-1.webp",
+      "/images/ready-to-ship/rx-03-2a-prairie-ghost-2.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #c1c2cb 0%, #cccfd7 100%)",
+      "linear-gradient(180deg, #d1d3d7 0%, #ccd0d3 100%)"
+    ],
+    "summary": "Purpose-built from the ground up, the RX 03-2 is a refined rimfire platform engineered for shooters who demand consistency, confidence, and absolute precision. Every detail of this custom .22LR rifle has been carefully selected to create a system that performs as flawlessly on the competition line as it does during long-range practice sessions.",
+    "description": [
+      "Purpose-built from the ground up, the RX 03-2 is a refined rimfire platform engineered for shooters who demand consistency, confidence, and absolute precision. Every detail of this custom .22LR rifle has been carefully selected to create a system that performs as flawlessly on the competition line as it does during long-range practice sessions.",
+      "At the heart of the build is the legendary Zermatt Arms RimX action—a benchmark in the precision rimfire world. Renowned for its smooth cycling and repeatable accuracy, the dual-lug 90-degree bolt throw allows shooters to remain planted behind the optic while maintaining fast, effortless manipulation. The result is a shooting experience that feels deliberate, controlled, and exceptionally refined.",
+      "Matched to the action is a 24-inch CRB heavy contour barrel chambered in .22LR. With its substantial 1.20-inch profile and optimized 1:15 twist rate, the RX 03-2 is tuned to maximize the performance of premium match ammunition such as Lapua, SK, and Eley.",
+      "Whether stretching rimfire distances or stacking groups at the bench, the rifle delivers remarkable stability, predictable tracking, and outstanding consistency shot after shot.",
+      "The trigger system features the elite TriggerTech Diamond trigger, offering an ultra-crisp break adjustable from 4 to 32 ounces. The feel is clean, precise, and highly customizable—allowing shooters to tailor the rifle perfectly for positional stages, prone precision, or benchrest applications.",
+      "Housing the system is the striking MDT Sporting Goods Premier Gen II chassis in Charcoal Green. Combining rugged functionality with modern ergonomics, stock enhances portability without sacrificing rigidity. Added features like the integrated bag rider and forend weight improve balance and rifle control, creating a platform that remains planted and composed under demanding conditions.",
+      "Topping the rifle is the Arken Optics EP-5 5-25×56 optic, delivering exceptional clarity and precision aiming capability through its first focal plane MIL reticle and illuminated VHR system. Built around a robust 34mm tube, it provides the versatility and confidence needed for precision rimfire shooting at any distance.",
+      "The RX 03-2 isn’t simply a collection of premium components—it is a complete precision system. Designed for shooters who appreciate craftsmanship, performance, and repeatable results, this rifle represents the perfect balance of engineering and execution."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Zermatt"
+          },
+          {
+            "label": "Model",
+            "value": "Rim-X"
+          },
+          {
+            "label": "Bolt Lug/Angle",
+            "value": "2 / 90°"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "22LR"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "CRB"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": "1.20” / 24”"
+          },
+          {
+            "label": "Twist",
+            "value": "1:15"
+          },
+          {
+            "label": "Barrel thread size",
+            "value": "N/A"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "MDT"
+          },
+          {
+            "label": "Model",
+            "value": "Premier Gen II"
+          },
+          {
+            "label": "Color",
+            "value": "Charcoal Green"
+          },
+          {
+            "label": "Other",
+            "value": "Bag Rider, Forend Weight"
+          }
+        ]
+      },
+      {
+        "title": "Scope",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Arken"
+          },
+          {
+            "label": "Model",
+            "value": "EP-5"
+          },
+          {
+            "label": "Specs",
+            "value": "5-25×56"
+          },
+          {
+            "label": "Tube",
+            "value": "34mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF1"
+          },
+          {
+            "label": "Recital",
+            "value": "VHR, MIL, Luminated"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-pqp-2500x-walnut-precision-elite",
+    "wooId": 31655,
+    "sku": "BR 05-1",
+    "code": "BR 05-1",
+    "name": "X-Ring Authority .22",
+    "slug": "pqp-2500x-walnut-precision-elite",
+    "price": 4996.0,
+    "packages": [
+      {
+        "label": "Rifle + Custom Case (no scope)",
+        "price": 4996.0
+      },
+      {
+        "label": "Rifle + Arken Scope + Custom Case",
+        "price": 5495.0
+      }
+    ],
+    "inStock": true,
+    "platform": "rimfire",
+    "caliber": "22LR",
+    "usage": "Benchrest",
+    "images": [
+      "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-1.webp",
+      "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-2.webp",
+      "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-3.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #b8b9bd 0%, #c2c4c8 100%)",
+      "linear-gradient(180deg, #b5b6bd 0%, #c4c6cc 100%)",
+      "linear-gradient(180deg, #bdc1c4 0%, #cacdd3 100%)"
+    ],
+    "summary": "Engineered for shooters who measure success in thousandths and live for the center of the target.",
+    "description": [
+      "Engineered for shooters who measure success in thousandths and live for the center of the target.",
+      "The BR 05-1 “X-Ring Authority” is a purpose-built rimfire benchrest rifle crafted to deliver uncompromising precision, flawless repeatability, and match-grade performance at the highest level of competitive shooting. Built around the elite PQP 2500X action by Dan Killough, this rifle was designed for shooters who demand absolute consistency from every component and every trigger press.",
+      "At the core of the platform is a premium MullerWorks .920 straight contour barrel chambered in .22LR, optimized for exceptional harmonics and predictable shot-to-shot performance.",
+      "Paired with a fully adjustable and lockable tuner system, the BR 05-1 allows precise tuning from 0–500, giving competitors the ability to fine-tune rifle behavior for changing conditions and ammunition lots with surgical accuracy. The anodized aluminum tuner features high-visibility black numbering and threaded accessory compatibility for expanded customization.",
+      "The PQP Trident action features a smooth-running dual-lug RB-LP bolt system with a 90-degree throw engineered for reliability, rigidity, and effortless cycling under match pressure. An integrated 20 MOA Picatinny rail provides a rock-solid optics platform while maximizing elevation adjustment capability for precision rimfire applications.",
+      "Trigger performance comes from the renowned TriggerTech Diamond, offering an ultra-crisp and fully adjustable pull range from 4–32 ounces. Every break is clean, predictable, and competition-ready—allowing the shooter to remain completely connected to the rifle without disturbance to sight picture or follow-through.",
+      "The rifle is housed in a handcrafted Precision WoodCraft stock designed specifically for the 2500X platform. The elegant finish delivers timeless benchrest styling while maintaining the balance, tracking characteristics, and ergonomics demanded by serious precision shooters.",
+      "The BR 05-1 “X-Ring Authority” is more than a custom rifle—it is a dedicated precision instrument built for competitors who refuse to compromise. Every component, every contour, and every adjustment exists for one reason: putting rounds exactly where they belong."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "PQP (Dan Killough)"
+          },
+          {
+            "label": "Model",
+            "value": "2500X"
+          },
+          {
+            "label": "Bolt Lug/Angle/Style",
+            "value": "2 Lug/90°/RB-LP"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "22LR"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "MullerWorks"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": ".905” Straight"
+          },
+          {
+            "label": "Twist",
+            "value": "1:16"
+          },
+          {
+            "label": "Other",
+            "value": "20 MOA Pic Rail"
+          },
+          {
+            "label": "Barrel thread size",
+            "value": "N/A"
+          }
+        ]
+      },
+      {
+        "title": "Tuner",
+        "items": [
+          {
+            "label": null,
+            "value": "Holeshot (Dan Killough)"
+          },
+          {
+            "label": null,
+            "value": "Adjustable from 0-500 and lockable"
+          },
+          {
+            "label": null,
+            "value": "Anodized Aluminum"
+          },
+          {
+            "label": null,
+            "value": "Black Numbering"
+          },
+          {
+            "label": null,
+            "value": "Threaded on the end for accessories"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Precision WoodCraft (PWC)"
+          },
+          {
+            "label": "Profile",
+            "value": "Low"
+          },
+          {
+            "label": "Color",
+            "value": "Walnut"
+          }
+        ]
+      },
+      {
+        "title": "Primary Usage",
+        "items": [
+          {
+            "label": null,
+            "value": "Benchrest"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-prometheus-dominion-6-ppc-benchrest-rifle",
+    "wooId": 31595,
+    "sku": "KB 05-1",
+    "code": "KB 05-1",
+    "name": "Prometheus Dominion 6 PPC Benchrest Rifle",
+    "slug": "prometheus-dominion-6-ppc-benchrest-rifle",
+    "price": 3551.0,
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 3551.0
+      },
+      {
+        "label": "Rifle + Arken Scope",
+        "price": 3970.0
+      }
+    ],
+    "inStock": true,
+    "platform": "centerfire",
+    "caliber": "6mm PPC",
+    "usage": "Benchrest",
+    "images": [
+      "/images/ready-to-ship/prometheus-dominion-6-ppc-benchrest-rifle-1.webp",
+      "/images/ready-to-ship/prometheus-dominion-6-ppc-benchrest-rifle-2.webp",
+      "/images/ready-to-ship/prometheus-dominion-6-ppc-benchrest-rifle-3.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #a6a8ac 0%, #b3b4bb 100%)",
+      "linear-gradient(180deg, #b8b9bd 0%, #cecfd5 100%)",
+      "#ffffff"
+    ],
+    "summary": "Purpose-built for the demanding world of competitive benchrest shooting, this custom 6mm PPC rifle was engineered with one objective in mind: absolute mechanical consistency. Centered around the legendary Kelbly’s Prometheus action, this platform delivers the precision, rigidity, and repeatability elite shooters demand from a true benchrest rifle.",
+    "description": [
+      "Purpose-built for the demanding world of competitive benchrest shooting, this custom 6mm PPC rifle was engineered with one objective in mind: absolute mechanical consistency. Centered around the legendary Kelbly’s Prometheus action, this platform delivers the precision, rigidity, and repeatability elite shooters demand from a true benchrest rifle.",
+      "At the core of the build is a heavy varmint contour 6mm PPC barrel produced by Preferred Barrel Blanks and precision-machined by Kelbly’s specifically to interface with the Prometheus action. Featuring a 1:14 twist and substantial 1.200” to .920” HV contour, the barrel was selected to optimize harmonic stability, minimize thermal shift, and deliver exceptional shot-to-shot consistency under match conditions. An integrated 20 MOA Picatinny rail provides a rigid optics mounting solution suited for serious competition use.",
+      "Trigger performance is handled by the outstanding TriggerTech Diamond trigger system, adjustable from an ultra-light 4 ounces up to 32 ounces. The break is exceptionally crisp, clean, and predictable — exactly what experienced benchrest shooters expect when precision matters most.",
+      "The barreled action is Epoxy bedded into a Protektor Model Remington 700-pattern stock configured specifically for the Prometheus action and finished in a rich Coffee color. Proper bedding enhances long-term stability, maintains repeatable harmonics, and ensures the rifle tracks consistently during recoil while preserving the traditional benchrest aesthetic.",
+      "For shooters seeking a turnkey precision package, the rifle can optionally be paired with an Arken Optics EP-5 5-25×56 FFP optic mounted in 34mm Monstrum Tactical rings. Featuring a first focal plane illuminated VHR MIL reticle and reliable tracking performance, the EP-5 complements the rifle’s precision-focused mission exceptionally well.",
+      "This rifle was built specifically for benchrest competition and precision load development, emphasizing refined ergonomics, mechanical repeatability, and uncompromising accuracy potential.",
+      "While classified as a “blem” configuration due to minor cosmetic inconsistencies near the left-side port area, these imperfections are purely cosmetic and have no impact on functionality or performance."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Kelbey’s"
+          },
+          {
+            "label": "Model",
+            "value": "Prometheus"
+          },
+          {
+            "label": "Bolt Lug/Angle/Style",
+            "value": "2/75°/RB-RP"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "6mm PPC"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "Preferred (machining by Kelbey’s to match Prometheus Action)"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": "1.2” to .920” HV"
+          },
+          {
+            "label": "Twist",
+            "value": "1:14"
+          },
+          {
+            "label": "Other",
+            "value": "20 MOA Pic Rail"
+          },
+          {
+            "label": "Barrel thread size",
+            "value": "N/A"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Protektor"
+          },
+          {
+            "label": "Model",
+            "value": "Rem 700 for Prometheus Action"
+          },
+          {
+            "label": "Color",
+            "value": "Coffee"
+          },
+          {
+            "label": null,
+            "value": "Bedded"
+          }
+        ]
+      },
+      {
+        "title": "Scope – Optional",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Arken"
+          },
+          {
+            "label": "Model",
+            "value": "EP-5"
+          },
+          {
+            "label": "Specs",
+            "value": "5-25×56"
+          },
+          {
+            "label": "Tube",
+            "value": "34mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF1"
+          },
+          {
+            "label": "Recital",
+            "value": "VHR, MIL, Luminated"
+          },
+          {
+            "label": "Rings",
+            "value": "Monstrum (34mm)"
+          }
+        ]
+      },
+      {
+        "title": "Primary Usage",
+        "items": [
+          {
+            "label": null,
+            "value": "Benchrest"
+          }
+        ]
+      },
+      {
+        "title": "Condition",
+        "items": [
+          {
+            "label": "Blem (minor inconsistencies in left side near the port",
+            "value": "see photos)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-apex-rimfire-precision-2500x",
+    "wooId": 31384,
+    "sku": "BR 04-2",
+    "code": "BR 04-2",
+    "name": "Apex Rimfire Precision .22 (RB/RP)",
+    "slug": "apex-rimfire-precision-2500x",
+    "price": 4833.0,
+    "packages": [
+      {
+        "label": "Rifle + Custom Case (no scope)",
+        "price": 4833.0
+      },
+      {
+        "label": "Rifle + Arken Scope + Custom Case",
+        "price": 5252.0
+      }
+    ],
+    "inStock": true,
+    "platform": "rimfire",
+    "caliber": "22LR",
+    "usage": "",
+    "images": [
+      "/images/ready-to-ship/apex-rimfire-precision-2500x-1.webp",
+      "/images/ready-to-ship/apex-rimfire-precision-2500x-2.webp",
+      "/images/ready-to-ship/apex-rimfire-precision-2500x-3.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #d2d4d8 0%, #f7f6f9 100%)",
+      "linear-gradient(180deg, #c3c5c9 0%, #c1c2c6 100%)",
+      "#e5e5e5"
+    ],
+    "summary": "Born from the discipline of competitive benchrest shooting and shaped by the hands of craftsmen who understand that precision is earned—not claimed—the BR 04-2 is a rimfire rifle built with a singular philosophy: eliminate compromise.",
+    "description": [
+      "Born from the discipline of competitive benchrest shooting and shaped by the hands of craftsmen who understand that precision is earned—not claimed—the BR 04-2 is a rimfire rifle built with a singular philosophy: eliminate compromise.",
+      "At its heart lies the legendary PQP Trident action, conceived by Dan Killough and engineered around a 3-lug, 75-degree bolt geometry that cycles with mechanical authority and remarkable smoothness. The RB-RP configuration delivers a short, efficient throw that feels deliberate and exact—every movement refined for the shooter who measures success in thousandths and single-hole groups.",
+      "The rifle’s foundation of accuracy is its MullerWorks .920 straight contour barrel, chambered in .22LR and tuned with a 1:16 twist to extract the absolute best from premium match ammunition. Heavy, stable, and thermally consistent, the barrel anchors the rifle with the kind of unwavering balance demanded in serious rimfire competition. Paired with an integrated 20 MOA rail, the BR 04-2 transitions effortlessly from tight benchrest aggregates to precision rimfire engagements at extended distance.",
+      "Completing the rifle’s precision-focused architecture is a finely tuned barrel tuner system, engineered to extract the absolute highest level of consistency from match-grade rimfire ammunition. Designed to harmonize barrel vibrations and refine the rifle’s natural frequency during firing, the tuner allows the BR 04-2 to be precisely calibrated to specific ammunition lots and environmental conditions.",
+      "Trigger control is delivered through the exceptional TriggerTech Diamond, adjustable from an impossibly light 4 ounces up to 32 ounces. The break is crisp, instantaneous, and devoid of creep—a trigger that disappears beneath the shooter’s finger, leaving only intent and execution.",
+      "What truly distinguishes the BR 04-2, however, is its marriage of modern precision with traditional artistry. The rifle is seated in a handcrafted Precision WoodCraft walnut stock by Randy Ownes, built specifically for the Trident platform. Rich walnut grain flows through the stock like topographic contour lines, giving the rifle a timeless elegance rarely seen in contemporary precision builds. It is a rifle equally at home on the firing line or displayed as functional craftsmanship.",
+      "Crowning the system is the Arken EP-5 5-25×56, mounted securely in an Area 419 one-piece mount. With its 34mm tube, first focal plane design, illuminated VHR MIL reticle, and repeatable tracking, the optic provides the clarity and confidence necessary for precision shot placement in any condition.",
+      "The BR 04-2 is more than a custom rimfire rifle—it is a statement of intent. A rifle for the shooter who understands that excellence is hidden in the smallest details: chamber alignment, trigger break, bolt timing, stock geometry, and the calm certainty that comes from equipment built without shortcuts."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "PQP (Dan Killough)"
+          },
+          {
+            "label": "Model",
+            "value": "Trident"
+          },
+          {
+            "label": "Bolt Lug/Angle/Style",
+            "value": "3/75°/RB-RP"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "22LR"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "MullerWorks"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": ".905” Straight"
+          },
+          {
+            "label": "Twist",
+            "value": "1:16"
+          },
+          {
+            "label": "Other",
+            "value": "20 MOA Pic Rail"
+          },
+          {
+            "label": "Barrel thread size",
+            "value": "N/A"
+          }
+        ]
+      },
+      {
+        "title": "Tuner",
+        "items": [
+          {
+            "label": "Holeshot",
+            "value": "(Dan Killough)"
+          },
+          {
+            "label": null,
+            "value": "Adjustable from 0-500 and lockable"
+          },
+          {
+            "label": null,
+            "value": "Anodized Aluminum"
+          },
+          {
+            "label": null,
+            "value": "Black Numbering"
+          },
+          {
+            "label": null,
+            "value": "Threaded on the end for accessories"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Precision WoodCraft (Randy Ownes)"
+          },
+          {
+            "label": "Profile",
+            "value": "Low"
+          },
+          {
+            "label": "Color",
+            "value": "Walnut"
+          }
+        ]
+      },
+      {
+        "title": "Scope",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Arken"
+          },
+          {
+            "label": "Model",
+            "value": "EP-5"
+          },
+          {
+            "label": "Specs",
+            "value": "5-25×56"
+          },
+          {
+            "label": "Tube",
+            "value": "34mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF1"
+          },
+          {
+            "label": "Recital",
+            "value": "VHR, MIL, Luminated"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-x-shot-precision-valkyrie-22lr",
+    "wooId": 31380,
+    "sku": "BR 04-1",
+    "code": "BR 04-1",
+    "name": "X-Shot Precision Valkyrie .22LR",
+    "slug": "x-shot-precision-valkyrie-22lr",
+    "price": 4833.95,
+    "packages": [
+      {
+        "label": "Rifle + Custom Case (no scope)",
+        "price": 4833.95
+      },
+      {
+        "label": "Rifle + Arken Scope + Custom Case",
+        "price": 5252.0
+      }
+    ],
+    "inStock": true,
+    "platform": "rimfire",
+    "caliber": "22LR",
+    "usage": "",
+    "images": [
+      "/images/ready-to-ship/x-shot-precision-valkyrie-22lr-1.webp",
+      "/images/ready-to-ship/x-shot-precision-valkyrie-22lr-2.webp",
+      "/images/ready-to-ship/x-shot-precision-valkyrie-22lr-3.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #c7c8cc 0%, #c0c4c8 100%)",
+      "linear-gradient(180deg, #e3e3e3 0%, #e2e2e2 100%)",
+      "linear-gradient(180deg, #e4e4e4 0%, #e4e4e6 100%)"
+    ],
+    "summary": "The BR 04-1 was built with a singular purpose: delivering uncompromising rimfire precision through a carefully engineered blend of performance, craftsmanship, and repeatability.",
+    "description": [
+      "The BR 04-1 was built with a singular purpose: delivering uncompromising rimfire precision through a carefully engineered blend of performance, craftsmanship, and repeatability.",
+      "Designed for shooters who demand consistency at the highest level, this custom rifle combines elite components into a platform that feels every bit as refined as it performs.",
+      "At the center of the system is the respected HoleShot 2500X action, designed by Dan Killough. Known throughout the precision rimfire world for its smooth operation and exceptional consistency, the dual-lug design provides reliable lockup and effortless cycling—critical attributes when fractions of an inch separate good from exceptional.",
+      "The BR 04-1 is chambered in .22 LR and built around a premium MullerWorks barrel featuring a .920” straight contour and a proven 1:16 twist rate. Engineered for superior harmonic stability and match-grade accuracy, the barrel is further enhanced with a precision barrel tuner system, allowing shooters to fine-tune barrel harmonics to specific ammunition lots for maximum consistency and tighter groups. Combined with the 20 MOA Picatinny rail, the platform is equally capable at close-range precision work or extended rimfire distances where elevation management becomes essential.",
+      "Trigger control is handled by the TriggerTech Diamond trigger system, widely regarded as one of the finest precision triggers available today. With an adjustable pull weight range from 4 to 32 ounces, the Diamond delivers an exceptionally crisp, repeatable break that minimizes shooter input at the moment of ignition and enhances overall shot control.",
+      "The rifle is housed in a handcrafted walnut stock by Randy Ownes (Precision WoodCraft), purpose-built for the 2500X platform. More than simply beautiful, the stock provides excellent rigidity, natural vibration dampening, and a balanced shooting interface that feels stable in both benchrest and positional shooting environments. The rich cherry finish adds a timeless sophistication rarely found in modern precision rifles.",
+      "Completing the system is the NightForce 12-42×56 optic. Featuring a robust 30mm tube, first focal plane illuminated Benchrest reticle, and exceptional magnification range, the NP-2DD delivers the clarity and tracking precision serious shooters expect from a competition-ready optic. Together, the rifle and optic create a fully integrated precision package designed to inspire confidence under any conditions.",
+      "The BR 04-1 is not simply assembled—it is purposefully composed. Every component, from the action and barrel to the tuner, trigger, and handcrafted stock, has been selected to serve one goal: absolute repeatable precision.",
+      "For shooters who appreciate meticulous craftsmanship and demand performance without compromise, the BR 04-1 stands as a true custom rimfire built to perform at the highest level."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "HoleShot (Dan Killough)"
+          },
+          {
+            "label": "Model",
+            "value": "2500X"
+          },
+          {
+            "label": "Bolt Lug/Angle/",
+            "value": "2/90°"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "22LR"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "MullerWorks"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": ".905” Straight"
+          },
+          {
+            "label": "Twist",
+            "value": "1:16"
+          },
+          {
+            "label": "Other",
+            "value": "20 MOA Pic Rail"
+          },
+          {
+            "label": "Barrel thread size",
+            "value": "N/A"
+          }
+        ]
+      },
+      {
+        "title": "Tuner",
+        "items": [
+          {
+            "label": "Holeshot",
+            "value": "(Dan Killough)"
+          },
+          {
+            "label": null,
+            "value": "Adjustable from 0-500 and lockable"
+          },
+          {
+            "label": null,
+            "value": "Anodized Aluminum"
+          },
+          {
+            "label": null,
+            "value": "Black Numbering"
+          },
+          {
+            "label": null,
+            "value": "Threaded on the end for accessories"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Precision WoodCraft (PWC)"
+          },
+          {
+            "label": "Profile",
+            "value": "Low"
+          },
+          {
+            "label": "Color",
+            "value": "Cherry"
+          }
+        ]
+      },
+      {
+        "title": "Scope",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "NightForce"
+          },
+          {
+            "label": "Model",
+            "value": "Benchrest"
+          },
+          {
+            "label": "Specs",
+            "value": "12-42×56"
+          },
+          {
+            "label": "Tube",
+            "value": "30mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF1"
+          },
+          {
+            "label": "Recital",
+            "value": "NP-2DD"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rts-hammerhead-elr-6-5-creedmoor",
+    "wooId": 31303,
+    "sku": "CF 02-1",
+    "code": "CF 02-1",
+    "name": "Hammerhead ELR 6.5 Creedmoor",
+    "slug": "hammerhead-elr-6-5-creedmoor",
+    "price": 6699.0,
+    "packages": [
+      {
+        "label": "Rifle + Custom Case (no scope)",
+        "price": 6699.0
+      },
+      {
+        "label": "Rifle + Arken Scope + Custom Case",
+        "price": 7260.0
+      }
+    ],
+    "inStock": true,
+    "platform": "centerfire",
+    "caliber": "6.5 Creedmoor",
+    "usage": "",
+    "images": [
+      "/images/ready-to-ship/hammerhead-elr-6-5-creedmoor-1.webp",
+      "/images/ready-to-ship/hammerhead-elr-6-5-creedmoor-2.webp",
+      "/images/ready-to-ship/hammerhead-elr-6-5-creedmoor-3.webp"
+    ],
+    "imageBgs": [
+      "linear-gradient(180deg, #bbbdc1 0%, #c4c6ca 100%)",
+      "linear-gradient(180deg, #b5b6bf 0%, #cbcdd3 100%)",
+      "linear-gradient(180deg, #cdced2 0%, #cdd1d6 100%)"
+    ],
+    "summary": "Some rifles are built to shoot well. Others are built to redefine expectations. The Hammer Head 6.5 Creedmoor was engineered for shooters who demand absolute consistency, uncompromising craftsmanship, and confidence at extreme distance.",
+    "description": [
+      "Some rifles are built to shoot well. Others are built to redefine expectations. The Hammer Head 6.5 Creedmoor was engineered for shooters who demand absolute consistency, uncompromising craftsmanship, and confidence at extreme distance.",
+      "At the heart of this precision platform is the renowned BAT Machine Hammer Head action—an elite-level foundation trusted by competitive marksmen and long-range enthusiasts alike. Featuring a smooth dual-lug design with a fast 75-degree bolt throw, the action cycles with authority and precision, delivering a refined feel every time the bolt runs home.",
+      "Anchoring the system is a 26-inch heavy contour Krieger Barrels barrel chambered in the legendary 6.5 Creedmoor. Known for exceptional ballistic efficiency and remarkable downrange consistency, the cartridge pairs perfectly with the rifle’s 1:8 twist rate to stabilize modern high-performance projectiles with ease. Enhanced with ACE (Accurize Chamber Enhancement) by Wolf Precision, the chamber has been optimized for superior alignment, consistency, and repeatable accuracy shot after shot.",
+      "The muzzle system is equally refined. Threaded 5/8×24 and equipped with an EC Tuner muzzle brake, the rifle allows shooters to tune barrel harmonics for specific ammunition loads while dramatically reducing recoil. The result is flatter tracking, faster follow-up shots, and tighter groups at distance.",
+      "Trigger control is entrusted to the legendary TriggerTech Diamond trigger, adjustable from an ultra-light 4 ounces to 32 ounces. Crisp, clean, and glass-like in its break, it provides the kind of control serious precision shooters demand when every ounce of pressure matters.",
+      "The entire system is housed in a MasterPiece Arms BA chassis with a folding stock, finished in rugged FDE. Designed for both stability and adaptability, the chassis delivers exceptional ergonomics from prone positions, barricades, or field environments. The folding stock enhances portability without sacrificing rigidity, making the rifle equally at home on the competition line or in the backcountry.",
+      "Optionally, the rifle can be paired with the Arken Optics EP-5 7-35×56 optic featuring a 34mm tube, first focal plane design, illuminated VHR MIL reticle, and crystal-clear long-range capability."
+    ],
+    "specGroups": [
+      {
+        "title": "Action",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "BAT"
+          },
+          {
+            "label": "Model",
+            "value": "Hammer Head"
+          },
+          {
+            "label": "Bolt Lug & Angle",
+            "value": "2 & 75°"
+          }
+        ]
+      },
+      {
+        "title": "Barrel",
+        "items": [
+          {
+            "label": "Caliber",
+            "value": "6.5 Creedmoor"
+          },
+          {
+            "label": "Manufacturer",
+            "value": "Krieger"
+          },
+          {
+            "label": "Contour (diameter/length)",
+            "value": "Heavy & 26”"
+          },
+          {
+            "label": "Twist",
+            "value": "1:8"
+          },
+          {
+            "label": "Other",
+            "value": "ACE [Accurize Chamber Enhancement] by Wolf Precision"
+          },
+          {
+            "label": "Barrel thread size",
+            "value": "5/8”x24"
+          },
+          {
+            "label": "Muzzle Break",
+            "value": "EC Tuner"
+          }
+        ]
+      },
+      {
+        "title": "Trigger",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Trigger Tech"
+          },
+          {
+            "label": "Model",
+            "value": "Diamond"
+          },
+          {
+            "label": "Trigger Adjustment Range",
+            "value": "4-32 oz"
+          }
+        ]
+      },
+      {
+        "title": "Chassis/Stock",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "MPA"
+          },
+          {
+            "label": "Model",
+            "value": "BA W/Folding Stock"
+          },
+          {
+            "label": "Color",
+            "value": "FDE"
+          }
+        ]
+      },
+      {
+        "title": "Scope",
+        "items": [
+          {
+            "label": "Manufacturer",
+            "value": "Arken"
+          },
+          {
+            "label": "Model",
+            "value": "EP-5"
+          },
+          {
+            "label": "Specs",
+            "value": "7-35×56"
+          },
+          {
+            "label": "Tube",
+            "value": "34mm"
+          },
+          {
+            "label": "Focal Plane",
+            "value": "FF1"
+          },
+          {
+            "label": "Recital",
+            "value": "VHR, MIL, Luminated"
+          }
+        ]
+      },
+      {
+        "title": "Condition",
+        "items": [
+          {
+            "label": null,
+            "value": "Pre-Owned /light usage (with some minor cosmetics scratches on the chassis)"
+          }
+        ]
+      }
+    ]
+  }
+]

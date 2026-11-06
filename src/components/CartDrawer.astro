@@ -1,0 +1,843 @@
+---
+/**
+ * Headless WooCommerce Slide-Out Cart Drawer & Store API Client
+ *
+ * Talks to `/api/wc/store/*` (proxied by Cloudflare Worker `worker.js` in production
+ * and Vite proxy in `astro dev`, with automatic fallback to the WooCommerce Store API).
+ */
+const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx.com';
+---
+
+<div class="wc-drawer-backdrop" id="wc-drawer-backdrop" hidden></div>
+
+<aside
+  class="wc-drawer"
+  id="wc-drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="wc-drawer-title"
+  aria-hidden="true"
+  data-wc-origin={wcOrigin}
+  data-nosnippet
+>
+  <div class="wc-drawer-header">
+    <div class="wc-drawer-title-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <h2 id="wc-drawer-title">Your Cart</h2>
+      <span class="wc-drawer-badge" id="wc-drawer-count">0</span>
+    </div>
+    <button type="button" class="wc-drawer-close" id="wc-drawer-close" aria-label="Close cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="wc-drawer-error" id="wc-drawer-error" hidden></div>
+
+  <div class="wc-drawer-body" id="wc-drawer-body">
+    <div class="wc-drawer-empty" id="wc-drawer-empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <p>Your cart is empty.</p>
+      <div class="wc-drawer-empty-actions">
+        <a href="/ready-to-ship/" class="btn btn-primary">Ready to Ship Rifles →</a>
+        <a href="/shop/" class="btn btn-outline">Shop Accessories</a>
+      </div>
+    </div>
+
+    <ul class="wc-drawer-items" id="wc-drawer-items" hidden></ul>
+  </div>
+
+  <div class="wc-drawer-footer" id="wc-drawer-footer" hidden>
+    <div class="wc-drawer-ffl-note" id="wc-drawer-ffl-note" hidden>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8102e" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <span>Firearms ship only to a licensed FFL dealer. You'll enter your FFL info at checkout.</span>
+    </div>
+    <div class="wc-drawer-summary">
+      <div class="wc-drawer-row">
+        <span>Subtotal</span>
+        <strong id="wc-drawer-subtotal">$0.00</strong>
+      </div>
+      <p class="wc-drawer-subnote">Shipping &amp; taxes calculated at checkout.</p>
+    </div>
+    <div class="wc-drawer-actions">
+      <a href="/checkout/" class="btn btn-primary wc-checkout-btn">
+        Proceed to Checkout →
+      </a>
+      <button type="button" class="btn btn-outline wc-continue-btn" id="wc-drawer-continue">
+        Continue Shopping
+      </button>
+    </div>
+  </div>
+</aside>
+
+<script is:inline>
+(function () {
+  const TOKEN_KEY = 'cpg_wc_cart_token';
+  const NONCE_KEY = 'cpg_wc_nonce';
+  const CACHE_KEY = 'cpg_wc_cart_cache';
+  const META_KEY = 'cpg_wc_item_meta';
+
+  const drawer = document.getElementById('wc-drawer');
+  const backdrop = document.getElementById('wc-drawer-backdrop');
+  const closeBtn = document.getElementById('wc-drawer-close');
+  const continueBtn = document.getElementById('wc-drawer-continue');
+  const itemsList = document.getElementById('wc-drawer-items');
+  const emptyEl = document.getElementById('wc-drawer-empty');
+  const footerEl = document.getElementById('wc-drawer-footer');
+  const subtotalEl = document.getElementById('wc-drawer-subtotal');
+  const drawerCountEl = document.getElementById('wc-drawer-count');
+  const errorEl = document.getElementById('wc-drawer-error');
+  const fflNoteEl = document.getElementById('wc-drawer-ffl-note');
+
+  const wcOrigin = (drawer && drawer.dataset.wcOrigin) || 'https://cybexprecisiongunworx.com';
+
+  function getStoredToken() {
+    try { return localStorage.getItem(TOKEN_KEY) || ''; } catch (_) { return ''; }
+  }
+  function setStoredToken(token) {
+    try { if (token) localStorage.setItem(TOKEN_KEY, token); } catch (_) {}
+  }
+  function getStoredNonce() {
+    try { return localStorage.getItem(NONCE_KEY) || ''; } catch (_) { return ''; }
+  }
+  function setStoredNonce(nonce) {
+    try { if (nonce) localStorage.setItem(NONCE_KEY, nonce); } catch (_) {}
+  }
+  function getItemMeta() {
+    try { return JSON.parse(localStorage.getItem(META_KEY) || '{}'); } catch (_) { return {}; }
+  }
+  function setItemMeta(id, meta) {
+    try {
+      const all = getItemMeta();
+      all[String(id)] = Object.assign({}, all[String(id)] || {}, meta);
+      localStorage.setItem(META_KEY, JSON.stringify(all));
+    } catch (_) {}
+  }
+  function removeItemMeta(id) {
+    try {
+      const all = getItemMeta();
+      delete all[String(id)];
+      localStorage.setItem(META_KEY, JSON.stringify(all));
+    } catch (_) {}
+  }
+  function clearAllItemMeta() {
+    try { localStorage.removeItem(META_KEY); } catch (_) {}
+  }
+
+  function formatMoney(centsStr, minorUnit) {
+    const mu = typeof minorUnit === 'number' ? minorUnit : 2;
+    const val = Number(centsStr || 0) / Math.pow(10, mu);
+    return val.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  }
+
+  function formatDollars(num) {
+    return Number(num || 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  }
+
+  function showError(msg) {
+    if (!errorEl) return;
+    if (!msg) {
+      errorEl.hidden = true;
+      errorEl.textContent = '';
+    } else {
+      errorEl.textContent = msg;
+      errorEl.hidden = false;
+    }
+  }
+
+  async function wcFetch(path, options = {}) {
+    const headers = Object.assign({ 'Accept': 'application/json' }, options.headers || {});
+    if (options.body && !headers['Content-Type']) {
+      headers['Content-Type'] = 'application/json';
+    }
+    const token = getStoredToken();
+    if (token) headers['Cart-Token'] = token;
+    const nonce = getStoredNonce();
+    if (nonce) headers['Nonce'] = nonce;
+
+    const cleanPath = path.replace(/^\/+/, '');
+    let res;
+    try {
+      res = await fetch(`/api/wc/store/${cleanPath}`, Object.assign({}, options, { headers }));
+      if (res.status === 404 && !res.headers.get('Cart-Token')) {
+        res = await fetch(`${wcOrigin}/wp-json/wc/store/v1/${cleanPath}`, Object.assign({}, options, { headers }));
+      }
+    } catch (_) {
+      res = await fetch(`${wcOrigin}/wp-json/wc/store/v1/${cleanPath}`, Object.assign({}, options, { headers }));
+    }
+
+    const newToken = res.headers.get('Cart-Token') || res.headers.get('cart-token');
+    if (newToken) setStoredToken(newToken);
+    const newNonce = res.headers.get('Nonce') || res.headers.get('nonce');
+    if (newNonce) setStoredNonce(newNonce);
+
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const errMsg = (data && data.message) ? data.message.replace(/<[^>]+>/g, '') : `Request failed (${res.status})`;
+      const err = new Error(errMsg);
+      err.data = data;
+      err.status = res.status;
+      throw err;
+    }
+    return data;
+  }
+
+  async function tokenizeCard(cardPayload) {
+    const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
+    let res;
+    try {
+      res = await fetch('/api/wc/tokenize', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(cardPayload),
+      });
+      if (res.status === 404) {
+        res = await fetch(`${wcOrigin}/?wc-ajax=acceptbluev2_tokenize`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(cardPayload),
+        });
+      }
+    } catch (_) {
+      res = await fetch(`${wcOrigin}/?wc-ajax=acceptbluev2_tokenize`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(cardPayload),
+      });
+    }
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.success) {
+      throw new Error((data && data.data && data.data.message) || 'Card tokenization failed. Please check your card details.');
+    }
+    return data.data;
+  }
+
+  let currentCart = null;
+  const listeners = new Set();
+
+  function notifyListeners(cart) {
+    currentCart = cart;
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify(cart)); } catch (_) {}
+    renderCart(cart);
+    listeners.forEach((fn) => {
+      try { fn(cart); } catch (_) {}
+    });
+  }
+
+  function decodeHtml(str) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = str || '';
+    return txt.value;
+  }
+
+  function computeCartDisplayTotals(cart) {
+    const metaMap = getItemMeta();
+    const mu = (cart && cart.totals && cart.totals.currency_minor_unit) ?? 2;
+    let packageDelta = 0;
+    let hasFirearm = false;
+
+    const items = (cart && cart.items) || [];
+    items.forEach((item) => {
+      const m = metaMap[String(item.id)];
+      const baseUnit = Number(item.prices?.price || 0) / Math.pow(10, mu);
+      if (m && m.packagePrice && Number(m.packagePrice) > baseUnit) {
+        packageDelta += (Number(m.packagePrice) - baseUnit) * item.quantity;
+      }
+      if (m && m.isFirearm) {
+        hasFirearm = true;
+      }
+    });
+
+    const wcSubtotal = Number(cart?.totals?.total_items || 0) / Math.pow(10, mu);
+    return {
+      wcSubtotal,
+      packageDelta,
+      displaySubtotal: wcSubtotal + packageDelta,
+      hasFirearm,
+      minorUnit: mu,
+    };
+  }
+
+  function renderCart(cart) {
+    const items = (cart && Array.isArray(cart.items)) ? cart.items : [];
+    const count = typeof cart?.items_count === 'number'
+      ? cart.items_count
+      : items.reduce((acc, i) => acc + (i.quantity || 0), 0);
+
+    document.querySelectorAll('.cart-count').forEach((el) => {
+      el.textContent = String(count);
+    });
+    if (drawerCountEl) drawerCountEl.textContent = String(count);
+
+    if (!itemsList || !emptyEl || !footerEl) return;
+
+    if (items.length === 0) {
+      emptyEl.hidden = false;
+      itemsList.hidden = true;
+      footerEl.hidden = true;
+      itemsList.innerHTML = '';
+      return;
+    }
+
+    emptyEl.hidden = true;
+    itemsList.hidden = false;
+    footerEl.hidden = false;
+
+    const metaMap = getItemMeta();
+    const { displaySubtotal, hasFirearm, minorUnit } = computeCartDisplayTotals(cart);
+
+    if (fflNoteEl) fflNoteEl.hidden = !hasFirearm;
+    if (subtotalEl) subtotalEl.textContent = formatDollars(displaySubtotal);
+
+    itemsList.innerHTML = items.map((item) => {
+      const m = metaMap[String(item.id)] || {};
+      const imgSrc = m.localImage || (item.images && item.images[0] && item.images[0].thumbnail) || '/images/cybex-logo.webp';
+      const itemUrl = m.localUrl || '#';
+      const name = decodeHtml(item.name);
+      const baseUnit = Number(item.prices?.price || 0) / Math.pow(10, minorUnit);
+      const unitPrice = (m.packagePrice && Number(m.packagePrice) > baseUnit) ? Number(m.packagePrice) : baseUnit;
+      const lineTotal = unitPrice * item.quantity;
+      const pkgBadge = m.packageLabel
+        ? `<span class="wc-item-pkg">${decodeHtml(m.packageLabel)}</span>`
+        : '';
+
+      return `
+        <li class="wc-item" data-key="${item.key}" data-id="${item.id}">
+          <a href="${itemUrl}" class="wc-item-thumb">
+            <img src="${imgSrc}" alt="${name.replace(/"/g, '&quot;')}" loading="lazy" width="72" height="72" />
+          </a>
+          <div class="wc-item-info">
+            <a href="${itemUrl}" class="wc-item-name">${name}</a>
+            ${pkgBadge}
+            <div class="wc-item-price">${formatDollars(unitPrice)}${item.quantity > 1 ? ` × ${item.quantity} = ${formatDollars(lineTotal)}` : ''}</div>
+            <div class="wc-item-controls">
+              <div class="wc-qty-ctrl">
+                <button type="button" class="wc-qty-btn" data-action="dec" data-key="${item.key}" data-qty="${item.quantity}" aria-label="Decrease quantity">−</button>
+                <span class="wc-qty-val">${item.quantity}</span>
+                <button type="button" class="wc-qty-btn" data-action="inc" data-key="${item.key}" data-qty="${item.quantity}" aria-label="Increase quantity">+</button>
+              </div>
+              <button type="button" class="wc-item-remove" data-action="remove" data-key="${item.key}" data-id="${item.id}" aria-label="Remove ${name.replace(/"/g, '&quot;')}">
+                Remove
+              </button>
+            </div>
+          </div>
+        </li>
+      `;
+    }).join('');
+  }
+
+  function openDrawer() {
+    if (!drawer || !backdrop) return;
+    backdrop.hidden = false;
+    requestAnimationFrame(() => {
+      drawer.classList.add('open');
+      backdrop.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+    });
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (!drawer || !backdrop) return;
+    drawer.classList.remove('open');
+    backdrop.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      if (!drawer.classList.contains('open')) backdrop.hidden = true;
+    }, 280);
+  }
+
+  async function refreshCart() {
+    try {
+      const cart = await wcFetch('cart');
+      notifyListeners(cart);
+      return cart;
+    } catch (err) {
+      return currentCart;
+    }
+  }
+
+  async function addItem(wooId, quantity = 1, meta = {}) {
+    showError('');
+    if (meta && Object.keys(meta).length > 0) {
+      setItemMeta(wooId, meta);
+    }
+    const cart = await wcFetch('cart/add-item', {
+      method: 'POST',
+      body: JSON.stringify({ id: Number(wooId), quantity: Number(quantity) || 1 }),
+    });
+    notifyListeners(cart);
+    return cart;
+  }
+
+  async function updateItemQty(key, quantity, wooId) {
+    showError('');
+    if (quantity <= 0) {
+      return removeItem(key, wooId);
+    }
+    const cart = await wcFetch('cart/update-item', {
+      method: 'POST',
+      body: JSON.stringify({ key, quantity: Number(quantity) }),
+    });
+    notifyListeners(cart);
+    return cart;
+  }
+
+  async function removeItem(key, wooId) {
+    showError('');
+    if (wooId) removeItemMeta(wooId);
+    const cart = await wcFetch('cart/remove-item', {
+      method: 'POST',
+      body: JSON.stringify({ key }),
+    });
+    notifyListeners(cart);
+    return cart;
+  }
+
+  async function updateCustomer(addresses) {
+    const cart = await wcFetch('cart/update-customer', {
+      method: 'POST',
+      body: JSON.stringify(addresses),
+    });
+    notifyListeners(cart);
+    return cart;
+  }
+
+  async function selectShippingRate(packageId, rateId) {
+    const cart = await wcFetch('cart/select-shipping-rate', {
+      method: 'POST',
+      body: JSON.stringify({ package_id: packageId, rate_id: rateId }),
+    });
+    notifyListeners(cart);
+    return cart;
+  }
+
+  async function applyCoupon(code) {
+    const cart = await wcFetch('cart/apply-coupon', {
+      method: 'POST',
+      body: JSON.stringify({ code }),
+    });
+    notifyListeners(cart);
+    return cart;
+  }
+
+  async function removeCoupon(code) {
+    const cart = await wcFetch('cart/remove-coupon', {
+      method: 'POST',
+      body: JSON.stringify({ code }),
+    });
+    notifyListeners(cart);
+    return cart;
+  }
+
+  async function submitCheckout(payload) {
+    const result = await wcFetch('checkout', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+    clearAllItemMeta();
+    await refreshCart();
+    return result;
+  }
+
+  // Hydrate cached cart count immediately, then fetch fresh state
+  try {
+    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+    if (cached) renderCart(cached);
+  } catch (_) {}
+  refreshCart();
+
+  // Wire up header cart button & drawer controls
+  document.querySelectorAll('.cart-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openDrawer();
+      refreshCart();
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (continueBtn) continueBtn.addEventListener('click', closeDrawer);
+  if (backdrop) backdrop.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) {
+      closeDrawer();
+    }
+  });
+
+  // Wire up quantity & remove clicks inside the drawer
+  if (itemsList) {
+    itemsList.addEventListener('click', async (e) => {
+      const btn = e.target.closest('button[data-action]');
+      if (!btn) return;
+      const action = btn.dataset.action;
+      const key = btn.dataset.key;
+      const id = btn.dataset.id;
+      const qty = Number(btn.dataset.qty || 1);
+
+      btn.disabled = true;
+      try {
+        if (action === 'inc') {
+          await updateItemQty(key, qty + 1, id);
+        } else if (action === 'dec') {
+          await updateItemQty(key, qty - 1, id);
+        } else if (action === 'remove') {
+          await removeItem(key, id);
+        }
+      } catch (err) {
+        showError(err.message || 'Could not update cart.');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+
+  // Delegate clicks on any [data-wc-add] button across the site
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('[data-wc-add]');
+    if (!btn || btn.disabled) return;
+    e.preventDefault();
+
+    const wooId = btn.dataset.wcId;
+    if (!wooId) return;
+
+    const origHtml = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = 'Adding…';
+
+    try {
+      const meta = {
+        localImage: btn.dataset.wcImage || '',
+        localUrl: btn.dataset.wcUrl || window.location.pathname,
+        isFirearm: btn.dataset.wcFirearm === 'true',
+        packageLabel: btn.dataset.wcPackage || '',
+        packagePrice: btn.dataset.wcPackagePrice ? Number(btn.dataset.wcPackagePrice) : 0,
+      };
+      await addItem(wooId, Number(btn.dataset.wcQty || 1), meta);
+      openDrawer();
+    } catch (err) {
+      openDrawer();
+      showError(err.message || 'Could not add item to cart.');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = origHtml;
+    }
+  });
+
+  window.CPGCart = {
+    getCart: () => currentCart,
+    refreshCart,
+    addItem,
+    updateItemQty,
+    removeItem,
+    updateCustomer,
+    selectShippingRate,
+    applyCoupon,
+    removeCoupon,
+    tokenizeCard,
+    submitCheckout,
+    getItemMeta,
+    computeCartDisplayTotals,
+    openDrawer,
+    closeDrawer,
+    subscribe: (fn) => {
+      listeners.add(fn);
+      if (currentCart) fn(currentCart);
+      return () => listeners.delete(fn);
+    },
+  };
+})();
+</script>
+
+<style is:global>
+  .wc-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+    z-index: 1100;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .wc-drawer-backdrop.open {
+    opacity: 1;
+  }
+
+  .wc-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(440px, 100vw);
+    background: var(--cpg-charcoal);
+    border-left: 1px solid var(--cpg-border);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.65);
+    z-index: 1101;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .wc-drawer.open {
+    transform: translateX(0);
+  }
+
+  .wc-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-lg) var(--space-xl);
+    border-bottom: 1px solid var(--cpg-border);
+    background: var(--cpg-black);
+  }
+  .wc-drawer-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--cpg-pure-white);
+  }
+  .wc-drawer-title-wrap h2 {
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    margin: 0;
+  }
+  .wc-drawer-badge {
+    background: var(--cpg-accent);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  .wc-drawer-close {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-md);
+    color: var(--cpg-silver);
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+  .wc-drawer-close:hover {
+    background: var(--cpg-gunmetal);
+    color: var(--cpg-pure-white);
+  }
+
+  .wc-drawer-error {
+    margin: var(--space-md) var(--space-xl) 0;
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(200, 16, 46, 0.16);
+    border: 1px solid var(--cpg-accent);
+    border-radius: var(--radius-md);
+    color: #ff8a9a;
+    font-size: 0.85rem;
+  }
+
+  .wc-drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-lg) var(--space-xl);
+  }
+
+  .wc-drawer-empty {
+    height: 100%;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-md);
+    color: var(--cpg-silver);
+  }
+  .wc-drawer-empty svg {
+    opacity: 0.35;
+  }
+  .wc-drawer-empty-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    width: 100%;
+    max-width: 260px;
+    margin-top: var(--space-sm);
+  }
+  .wc-drawer-empty-actions .btn {
+    justify-content: center;
+  }
+
+  .wc-drawer-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .wc-item {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--cpg-gunmetal);
+    border: 1px solid var(--cpg-border);
+    border-radius: var(--radius-md);
+    align-items: center;
+  }
+  .wc-item-thumb {
+    width: 76px;
+    height: 76px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wc-item-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .wc-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .wc-item-name {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cpg-pure-white);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.25;
+  }
+  .wc-item-name:hover {
+    color: var(--cpg-accent);
+  }
+  .wc-item-pkg {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--cpg-accent);
+    background: rgba(200, 16, 46, 0.14);
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .wc-item-price {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--cpg-light);
+  }
+  .wc-item-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+  .wc-qty-ctrl {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--cpg-border);
+    border-radius: var(--radius-sm);
+    background: var(--cpg-charcoal);
+  }
+  .wc-qty-btn {
+    width: 28px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    color: var(--cpg-light);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .wc-qty-btn:hover:not(:disabled) {
+    background: var(--cpg-accent);
+    color: #fff;
+  }
+  .wc-qty-val {
+    min-width: 26px;
+    text-align: center;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--cpg-pure-white);
+  }
+  .wc-item-remove {
+    font-size: 0.75rem;
+    color: var(--cpg-silver);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .wc-item-remove:hover {
+    color: var(--cpg-accent);
+  }
+
+  .wc-drawer-footer {
+    padding: var(--space-lg) var(--space-xl);
+    border-top: 1px solid var(--cpg-border);
+    background: var(--cpg-black);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .wc-drawer-ffl-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    background: rgba(200, 16, 46, 0.1);
+    border: 1px solid rgba(200, 16, 46, 0.35);
+    font-size: 0.78rem;
+    color: var(--cpg-light);
+    line-height: 1.4;
+  }
+  .wc-drawer-ffl-note svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .wc-drawer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 1rem;
+    color: var(--cpg-light);
+  }
+  .wc-drawer-row strong {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--cpg-pure-white);
+  }
+  .wc-drawer-subnote {
+    font-size: 0.78rem;
+    color: var(--cpg-silver);
+    margin-top: 4px;
+  }
+  .wc-drawer-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  .wc-checkout-btn,
+  .wc-continue-btn {
+    width: 100%;
+    justify-content: center;
+  }
+</style>
+

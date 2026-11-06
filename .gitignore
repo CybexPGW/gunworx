@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# cloudflare wrangler & python cache
+.wrangler/
+__pycache__/
+*.pyc

@@ -1,8 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { products, categories } from '../data/products';
+import { rifles } from '../data/readyToShip';
+import RifleCard from '../components/RifleCard.astro';
+import NotifyMe from '../components/NotifyMe.astro';
+import PostCard from '../components/PostCard.astro';
+import { getPosts } from '../data/blog';
+
+const latestPosts = (await getPosts()).slice(0, 3);
 
 const featuredProducts = products.filter(p => p.featured);
+
+// Ready to Ship teaser: alternate centerfire / rimfire, max 4
+const cf = rifles.filter(r => r.platform === 'centerfire');
+const rf = rifles.filter(r => r.platform === 'rimfire');
+const rtsTeaser = Array.from({ length: Math.max(cf.length, rf.length) }, (_, i) => [cf[i], rf[i]])
+  .flat()
+  .filter((r): r is NonNullable<typeof r> => Boolean(r))
+  .slice(0, 4);
 
 // Partner / brand logos (files in public/images). `dark` = white logo needing a dark tile.
 const brands = [
@@ -10,22 +25,40 @@ const brands = [
   { name: 'Ultimate Muzzle', src: '/images/UMLogoWhite-1024x253.png', dark: true },
   { name: 'ZA Machining', src: '/images/ZA-MACHINING-ACCURACY-LONG-WHITE-1980x333.png', dark: true },
   { name: 'American Rim', src: '/images/americanrim.png' },
-  { name: 'Arken Optics', src: '/images/arkenlogo.webp' },
-  { name: 'BAT Machine Co', src: '/images/bat-machine-co-logo.svg' },
+  { name: 'Arken Optics', src: '/images/arkenlogo.webp', dark: true },
+  { name: 'BAT Machine Co', src: '/images/bat-machine-co-logo.svg', dark: true },
   { name: 'MPA', src: '/images/cropped-MPA-Logo.webp' },
   { name: 'Gunfoam', src: '/images/gunfoam-logo.svg' },
-  { name: "Kelbey's", src: '/images/kellbeyslogo.png' },
+  { name: "Kelbey's", src: '/images/kellbeyslogo.png', dark: true },
   { name: 'Krieger Barrels', src: '/images/kreigerlogo.png' },
-  { name: 'Precision Quest', src: '/images/precisionquestlogo.png' },
+  { name: 'Precision Quest', src: '/images/precisionquestlogo.png', dark: true },
   { name: 'ProShot', src: '/images/professhead-logo.jpg' },
 ];
 ---
 
 <BaseLayout title="Home">
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg" style="background-image: url('/images/hero-bg.webp');"></div>
+  <section class="hero hero-has-video">
+    <div class="hero-bg" style="background-image: url('/Videos/hero-montage-poster.webp');"></div>
+    <video
+      class="hero-video"
+      id="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="/Videos/hero-montage-poster.webp"
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      <source src="/Videos/hero-montage.mp4" type="video/mp4" />
+    </video>
     <div class="hero-overlay"></div>
+    <button class="hero-video-toggle" id="hero-video-toggle" type="button" aria-label="Pause background video" aria-pressed="false">
+      <svg class="icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+      <svg class="icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>
+    </button>
     <div class="hero-content animate-fade-up">
       <div class="hero-badge">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z"/></svg>
@@ -35,7 +68,7 @@ const brands = [
         Custom <span class="accent">Precision</span>        Firearms
       </h1>
       <p class="hero-desc">
-        Hand-built AR-15 rifles, uppers, and lowers engineered for uncompromising accuracy. Every component precision-machined, every build a masterpiece.
+        Hand-built precision rimfire and centerfire rifles engineered for uncompromising accuracy. Every component precision-machined, every build a masterpiece.
       </p>
       <div class="hero-cta">
         <a href="/shop/" class="btn btn-primary">Shop Now →</a>
@@ -53,14 +86,14 @@ const brands = [
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
           </div>
           <h3>Precision Machined</h3>
-          <p>Every component is CNC-machined to exact tolerances for unmatched accuracy and reliability.</p>
+          <p>Every component is precisely machined and carefully fitted to deliver the consistency competitive shooters demand.</p>
         </div>
         <div class="feature-card animate-fade-up delay-2">
           <div class="feature-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3>Built to Last</h3>
-          <p>Mil-Spec and beyond. 4150 CMV barrels, 7075-T6 receivers, and Cerakote finishes built for a lifetime.</p>
+          <p>Crafted from durable materials and assembled with meticulous care, our rifles are built for lasting performance through demanding seasons of competition.</p>
         </div>
         <div class="feature-card animate-fade-up delay-3">
           <div class="feature-icon">
@@ -74,8 +107,25 @@ const brands = [
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           </div>
           <h3>Fast Shipping</h3>
-          <p>Free shipping on orders over $500. Most orders ship within 1-3 business days via insured carrier.</p>
+          <p>Most orders ship within 1-3 business days via insured carrier.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- READY TO SHIP -->
+  <section class="section" id="ready-to-ship">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">In Stock · Ships Now</span>
+        <h2>Ready to Ship</h2>
+        <p>Competition-ready rifles, professionally assembled, test-fired, and zeroed. No build queue — straight to your FFL.</p>
+      </div>
+      <div class="rts-home-grid">
+        {rtsTeaser.map((r) => <RifleCard rifle={r} />)}
+      </div>
+      <div style="text-align: center; margin-top: var(--space-2xl);">
+        <a href="/ready-to-ship/" class="btn btn-primary">View All {rifles.length} Rifles →</a>
       </div>
     </div>
   </section>
@@ -84,20 +134,18 @@ const brands = [
   <section class="section" id="featured">
     <div class="container">
       <div class="section-header">
-        <span class="label">Featured Builds</span>
-        <h2>Precision Firearms & Components</h2>
-        <p>Hand-selected builds featuring our most popular configurations. Each one built, tested, and guaranteed.</p>
+        <span class="label">Benchrest &amp; Range Gear</span>
+        <h2>Precision Rests, Tops &amp; Tools</h2>
+        <p>Competition-grade PQP rifle rests, interchangeable front tops, and precision maintenance tools in stock.</p>
       </div>
 
       <div class="product-grid">
         {featuredProducts.map((product) => (
           <article class="product-card" itemscope itemtype="https://schema.org/Product">
-            <div class="product-card-image">
-              <div class="product-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-              </div>
+            <a href={`/shop/${product.slug}/`} class="product-card-image" style="background: #fff;">
+              <img src={product.image} alt={product.name} loading="lazy" style="object-fit: contain; padding: 12px;" />
               {product.featured && <span class="product-badge">Featured</span>}
-            </div>
+            </a>
             <div class="product-card-body">
               <span class="product-category">{categories.find(c => c.slug === product.category)?.name}</span>
               <h3 class="product-name" itemprop="name">
@@ -111,13 +159,12 @@ const brands = [
                   <meta itemprop="availability" content="https://schema.org/InStock" />
                 </div>
                 <button
-                  class="snipcart-add-item btn-add-cart"
-                  data-item-id={product.id}
-                  data-item-price={product.price}
-                  data-item-url={`/shop/${product.slug}/`}
-                  data-item-description={product.description.substring(0, 150)}
-                  data-item-name={product.name}
-                  data-item-image={product.image}
+                  type="button"
+                  class="btn-add-cart"
+                  data-wc-add
+                  data-wc-id={product.wooId}
+                  data-wc-image={product.image}
+                  data-wc-url={`/shop/${product.slug}/`}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                   Add to Cart
@@ -129,7 +176,7 @@ const brands = [
       </div>
 
       <div style="text-align: center; margin-top: var(--space-3xl);">
-        <a href="/shop/" class="btn btn-outline">View All Products →</a>
+        <a href="/shop/" class="btn btn-outline">View All Accessories →</a>
       </div>
     </div>
   </section>
@@ -139,7 +186,7 @@ const brands = [
     <div class="container">
       <div class="about-grid">
         <div class="about-image">
-          <img src="/images/workshop.webp" alt="Cybex Precision Gunworx workshop - CNC machining and firearms assembly" loading="lazy" width="800" height="600" />
+          <img src="/images/rifle-wall.webp" alt="Wall of Cybex Precision Gunworx rifles: laminated-stock rimfire benchrest rifles on the left and chassis-built centerfire and rimfire precision rifles on the right, under the Cybex logo" loading="lazy" width="1024" height="768" />
         </div>
         <div class="about-content">
           <span class="label" style="display:inline-block;font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--cpg-accent);margin-bottom:var(--space-md);">Our Story</span>
@@ -150,20 +197,6 @@ const brands = [
           <p>
             From selecting premium barrels to hand-fitting every component, our builds meet the standards that matter: yours. Whether you need a duty-grade rifle, a competition upper, or a personal defense pistol, we build it right the first time.
           </p>
-          <div class="stat-row">
-            <div class="stat">
-              <div class="stat-number">500+</div>
-              <div class="stat-label">Builds Completed</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number">100%</div>
-              <div class="stat-label">Test Fired</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number">5★</div>
-              <div class="stat-label">Customer Rating</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -183,6 +216,24 @@ const brands = [
             <img src={b.src} alt={`${b.name} logo`} loading="lazy" />
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST FROM THE BLOG -->
+  <section class="section section-dark" id="latest-articles">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">From the Shop Floor</span>
+        <h2>Latest From the Blog</h2>
+        <p>Guides on competition, ammunition, and buying a precision rifle, written by the people who build them.</p>
+      </div>
+      <div class="home-blog-grid">
+        {latestPosts.map((p) => <PostCard post={p} />)}
+      </div>
+      <div class="home-blog-actions">
+        <a href="/blog/" class="btn btn-outline">All Articles →</a>
+        <a href="/guides/rimfire-vs-centerfire/" class="btn btn-outline">Rimfire vs. Centerfire Guide →</a>
       </div>
     </div>
   </section>
@@ -208,15 +259,12 @@ const brands = [
     </div>
   </section>
 
-  <!-- NEWSLETTER / CTA -->
-  <section class="section section-darker" style="text-align: center;">
+  <!-- NEW RIFLE ALERTS / SOCIAL -->
+  <section class="section section-darker">
     <div class="container">
-      <div class="section-header">
-        <span class="label">Stay Connected</span>
-        <h2>Don't Miss a Build</h2>
-        <p>Follow us on social media for new product drops, build updates, and exclusive deals.</p>
-      </div>
-      <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+      <NotifyMe source="Home page" heading="Don't Miss the Next Rifle" />
+      <div class="home-social">
+        <span>Or follow along:</span>
         <a href="https://www.facebook.com/CybexPrecisionGunworx" target="_blank" rel="noopener" class="btn btn-outline">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           Facebook
@@ -225,13 +273,22 @@ const brands = [
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           Instagram
         </a>
-        <a href="/contact/" class="btn btn-primary">Contact Us →</a>
+        <a href="/guides/rimfire-vs-centerfire/" class="btn btn-outline">Rimfire vs. Centerfire Guide</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  .home-social {
+    display: flex; gap: var(--space-md); justify-content: center; align-items: center; flex-wrap: wrap;
+    margin-top: var(--space-xl); color: var(--cpg-silver); font-size: 0.85rem;
+  }
+  .rts-home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr));
+    gap: var(--space-xl);
+  }
   .brand-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -254,4 +311,82 @@ const brands = [
     max-height: 100%;
     object-fit: contain;
   }
+  .home-blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: var(--space-xl);
+  }
+  .home-blog-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+  }
+
+  /* Hero background video */
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+  .hero-has-video .hero-overlay {
+    background:
+      radial-gradient(ellipse at center, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.78) 70%),
+      linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0) 30%, rgba(10,10,10,0.9) 100%);
+  }
+  .hero-video-toggle {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(10,10,10,0.55);
+    color: #fff;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+  }
+  .hero-video-toggle:hover { background: var(--cpg-accent); border-color: var(--cpg-accent); }
+  .hero-video-toggle .icon-play { display: none; }
+  .hero-video-toggle[aria-pressed="true"] .icon-play { display: block; }
+  .hero-video-toggle[aria-pressed="true"] .icon-pause { display: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video { display: none; }
+    .hero-video-toggle { display: none; }
+  }
 </style>
+
+<script>
+  const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+  const toggle = document.getElementById('hero-video-toggle');
+  if (video && toggle) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      video.pause();
+      video.removeAttribute('autoplay');
+    }
+    const setState = (paused: boolean) => {
+      toggle.setAttribute('aria-pressed', String(paused));
+      toggle.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video');
+    };
+    toggle.addEventListener('click', () => {
+      if (video.paused) { video.play(); setState(false); }
+      else { video.pause(); setState(true); }
+    });
+    // Pause when the hero scrolls out of view to save battery/CPU
+    new IntersectionObserver(([entry]) => {
+      if (toggle.getAttribute('aria-pressed') === 'true' || reduce) return;
+      if (entry.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    }).observe(video);
+  }
+</script>

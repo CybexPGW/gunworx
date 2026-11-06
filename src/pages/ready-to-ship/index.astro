@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RifleCard from '../../components/RifleCard.astro';
+import ComplianceNotice from '../../components/ComplianceNotice.astro';
+import NotifyMe from '../../components/NotifyMe.astro';
+import { rifles, rifleUrl, fromPrice, RTS_CATEGORY } from '../../data/readyToShip';
+
+const sorted = [...rifles].sort((a, b) => fromPrice(a) - fromPrice(b));
+const count = (p: string) => rifles.filter((r) => r.platform === p).length;
+const filters = [
+  { key: 'all', label: 'All Rifles', n: rifles.length },
+  { key: 'rimfire', label: 'Rimfire', n: count('rimfire') },
+  { key: 'centerfire', label: 'Centerfire', n: count('centerfire') },
+].filter((f) => f.n > 0);
+const site = 'https://cybexprecisiongunworx.com';
+---
+
+<BaseLayout
+  title="Ready to Ship Precision Rifles"
+  description={`${rifles.length} competition-ready rimfire and centerfire precision rifles in stock now — professionally assembled, test-fired, zeroed, and shipped to your FFL with a custom-cut foam case.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Ready to Ship Precision Rifles',
+    itemListElement: sorted.map((r, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${site}${rifleUrl(r)}`,
+      name: r.name,
+    })),
+  })} />
+
+  <div class="page-header rts-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Ready to Ship</span>
+      </div>
+      <span class="rts-live"><span class="rts-live-dot"></span>{rifles.length} rifles in stock</span>
+      <h1>Ready to Ship</h1>
+      <p>Competition-ready rifles, in stock now. No build queue. No guesswork. Ships to your FFL.</p>
+    </div>
+  </div>
+
+  <!-- Assurances -->
+  <section class="rts-assure-wrap">
+    <div class="container">
+      <ul class="rts-assure">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <div><strong>Test-Fired</strong><span>With match-grade ammo, then cleaned</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="12" cy="12" r="7"/></svg>
+          <div><strong>Zeroed</strong><span>50 yd rimfire · 100 yd centerfire (scoped)</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          <div><strong>Custom Case</strong><span>Foam cut for your exact setup</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div><strong>Ships Now</strong><span>Straight to your FFL dealer</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: var(--space-2xl);">
+    <div class="container">
+      <p class="rts-subscribed" id="rts-subscribed" hidden>✓ You’re on the list. We’ll email you when the next rifle is ready to ship.</p>
+      <a href="/guides/rimfire-vs-centerfire/" class="rts-guide-link" id="rts-guide-link">
+        <span class="rts-guide-icon" aria-hidden="true">?</span>
+        <span><strong>Rimfire or centerfire?</strong> Read our discipline guide to find the right rifle</span>
+        <span class="rts-guide-arrow" aria-hidden="true">→</span>
+      </a>
+      <div class="rts-toolbar">
+        <div class="category-filter" id="rts-filter" role="tablist" aria-label="Filter rifles">
+          {filters.map((f, i) => (
+            <button class={`category-btn${i === 0 ? ' active' : ''}`} data-filter={f.key} id={`rts-filter-${f.key}`} role="tab" aria-selected={i === 0 ? 'true' : 'false'}>
+              {f.label} <span class="rts-count">{f.n}</span>
+            </button>
+          ))}
+        </div>
+        <label class="rts-sort">
+          <span>Sort</span>
+          <select id="rts-sort">
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name">Name</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="rts-grid" id="rts-grid">
+        {sorted.map((r, i) => (
+          <div class="rts-item" data-platform={r.platform} data-price={fromPrice(r)} data-name={r.name}>
+            <RifleCard rifle={r} eager={i < 3} />
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: var(--space-3xl);">
+        <ComplianceNotice category={RTS_CATEGORY} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container">
+      <NotifyMe source="Ready to Ship page" />
+    </div>
+  </section>
+
+  <section class="section section-darker" style="text-align: center;">
+    <div class="container" style="max-width: 680px;">
+      <h2 style="font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin-bottom: var(--space-md);">Not Sure Which Rifle Fits?</h2>
+      <p style="color: var(--cpg-silver); margin-bottom: var(--space-xl);">
+        Start with our rimfire vs. centerfire guide, or tell us your discipline, distance, and budget and we'll point you to the right rifle.
+      </p>
+      <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+        <a href="/guides/rimfire-vs-centerfire/" class="btn btn-primary">Read the Guide →</a>
+        <a href="tel:+14197400456" class="btn btn-outline">Call (419) 740-0456</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const grid = document.getElementById('rts-grid');
+  const items = grid ? Array.from(grid.querySelectorAll<HTMLElement>('.rts-item')) : [];
+  const buttons = document.querySelectorAll<HTMLButtonElement>('#rts-filter .category-btn');
+  const sortSel = document.getElementById('rts-sort') as HTMLSelectElement | null;
+
+  buttons.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      buttons.forEach((b) => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const f = btn.dataset.filter;
+      items.forEach((el) => { el.hidden = !(f === 'all' || el.dataset.platform === f); });
+    })
+  );
+
+  sortSel?.addEventListener('change', () => {
+    const v = sortSel.value;
+    const sorted = [...items].sort((a, b) => {
+      if (v === 'name') return (a.dataset.name || '').localeCompare(b.dataset.name || '');
+      const d = Number(a.dataset.price) - Number(b.dataset.price);
+      return v === 'price-desc' ? -d : d;
+    });
+    sorted.forEach((el) => grid?.appendChild(el));
+  });
+
+  // Deep links: /ready-to-ship/?type=rimfire  and post-signup confirmation
+  const params = new URLSearchParams(location.search);
+  const type = params.get('type');
+  if (type) document.querySelector<HTMLButtonElement>(`#rts-filter [data-filter="${CSS.escape(type)}"]`)?.click();
+  if (params.has('subscribed')) {
+    const msg = document.getElementById('rts-subscribed');
+    if (msg) msg.hidden = false;
+  }
+</script>
+
+<style>
+  .rts-subscribed {
+    margin-bottom: var(--space-lg); padding: 12px 16px; border-radius: var(--radius-md);
+    color: #3ddc84; background: rgba(61, 220, 132, 0.1); border: 1px solid rgba(61, 220, 132, 0.3);
+  }
+  .rts-guide-link {
+    display: flex; align-items: center; gap: var(--space-md);
+    margin-bottom: var(--space-xl); padding: 14px 18px;
+    border: 1px solid var(--cpg-border); border-radius: var(--radius-md);
+    background: linear-gradient(90deg, rgba(200,16,46,0.1), rgba(240,180,41,0.06));
+    color: var(--cpg-silver); transition: border-color var(--transition-base), transform var(--transition-base);
+  }
+  .rts-guide-link strong { color: var(--cpg-pure-white); }
+  .rts-guide-link:hover { border-color: rgba(200,16,46,0.5); transform: translateY(-1px); }
+  .rts-guide-icon {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+    display: grid; place-items: center; font-family: var(--font-heading); font-weight: 700;
+    color: #fff; background: var(--cpg-accent);
+  }
+  .rts-guide-arrow { margin-left: auto; color: var(--cpg-accent); font-size: 1.2rem; transition: transform var(--transition-base); }
+  .rts-guide-link:hover .rts-guide-arrow { transform: translateX(4px); }
+  .rts-header { position: relative; overflow: hidden; }
+  .rts-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 120%, rgba(200, 16, 46, 0.25), transparent 60%);
+    pointer-events: none;
+  }
+  .rts-header .container { position: relative; }
+  .rts-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--space-md);
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #3ddc84;
+    background: rgba(61, 220, 132, 0.08);
+    border: 1px solid rgba(61, 220, 132, 0.3);
+    border-radius: 999px;
+  }
+  .rts-live-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #3ddc84;
+    animation: rts-live 2s infinite;
+  }
+  @keyframes rts-live {
+    0% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0.6); }
+    70% { box-shadow: 0 0 0 8px rgba(61, 220, 132, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0); }
+  }
+  .rts-assure-wrap { border-top: 1px solid var(--cpg-border); border-bottom: 1px solid var(--cpg-border); background: var(--cpg-dark); }
+  .rts-assure {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    padding: var(--space-xl) 0;
+  }
+  @media (min-width: 900px) { .rts-assure { grid-template-columns: repeat(4, 1fr); } }
+  .rts-assure li { display: flex; align-items: center; gap: var(--space-md); }
+  .rts-assure svg { width: 34px; height: 34px; flex-shrink: 0; color: var(--cpg-accent); }
+  .rts-assure strong {
+    display: block;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cpg-pure-white);
+  }
+  .rts-assure span { font-size: 0.8rem; color: var(--cpg-silver); }
+  .rts-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-2xl);
+  }
+  .rts-toolbar .category-filter { margin-bottom: 0; }
+  .rts-count {
+    display: inline-block;
+    min-width: 1.6em;
+    margin-left: 4px;
+    padding: 1px 6px;
+    font-size: 0.7em;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .rts-sort { display: flex; align-items: center; gap: var(--space-sm); font-size: 0.8rem; color: var(--cpg-silver); text-transform: uppercase; letter-spacing: 0.1em; }
+  .rts-sort select {
+    background: var(--cpg-charcoal);
+    color: var(--cpg-light);
+    border: 1px solid var(--cpg-border);
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    font: inherit;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .rts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr));
+    gap: var(--space-xl);
+  }
+  .rts-item { display: flex; }
+  .rts-item > :global(*) { flex: 1; }
+  .rts-item[hidden] { display: none; }
+</style>

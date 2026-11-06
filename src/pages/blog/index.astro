@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import NotifyMe from '../../components/NotifyMe.astro';
+import { getPosts, postUrl, readingTime, formatDate, categorySlug, SITE } from '../../data/blog';
+
+const posts = await getPosts();
+const featured = posts.find((p) => p.data.featured) ?? posts[0];
+const rest = posts.filter((p) => p !== featured);
+const categories = [...new Set(posts.map((p) => p.data.category))];
+---
+
+<BaseLayout
+  title="Blog – Precision Rifle Guides & Tips"
+  description="Precision rifle know-how from Cybex Precision Gunworx: PRS Rimfire and NRL22, rimfire tuners, ammo lot testing, 6.5 Creedmoor long range, and FFL buying guides."
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Cybex Precision Gunworx Blog',
+    url: `${SITE}/blog/`,
+    publisher: { '@type': 'Organization', name: 'Cybex Precision Gunworx', url: SITE },
+    blogPost: posts.map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.data.title,
+      description: p.data.description,
+      datePublished: p.data.pubDate.toISOString(),
+      url: `${SITE}${postUrl(p)}`,
+      image: `${SITE}${p.data.heroImage}`,
+    })),
+  })} />
+
+  <div class="page-header blog-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Blog</span>
+      </div>
+      <span class="blog-eyebrow">From the Shop Floor</span>
+      <h1>The Cybex Blog</h1>
+      <p>Straight-talk guides on precision rifles, competition, ammunition, and buying, written by the people who build them.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      {featured && (
+        <a href={postUrl(featured)} class="blog-featured">
+          <div class="blog-featured-media">
+            <img src={featured.data.heroImage} alt={featured.data.heroAlt} loading="eager" width="1200" height="750" />
+          </div>
+          <div class="blog-featured-body">
+            <span class="blog-featured-tag">Featured · {featured.data.category}</span>
+            <h2>{featured.data.title}</h2>
+            <p>{featured.data.description}</p>
+            <div class="blog-featured-meta">
+              <time datetime={featured.data.pubDate.toISOString()}>{formatDate(featured.data.pubDate)}</time>
+              <span aria-hidden="true">·</span>
+              <span>{readingTime(featured.body)} min read</span>
+            </div>
+            <span class="btn btn-primary">Read the Guide →</span>
+          </div>
+        </a>
+      )}
+
+      <div class="category-filter blog-filter" role="group" aria-label="Filter articles by category">
+        <button class="category-btn active" data-filter="all" id="blog-filter-all">All Articles</button>
+        {categories.map((c) => (
+          <button class="category-btn" data-filter={categorySlug(c)} id={`blog-filter-${categorySlug(c)}`}>{c}</button>
+        ))}
+      </div>
+
+      <div class="blog-grid" id="blog-grid">
+        {rest.map((p, i) => <PostCard post={p} eager={i < 3} />)}
+      </div>
+      <p class="blog-empty" id="blog-empty" hidden>No other articles in this category yet. Check back soon.</p>
+    </div>
+  </section>
+
+  <section class="section section-darker">
+    <div class="container">
+      <NotifyMe source="Blog index" heading="Get New Rifles & Articles First" />
+      <p class="blog-rss">Prefer a feed reader? <a href="/rss.xml">Subscribe via RSS</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.blog-filter .category-btn');
+  const cards = document.querySelectorAll<HTMLElement>('#blog-grid .post-card');
+  const empty = document.getElementById('blog-empty');
+  buttons.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      buttons.forEach((b) => b.classList.toggle('active', b === btn));
+      let shown = 0;
+      cards.forEach((c) => {
+        const show = f === 'all' || c.dataset.category === f;
+        c.style.display = show ? '' : 'none';
+        if (show) shown++;
+      });
+      if (empty) empty.hidden = shown > 0;
+    })
+  );
+</script>
+
+<style>
+  .blog-header {
+    background:
+      radial-gradient(ellipse at 80% 0%, rgba(200, 16, 46, 0.18), transparent 60%),
+      linear-gradient(180deg, var(--cpg-darker), var(--cpg-black));
+  }
+  .blog-eyebrow {
+    display: inline-block;
+    margin: var(--space-md) 0 var(--space-sm);
+    color: var(--cpg-accent);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .blog-header p { max-width: 640px; color: var(--cpg-light); }
+
+  .blog-featured {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 0;
+    margin-bottom: var(--space-3xl);
+    background: var(--cpg-charcoal);
+    border: 1px solid var(--cpg-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+  .blog-featured:hover { border-color: rgba(200, 16, 46, 0.6); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); }
+  .blog-featured-media { overflow: hidden; min-height: 320px; background: var(--cpg-darker); }
+  .blog-featured-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+  .blog-featured:hover .blog-featured-media img { transform: scale(1.04); }
+  .blog-featured-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-2xl);
+  }
+  .blog-featured-tag {
+    color: var(--cpg-accent);
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .blog-featured-body h2 {
+    color: var(--cpg-pure-white);
+    font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+    line-height: 1.15;
+  }
+  .blog-featured-body p { color: var(--cpg-light); line-height: 1.7; }
+  .blog-featured-meta { display: flex; gap: 8px; color: var(--cpg-silver); font-size: 0.85rem; }
+  .blog-featured-body .btn { align-self: flex-start; }
+
+  .blog-filter { margin-bottom: var(--space-xl); }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-xl);
+  }
+  .blog-empty { text-align: center; color: var(--cpg-silver); padding: var(--space-2xl) 0; }
+  .blog-rss { text-align: center; margin-top: var(--space-lg); color: var(--cpg-silver); font-size: 0.9rem; }
+  .blog-rss a { color: var(--cpg-accent); }
+
+  @media (max-width: 860px) {
+    .blog-featured { grid-template-columns: 1fr; }
+    .blog-featured-media { min-height: 0; aspect-ratio: 16 / 10; }
+    .blog-featured-body { padding: var(--space-xl); }
+  }
+</style>

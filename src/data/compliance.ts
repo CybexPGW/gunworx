@@ -11,11 +11,12 @@
 export const MIN_AGE = 21;
 
 /** Categories (from products.ts) that are serialized firearms and MUST ship to an FFL. */
-export const ffLCategories = ['complete-firearms', 'ar-15-lowers'];
+export const ffLCategories = ['complete-firearms', 'ar-15-lowers', 'ready-to-ship'];
 
 /** Categories subject to state firearm / "assault weapon" restrictions. */
 export const restrictedCategories = [
   'complete-firearms',
+  'ready-to-ship',
   'ar-15-lowers',
   'ar-15-uppers',
   'ar-pistol-uppers',

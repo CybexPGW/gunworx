@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="404 – Page Not Found" description="The page you're looking for doesn't exist.">
+<BaseLayout title="404 – Page Not Found" description="The page you're looking for doesn't exist." noindex={true}>
   <section class="section" style="padding-top: 200px; text-align: center; min-height: 70vh; display: flex; align-items: center;">
     <div class="container">
       <div style="font-family: var(--font-heading); font-size: clamp(5rem, 15vw, 10rem); font-weight: 900; color: var(--cpg-accent); line-height: 1; opacity: 0.3;">404</div>

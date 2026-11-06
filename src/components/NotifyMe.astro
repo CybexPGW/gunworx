@@ -1,0 +1,188 @@
+---
+/**
+ * "Notify me" sign-up for new Ready to Ship rifles.
+ * Submissions are emailed to the shop via FormSubmit (same service as the contact form).
+ */
+interface Props {
+  /** Where the form appears; included in the email so you know which page converted. */
+  source: string;
+  /** Pre-selected interest (e.g. 'Rimfire', 'Centerfire'). */
+  interest?: string;
+  heading?: string;
+  text?: string;
+  compact?: boolean;
+}
+const {
+  source,
+  interest = 'Any new rifle',
+  heading = 'Get First Dibs on New Rifles',
+  text = 'Our rifles are one of a kind and often sell fast. Join the list and we’ll email you the moment a new rifle is ready to ship.',
+  compact = false,
+} = Astro.props;
+
+const ENDPOINT = 'jmurphy@cybexinc.com';
+const interests = [
+  'Any new rifle',
+  'Rimfire',
+  'Centerfire',
+  'PRS Rimfire / NRL22',
+  'Rimfire Benchrest',
+  'Centerfire PRS / NRL',
+  'Centerfire Benchrest',
+  'Long Range / ELR',
+];
+const uid = `notify-${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+---
+
+<div class:list={['notify', { 'notify-compact': compact }]} id={uid}>
+  <div class="notify-copy">
+    <span class="notify-eyebrow"><span class="notify-bell" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+    </span>New Rifle Alerts</span>
+    <h2 class="notify-heading">{heading}</h2>
+    <p class="notify-text">{text}</p>
+  </div>
+
+  <form
+    class="notify-form"
+    action={`https://formsubmit.co/${ENDPOINT}`}
+    method="POST"
+    data-ajax={`https://formsubmit.co/ajax/${ENDPOINT}`}
+  >
+    <input type="hidden" name="_subject" value="New Rifle Alert Sign-Up – Cybex Precision Gunworx" />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="_next" value="https://cybexprecisiongunworx.com/ready-to-ship/?subscribed=1" />
+    <input type="hidden" name="Form" value="Notify Me – New Ready to Ship Rifles" />
+    <input type="hidden" name="Signed up from" value={source} />
+    <input type="text" name="_honey" class="notify-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+    <div class="notify-fields">
+      <label class="notify-field">
+        <span>First name</span>
+        <input type="text" name="First name" autocomplete="given-name" placeholder="First name" id={`${uid}-name`} />
+      </label>
+      <label class="notify-field notify-field-email">
+        <span>Email <em aria-hidden="true">*</em></span>
+        <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" id={`${uid}-email`} />
+      </label>
+      <label class="notify-field">
+        <span>Interested in</span>
+        <select name="Interested in" id={`${uid}-interest`}>
+          {interests.map((i) => <option selected={i === interest}>{i}</option>)}
+        </select>
+      </label>
+      <button type="submit" class="btn btn-primary notify-submit" id={`${uid}-submit`}>
+        <span class="notify-submit-label">Notify Me</span>
+      </button>
+    </div>
+    <p class="notify-fine">Only new-rifle alerts. No spam. Reply “unsubscribe” anytime.</p>
+    <p class="notify-status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.notify-form').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      const ajax = form.dataset.ajax;
+      if (!ajax || !window.fetch) return; // fall back to normal POST
+      e.preventDefault();
+      const status = form.querySelector<HTMLElement>('.notify-status')!;
+      const btn = form.querySelector<HTMLButtonElement>('.notify-submit')!;
+      const label = btn.querySelector<HTMLElement>('.notify-submit-label')!;
+      const data = Object.fromEntries(new FormData(form).entries());
+      if ((data._honey as string)?.length) return;
+      btn.disabled = true;
+      label.textContent = 'Signing you up…';
+      status.className = 'notify-status';
+      try {
+        const res = await fetch(ajax, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || json.success === 'false' || json.success === false) throw new Error(json.message || 'Request failed');
+        form.classList.add('is-done');
+        status.classList.add('is-success');
+        status.textContent = '✓ You’re on the list. We’ll email you when the next rifle is ready to ship.';
+        label.textContent = 'You’re In';
+      } catch {
+        status.classList.add('is-error');
+        status.innerHTML = 'Something went wrong. Please try again, or call <a href="tel:+14197400456">(419) 740-0456</a>.';
+        btn.disabled = false;
+        label.textContent = 'Notify Me';
+      }
+    });
+  });
+</script>
+
+<style>
+  .notify {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+    padding: clamp(var(--space-xl), 4vw, var(--space-3xl));
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(200, 16, 46, 0.22), transparent 55%),
+      linear-gradient(135deg, var(--cpg-charcoal) 0%, var(--cpg-dark) 100%);
+    border: 1px solid rgba(200, 16, 46, 0.35);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-align: left;
+  }
+  @media (min-width: 960px) {
+    .notify:not(.notify-compact) { grid-template-columns: 0.9fr 1.1fr; }
+  }
+  .notify-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--cpg-accent); margin-bottom: var(--space-sm);
+  }
+  .notify-bell { display: inline-flex; width: 18px; height: 18px; animation: notify-ring 4s ease-in-out infinite; transform-origin: 50% 0; }
+  .notify-bell svg { width: 100%; height: 100%; }
+  @keyframes notify-ring {
+    0%, 88%, 100% { transform: rotate(0); }
+    90% { transform: rotate(14deg); } 92% { transform: rotate(-12deg); }
+    94% { transform: rotate(8deg); } 96% { transform: rotate(-4deg); }
+  }
+  .notify-heading { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: var(--space-sm); }
+  .notify-text { color: var(--cpg-silver); line-height: 1.7; }
+  .notify-compact .notify-heading { font-size: 1.4rem; }
+
+  .notify-fields { display: grid; grid-template-columns: 1fr; gap: var(--space-sm); }
+  @media (min-width: 640px) {
+    .notify-fields { grid-template-columns: 1fr 1.4fr; }
+    .notify-field:nth-child(3) { grid-column: 1 / 2; }
+    .notify-submit { grid-column: 2 / 3; align-self: end; }
+  }
+  .notify-field { display: flex; flex-direction: column; gap: 4px; }
+  .notify-field > span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cpg-silver); }
+  .notify-field em { color: var(--cpg-accent); font-style: normal; }
+  .notify-field input,
+  .notify-field select {
+    width: 100%;
+    padding: 13px 14px;
+    font: inherit;
+    color: var(--cpg-pure-white);
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--cpg-border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+  .notify-field input::placeholder { color: rgba(255, 255, 255, 0.35); }
+  .notify-field input:focus,
+  .notify-field select:focus { outline: none; border-color: var(--cpg-accent); box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.2); }
+  .notify-submit { justify-content: center; padding-top: 14px; padding-bottom: 14px; }
+  .notify-submit:disabled { opacity: 0.7; cursor: wait; }
+  .notify-fine { margin-top: var(--space-sm); font-size: 0.75rem; color: var(--cpg-silver); opacity: 0.75; }
+  .notify-status:empty { display: none; }
+  .notify-status { margin-top: var(--space-sm); padding: 10px 14px; border-radius: var(--radius-md); font-size: 0.9rem; }
+  .notify-status.is-success { color: #3ddc84; background: rgba(61, 220, 132, 0.1); border: 1px solid rgba(61, 220, 132, 0.3); }
+  .notify-status.is-error { color: #ff8a8a; background: rgba(200, 16, 46, 0.1); border: 1px solid rgba(200, 16, 46, 0.35); }
+  .notify-status :global(a) { color: inherit; text-decoration: underline; }
+  .notify-form.is-done .notify-fields { opacity: 0.5; pointer-events: none; }
+  .notify-honey { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; }
+</style>

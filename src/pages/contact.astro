@@ -4,8 +4,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Contact Us"
-  description="Get in touch with Cybex Precision Gunworx. Call (419) 350-8484, email us, or fill out our contact form for custom build inquiries and FFL transfers."
+  description="Get in touch with Cybex Precision Gunworx. Call (419) 740-0456, email us, or fill out our contact form for custom build inquiries and FFL transfers."
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "name": "Contact Cybex Precision Gunworx",
+        "url": "https://cybexprecisiongunworx.com/contact/",
+        "mainEntity": { "@id": "https://cybexprecisiongunworx.com/#business" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cybexprecisiongunworx.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://cybexprecisiongunworx.com/contact/" }
+        ]
+      }
+    ]
+  })} />
   <div class="page-header">
     <div class="container">
       <div class="breadcrumb">
@@ -29,7 +47,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
             <div>
               <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--cpg-pure-white); text-transform: uppercase; margin-bottom: var(--space-xs);">Phone</h4>
-              <a href="tel:+14193508484" style="color: var(--cpg-accent); font-weight: 600; font-size: 1.1rem;">(419) 350-8484</a>
+              <a href="tel:+14197400456" style="color: var(--cpg-accent); font-weight: 600; font-size: 1.1rem;">(419) 740-0456</a>
             </div>
           </div>
 
@@ -39,7 +57,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
             <div>
               <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--cpg-pure-white); text-transform: uppercase; margin-bottom: var(--space-xs);">Email</h4>
-              <a href="mailto:sales@cybexprecisiongunworx.com" style="color: var(--cpg-accent); font-weight: 600;">sales@cybexprecisiongunworx.com</a>
+              <a href="mailto:jmurphy@cybexinc.com" style="color: var(--cpg-accent); font-weight: 600;">jmurphy@cybexinc.com</a>
             </div>
           </div>
 
@@ -67,7 +85,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <!-- Contact Form -->
         <div>
           <h3 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--cpg-pure-white); text-transform: uppercase; margin-bottom: var(--space-lg);">Send Us a Message</h3>
-          <form class="contact-form" action="https://formsubmit.co/sales@cybexprecisiongunworx.com" method="POST">
+          <form class="contact-form" action="https://formsubmit.co/jmurphy@cybexinc.com" method="POST">
             <input type="hidden" name="_subject" value="New Contact Form Submission - Cybex Precision Gunworx" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_next" value="https://cybexprecisiongunworx.com/contact/?success=true" />

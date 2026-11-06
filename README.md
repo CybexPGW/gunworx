@@ -1,43 +1,33 @@
-# Astro Starter Kit: Minimal
+# Cybex Precision Gunworx
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Official Astro storefront and Cloudflare Worker for **Cybex Precision Gunworx** — competition-ready rimfire & centerfire rifles, precision rests, and gunsmithing tools built in Waterville, Ohio.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
 /
-├── public/
+├── public/                 # Static assets, studio WebP images, hero videos, robots.txt
+├── scripts/                # WooCommerce Store API catalog & image sync scripts
+│   ├── import-ready-to-ship.py
+│   └── sync-accessories.py
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/         # Reusable UI, cart drawer, age gate, compliance notices
+│   ├── content/blog/       # Technical precision-shooting & FFL transfer articles
+│   ├── data/               # Synced Ready-to-Ship rifles, accessories, & compliance data
+│   ├── layouts/            # Base HTML layout, SEO metadata, & Schema.org JSON-LD
+│   └── pages/              # Astro routes, guides, policies, sitemap.xml, & llms.txt endpoints
+├── astro.config.mjs        # Astro site configuration
+├── worker.js               # Cloudflare Worker entry point & WooCommerce cart handoff
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command | Action |
+| :--- | :--- |
+| `npm install` | Install dependencies (Node.js `>=22.12.0`) |
+| `npm run dev` | Start local Astro dev server at `http://localhost:4321` |
+| `npm run sync` | Sync Ready-to-Ship rifles and accessories from WooCommerce |
+| `npm run build` | Build production static site to `./dist/` |
+| `npm run preview` | Preview production build locally |
+| `npx wrangler deploy worker.js --name cybexgunworx --assets=./dist --compatibility-date=2025-04-01` | Deploy to Cloudflare Workers |
