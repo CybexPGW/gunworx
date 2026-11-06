@@ -1,0 +1,10 @@
+{
+  "name": "gunworx",
+  "account_id": "35ea0cc3ee542a31c90f9332180ef13a",
+  "main": "worker.js",
+  "compatibility_date": "2025-04-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  }
+}

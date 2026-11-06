@@ -17,6 +17,7 @@ Official Astro storefront and Cloudflare Worker for **Cybex Precision Gunworx** 
 │   ├── layouts/            # Base HTML layout, SEO metadata, & Schema.org JSON-LD
 │   └── pages/              # Astro routes, guides, policies, sitemap.xml, & llms.txt endpoints
 ├── astro.config.mjs        # Astro site configuration
+├── wrangler.jsonc          # Cloudflare Worker & static assets config
 ├── worker.js               # Cloudflare Worker entry point & WooCommerce cart handoff
 └── package.json
 ```
@@ -30,4 +31,4 @@ Official Astro storefront and Cloudflare Worker for **Cybex Precision Gunworx** 
 | `npm run sync` | Sync Ready-to-Ship rifles and accessories from WooCommerce |
 | `npm run build` | Build production static site to `./dist/` |
 | `npm run preview` | Preview production build locally |
-| `npx wrangler deploy worker.js --name cybexgunworx --assets=./dist --compatibility-date=2025-04-01` | Deploy to Cloudflare Workers |
+| `npx wrangler deploy` | Deploy Worker + `./dist/` assets to Cloudflare |
