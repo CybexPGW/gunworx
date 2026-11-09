@@ -47,7 +47,28 @@ import ComplianceNotice from '../../components/ComplianceNotice.astro';
   <section class="section">
     <div class="container">
       <ComplianceNotice />
-      <div style="height: var(--space-lg);"></div>
+      <div style="height: var(--space-xl);"></div>
+
+      <!-- Ready to Ship Rifles -->
+      <div style="margin-bottom: var(--space-4xl);">
+        <div class="section-header">
+          <span class="label">In Stock · Ships Now</span>
+          <h2>Ready to Ship Rifles</h2>
+          <p>Competition-ready rimfire and centerfire rifles, assembled, test-fired, and zeroed.</p>
+        </div>
+        <div class="rts-shop-grid">
+          {rifles.slice(0, 4).map((r) => <RifleCard rifle={r} />)}
+        </div>
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+          <a href="/ready-to-ship/" class="btn btn-primary">View All {rifles.length} Ready to Ship Rifles →</a>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="label">Benchrest &amp; Range Gear</span>
+        <h2>Rests, Front Tops &amp; Precision Tools</h2>
+        <p>PQP mechanical rests, 1-piece rests, interchangeable front tops, boreguides, and maintenance tools.</p>
+      </div>
 
       <!-- Category Filter -->
       <div class="category-filter" id="category-filter">
@@ -117,21 +138,6 @@ import ComplianceNotice from '../../components/ComplianceNotice.astro';
             </div>
           </article>
         ))}
-      </div>
-
-      <!-- Ready to Ship Rifles Preview -->
-      <div style="margin-top: var(--space-4xl);">
-        <div class="section-header">
-          <span class="label">In Stock · Ships Now</span>
-          <h2>Ready to Ship Rifles</h2>
-          <p>Competition-ready rimfire and centerfire rifles, assembled, test-fired, and zeroed.</p>
-        </div>
-        <div class="rts-shop-grid">
-          {rifles.slice(0, 4).map((r) => <RifleCard rifle={r} />)}
-        </div>
-        <div style="text-align: center; margin-top: var(--space-2xl);">
-          <a href="/ready-to-ship/" class="btn btn-primary">View All {rifles.length} Ready to Ship Rifles →</a>
-        </div>
       </div>
 
       <!-- FFL Reminder -->
