@@ -302,11 +302,11 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
       letter-spacing: 0.06em;
       padding: var(--space-sm) var(--space-md);
       border-radius: var(--radius-sm);
+      border: 1px solid transparent;
       transition: all var(--transition-fast);
       white-space: nowrap;
     }
 
-    .nav-desktop a:hover,
     .nav-desktop a[aria-current="page"] {
       color: var(--cpg-pure-white);
       background: rgba(255,255,255,0.06);
@@ -318,7 +318,10 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
       background: rgba(200,16,46,0.12);
     }
 
+    .nav-desktop a:hover,
+    .nav-desktop a:focus-visible,
     .nav-desktop .nav-rts:hover {
+      color: var(--cpg-pure-white);
       background: var(--cpg-accent);
       border-color: var(--cpg-accent);
     }
