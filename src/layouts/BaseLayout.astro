@@ -31,6 +31,14 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Tag Manager / Analytics -->
+  <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-T67K289S"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
   <meta name="description" content={description} />
   <meta name="author" content="Cybex Precision Gunworx" />
   <meta name="theme-color" content="#0a0a0a" />
