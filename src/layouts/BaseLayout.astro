@@ -297,19 +297,21 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
       font-family: var(--font-heading);
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--cpg-light);
+      color: var(--cpg-pure-white);
       text-transform: uppercase;
       letter-spacing: 0.06em;
       padding: var(--space-sm) var(--space-md);
       border-radius: var(--radius-sm);
-      border: 1px solid transparent;
+      border: 1px solid rgba(200,16,46,0.6);
+      background: rgba(200,16,46,0.12);
       transition: all var(--transition-fast);
       white-space: nowrap;
     }
 
     .nav-desktop a[aria-current="page"] {
       color: var(--cpg-pure-white);
-      background: rgba(255,255,255,0.06);
+      border-color: var(--cpg-accent);
+      background: rgba(200,16,46,0.28);
     }
 
     .nav-desktop a:hover,
