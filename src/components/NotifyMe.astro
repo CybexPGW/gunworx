@@ -45,9 +45,9 @@ const uid = `notify-${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 
   <form
     class="notify-form"
+    id={`${uid}-form`}
     action={FORMSPREE_URL}
     method="POST"
-    data-ajax={FORMSPREE_URL}
   >
     <input type="hidden" name="_subject" value="New Rifle Alert Sign-Up – Cybex Precision Gunworx" />
     <input type="hidden" name="Form" value="Notify Me – New Ready to Ship Rifles" />
@@ -57,62 +57,36 @@ const uid = `notify-${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
     <div class="notify-fields">
       <label class="notify-field">
         <span>First name</span>
-        <input type="text" name="First name" autocomplete="given-name" placeholder="First name" id={`${uid}-name`} />
+        <input type="text" name="First name" autocomplete="given-name" placeholder="First name" id={`${uid}-name`} data-fs-field />
+        <span data-fs-error="First name"></span>
       </label>
       <label class="notify-field notify-field-email">
         <span>Email <em aria-hidden="true">*</em></span>
-        <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" id={`${uid}-email`} />
+        <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" id={`${uid}-email`} data-fs-field />
+        <span data-fs-error="email"></span>
       </label>
       <label class="notify-field">
         <span>Interested in</span>
-        <select name="Interested in" id={`${uid}-interest`}>
+        <select name="Interested in" id={`${uid}-interest`} data-fs-field>
           {interests.map((i) => <option selected={i === interest}>{i}</option>)}
         </select>
+        <span data-fs-error="Interested in"></span>
       </label>
-      <button type="submit" class="btn btn-primary notify-submit" id={`${uid}-submit`}>
+      <button type="submit" class="btn btn-primary notify-submit" id={`${uid}-submit`} data-fs-submit-btn>
         <span class="notify-submit-label">Notify Me</span>
       </button>
     </div>
     <p class="notify-fine">Only new-rifle alerts. No spam. Reply “unsubscribe” anytime.</p>
-    <p class="notify-status" role="status" aria-live="polite"></p>
+    <div class="notify-status is-success" data-fs-success role="status" aria-live="polite"></div>
+    <div class="notify-status is-error" data-fs-error role="alert"></div>
   </form>
 </div>
 
-<script>
-  document.querySelectorAll<HTMLFormElement>('.notify-form').forEach((form) => {
-    form.addEventListener('submit', async (e) => {
-      const ajax = form.dataset.ajax;
-      if (!ajax || !window.fetch) return; // fall back to normal POST
-      e.preventDefault();
-      const status = form.querySelector<HTMLElement>('.notify-status')!;
-      const btn = form.querySelector<HTMLButtonElement>('.notify-submit')!;
-      const label = btn.querySelector<HTMLElement>('.notify-submit-label')!;
-      const data = Object.fromEntries(new FormData(form).entries());
-      if ((data._gotcha as string)?.length) return;
-      btn.disabled = true;
-      label.textContent = 'Signing you up…';
-      status.className = 'notify-status';
-      try {
-        const res = await fetch(ajax, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(data),
-        });
-        const json = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(json.error || 'Request failed');
-        form.classList.add('is-done');
-        status.classList.add('is-success');
-        status.textContent = '✓ You’re on the list. We’ll email you when the next rifle is ready to ship.';
-        label.textContent = 'You’re In';
-      } catch {
-        status.classList.add('is-error');
-        status.innerHTML = 'Something went wrong. Please try again, or call <a href="tel:+14197400456">(419) 740-0456</a>.';
-        btn.disabled = false;
-        label.textContent = 'Notify Me';
-      }
-    });
-  });
+<script is:inline define:vars={{ formSelector: `#${uid}-form` }}>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: formSelector, formId: 'maeerwpn' });
 </script>
+<script is:inline src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 <style>
   .notify {
@@ -156,7 +130,10 @@ const uid = `notify-${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
     .notify-submit { grid-column: 2 / 3; align-self: end; }
   }
   .notify-field { display: flex; flex-direction: column; gap: 4px; }
-  .notify-field > span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cpg-silver); }
+  .notify-field > span:not([data-fs-error]) { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cpg-silver); }
+  .notify-field > span[data-fs-error]:empty { display: none; }
+  .notify-field > span[data-fs-error]:not(:empty) { font-size: 0.78rem; color: #ff8a9a; }
+  .notify-field [data-fs-field][aria-invalid="true"] { border-color: var(--cpg-accent); }
   .notify-field em { color: var(--cpg-accent); font-style: normal; }
   .notify-field input,
   .notify-field select {
