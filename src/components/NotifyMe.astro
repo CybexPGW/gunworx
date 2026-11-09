@@ -20,7 +20,7 @@ const {
   compact = false,
 } = Astro.props;
 
-const ENDPOINT = 'Info@CybexInc.com';
+const FORMSPREE_URL = 'https://formspree.io/f/maeerwpn';
 const interests = [
   'Any new rifle',
   'Rimfire',
@@ -45,17 +45,14 @@ const uid = `notify-${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 
   <form
     class="notify-form"
-    action={`https://formsubmit.co/${ENDPOINT}`}
+    action={FORMSPREE_URL}
     method="POST"
-    data-ajax={`https://formsubmit.co/ajax/${ENDPOINT}`}
+    data-ajax={FORMSPREE_URL}
   >
     <input type="hidden" name="_subject" value="New Rifle Alert Sign-Up – Cybex Precision Gunworx" />
-    <input type="hidden" name="_template" value="table" />
-    <input type="hidden" name="_captcha" value="false" />
-    <input type="hidden" name="_next" value="https://cybexprecisiongunworx.com/ready-to-ship/?subscribed=1" />
     <input type="hidden" name="Form" value="Notify Me – New Ready to Ship Rifles" />
     <input type="hidden" name="Signed up from" value={source} />
-    <input type="text" name="_honey" class="notify-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <input type="text" name="_gotcha" class="notify-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
     <div class="notify-fields">
       <label class="notify-field">
@@ -91,7 +88,7 @@ const uid = `notify-${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
       const btn = form.querySelector<HTMLButtonElement>('.notify-submit')!;
       const label = btn.querySelector<HTMLElement>('.notify-submit-label')!;
       const data = Object.fromEntries(new FormData(form).entries());
-      if ((data._honey as string)?.length) return;
+      if ((data._gotcha as string)?.length) return;
       btn.disabled = true;
       label.textContent = 'Signing you up…';
       status.className = 'notify-status';
@@ -102,7 +99,7 @@ const uid = `notify-${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
           body: JSON.stringify(data),
         });
         const json = await res.json().catch(() => ({}));
-        if (!res.ok || json.success === 'false' || json.success === false) throw new Error(json.message || 'Request failed');
+        if (!res.ok) throw new Error(json.error || 'Request failed');
         form.classList.add('is-done');
         status.classList.add('is-success');
         status.textContent = '✓ You’re on the list. We’ll email you when the next rifle is ready to ship.';
