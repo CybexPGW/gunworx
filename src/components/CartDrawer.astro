@@ -72,9 +72,20 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
       <a href="/checkout/" class="btn btn-primary wc-checkout-btn">
         Proceed to Checkout →
       </a>
-      <button type="button" class="btn btn-outline wc-continue-btn" id="wc-drawer-continue">
-        Continue Shopping
-      </button>
+      <div class="wc-drawer-secondary-actions">
+        <button type="button" class="btn btn-outline wc-continue-btn" id="wc-drawer-continue">
+          Continue Shopping
+        </button>
+        <button type="button" class="wc-clear-btn" id="wc-drawer-clear">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+            <path d="M10 11v6"/><path d="M14 11v6"/>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+          </svg>
+          Clear Cart
+        </button>
+      </div>
     </div>
   </div>
 </aside>
@@ -90,6 +101,7 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
   const backdrop = document.getElementById('wc-drawer-backdrop');
   const closeBtn = document.getElementById('wc-drawer-close');
   const continueBtn = document.getElementById('wc-drawer-continue');
+  const clearBtn = document.getElementById('wc-drawer-clear');
   const itemsList = document.getElementById('wc-drawer-items');
   const emptyEl = document.getElementById('wc-drawer-empty');
   const footerEl = document.getElementById('wc-drawer-footer');
@@ -325,8 +337,14 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
                 <span class="wc-qty-val">${item.quantity}</span>
                 <button type="button" class="wc-qty-btn" data-action="inc" data-key="${item.key}" data-qty="${item.quantity}" aria-label="Increase quantity">+</button>
               </div>
-              <button type="button" class="wc-item-remove" data-action="remove" data-key="${item.key}" data-id="${item.id}" aria-label="Remove ${name.replace(/"/g, '&quot;')}">
-                Remove
+              <button type="button" class="wc-item-remove" data-action="remove" data-key="${item.key}" data-id="${item.id}" aria-label="Delete ${name.replace(/"/g, '&quot;')} from cart">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                  <path d="M10 11v6"/><path d="M14 11v6"/>
+                  <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                </svg>
+                <span>Delete</span>
               </button>
             </div>
           </div>
@@ -396,12 +414,63 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
   async function removeItem(key, wooId) {
     showError('');
     if (wooId) removeItemMeta(wooId);
-    const cart = await wcFetch('cart/remove-item', {
-      method: 'POST',
-      body: JSON.stringify({ key }),
-    });
-    notifyListeners(cart);
-    return cart;
+    try {
+      const cart = await wcFetch('cart/remove-item', {
+        method: 'POST',
+        body: JSON.stringify({ key }),
+      });
+      notifyListeners(cart);
+      return cart;
+    } catch (err) {
+      // Fallback if Cart-Token/Nonce or item key was stale: refresh cart and retry or filter locally
+      try {
+        const freshCart = await wcFetch('cart');
+        const match = (freshCart.items || []).find(
+          (i) => i.key === key || (wooId && String(i.id) === String(wooId))
+        );
+        if (match) {
+          const updated = await wcFetch('cart/remove-item', {
+            method: 'POST',
+            body: JSON.stringify({ key: match.key }),
+          });
+          notifyListeners(updated);
+          return updated;
+        }
+        notifyListeners(freshCart);
+        return freshCart;
+      } catch (_) {
+        const filteredItems = ((currentCart && currentCart.items) || []).filter(
+          (i) => i.key !== key && (!wooId || String(i.id) !== String(wooId))
+        );
+        const fallbackCart = Object.assign({}, currentCart || {}, {
+          items: filteredItems,
+          items_count: filteredItems.reduce((acc, i) => acc + (i.quantity || 0), 0),
+        });
+        notifyListeners(fallbackCart);
+        return fallbackCart;
+      }
+    }
+  }
+
+  async function clearCart() {
+    showError('');
+    clearAllItemMeta();
+    try {
+      await wcFetch('cart/items', { method: 'DELETE' });
+    } catch (_) {}
+    try {
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(NONCE_KEY);
+      localStorage.removeItem(CACHE_KEY);
+    } catch (_) {}
+    const emptyCart = {
+      items: [],
+      items_count: 0,
+      coupons: [],
+      totals: { total_items: '0', total_price: '0', total_tax: '0', total_discount: '0', currency_minor_unit: 2 },
+    };
+    notifyListeners(emptyCart);
+    return emptyCart;
   }
 
   async function updateCustomer(addresses) {
@@ -468,6 +537,16 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
 
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   if (continueBtn) continueBtn.addEventListener('click', closeDrawer);
+  if (clearBtn) {
+    clearBtn.addEventListener('click', async () => {
+      clearBtn.disabled = true;
+      try {
+        await clearCart();
+      } finally {
+        clearBtn.disabled = false;
+      }
+    });
+  }
   if (backdrop) backdrop.addEventListener('click', closeDrawer);
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer && drawer.classList.contains('open')) {
@@ -540,6 +619,7 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
     addItem,
     updateItemQty,
     removeItem,
+    clearCart,
     updateCustomer,
     selectShippingRate,
     applyCoupon,
@@ -779,13 +859,29 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
     color: var(--cpg-pure-white);
   }
   .wc-item-remove {
-    font-size: 0.75rem;
-    color: var(--cpg-silver);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ff8a9a;
+    background: rgba(200, 16, 46, 0.12);
+    border: 1px solid rgba(200, 16, 46, 0.35);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
   }
-  .wc-item-remove:hover {
-    color: var(--cpg-accent);
+  .wc-item-remove:hover:not(:disabled) {
+    background: var(--cpg-accent);
+    border-color: var(--cpg-accent);
+    color: #fff;
+  }
+  .wc-item-remove:disabled {
+    opacity: 0.5;
+    cursor: wait;
   }
 
   .wc-drawer-footer {
@@ -834,10 +930,39 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
     flex-direction: column;
     gap: var(--space-sm);
   }
+  .wc-drawer-secondary-actions {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-sm);
+    align-items: stretch;
+  }
   .wc-checkout-btn,
   .wc-continue-btn {
     width: 100%;
     justify-content: center;
+  }
+  .wc-clear-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 14px;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #ff8a9a;
+    background: rgba(200, 16, 46, 0.12);
+    border: 1px solid rgba(200, 16, 46, 0.35);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  }
+  .wc-clear-btn:hover:not(:disabled) {
+    background: var(--cpg-accent);
+    border-color: var(--cpg-accent);
+    color: #fff;
   }
 </style>
 

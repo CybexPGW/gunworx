@@ -307,7 +307,18 @@ const restrictedCodes = noShipStates.map((s) => s.code);
         <!-- Order Summary Sidebar -->
         <aside class="co-sidebar">
           <div class="co-card co-summary-card">
-            <h2>Order Summary</h2>
+            <div class="co-summary-head">
+              <h2>Order Summary</h2>
+              <button type="button" class="co-clear-cart" id="co-clear-cart">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                  <path d="M10 11v6"/><path d="M14 11v6"/>
+                  <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                </svg>
+                Clear Cart
+              </button>
+            </div>
             <ul class="co-items" id="co-items"></ul>
 
             <!-- Coupon Code -->
@@ -514,12 +525,27 @@ const restrictedCodes = noShipStates.map((s) => s.code);
         const unitPrice = (m.packagePrice && Number(m.packagePrice) > baseUnit) ? Number(m.packagePrice) : baseUnit;
         const pkgHtml = m.packageLabel ? `<div class="co-item-pkg">${decodeHtml(m.packageLabel)}</div>` : '';
         return `
-          <li class="co-item">
+          <li class="co-item" data-key="${item.key}" data-id="${item.id}">
             <img src="${imgSrc}" alt="${name.replace(/"/g, '&quot;')}" width="56" height="56" />
             <div class="co-item-body">
               <div class="co-item-title">${name}</div>
               ${pkgHtml}
-              <div class="co-item-meta">Qty: ${item.quantity}</div>
+              <div class="co-item-actions">
+                <div class="co-qty-ctrl">
+                  <button type="button" class="co-qty-btn" data-co-action="dec" data-key="${item.key}" data-id="${item.id}" data-qty="${item.quantity}" aria-label="Decrease quantity">−</button>
+                  <span class="co-qty-val">${item.quantity}</span>
+                  <button type="button" class="co-qty-btn" data-co-action="inc" data-key="${item.key}" data-id="${item.id}" data-qty="${item.quantity}" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="co-item-delete" data-co-action="remove" data-key="${item.key}" data-id="${item.id}" aria-label="Delete ${name.replace(/"/g, '&quot;')} from cart">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                    <path d="M10 11v6"/><path d="M14 11v6"/>
+                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                  </svg>
+                  Delete
+                </button>
+              </div>
             </div>
             <div class="co-item-price">${formatDollars(unitPrice * item.quantity)}</div>
           </li>
@@ -548,6 +574,47 @@ const restrictedCodes = noShipStates.map((s) => s.code);
     }
     window.CPGCart.subscribe(renderCheckoutCart);
     window.CPGCart.refreshCart();
+
+    // Item quantity & delete controls in Order Summary
+    if (itemsEl) {
+      itemsEl.addEventListener('click', async (e) => {
+        const btn = e.target.closest('button[data-co-action]');
+        if (!btn) return;
+        const action = btn.dataset.coAction;
+        const key = btn.dataset.key;
+        const id = btn.dataset.id;
+        const qty = Number(btn.dataset.qty || 1);
+
+        btn.disabled = true;
+        setError('');
+        try {
+          if (action === 'inc') {
+            await window.CPGCart.updateItemQty(key, qty + 1, id);
+          } else if (action === 'dec') {
+            await window.CPGCart.updateItemQty(key, qty - 1, id);
+          } else if (action === 'remove') {
+            await window.CPGCart.removeItem(key, id);
+          }
+        } catch (err) {
+          setError(err.message || 'Could not update cart.');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    }
+
+    const clearCartBtn = document.getElementById('co-clear-cart');
+    if (clearCartBtn) {
+      clearCartBtn.addEventListener('click', async () => {
+        clearCartBtn.disabled = true;
+        setError('');
+        try {
+          await window.CPGCart.clearCart();
+        } finally {
+          clearCartBtn.disabled = false;
+        }
+      });
+    }
 
     // Update customer state/zip on change to recalculate tax
     ['billing_state', 'billing_postcode', 'shipping_state', 'shipping_postcode'].forEach((id) => {
@@ -883,11 +950,39 @@ const restrictedCodes = noShipStates.map((s) => s.code);
     position: sticky;
     top: 110px;
   }
-  .co-summary-card h2 {
-    font-size: 1.2rem;
+  .co-summary-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
     margin-bottom: var(--space-lg);
     padding-bottom: var(--space-sm);
     border-bottom: 1px solid var(--cpg-border);
+  }
+  .co-summary-head h2 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  .co-clear-cart {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ff8a9a;
+    background: rgba(200, 16, 46, 0.12);
+    border: 1px solid rgba(200, 16, 46, 0.35);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  }
+  .co-clear-cart:hover:not(:disabled) {
+    background: var(--cpg-accent);
+    border-color: var(--cpg-accent);
+    color: #fff;
   }
   .co-items {
     list-style: none;
@@ -926,9 +1021,61 @@ const restrictedCodes = noShipStates.map((s) => s.code);
     text-transform: uppercase;
     margin-top: 2px;
   }
-  :global(.co-item-meta) {
-    font-size: 0.78rem;
-    color: var(--cpg-silver);
+  :global(.co-item-actions) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  :global(.co-qty-ctrl) {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--cpg-border);
+    border-radius: var(--radius-sm);
+    background: var(--cpg-gunmetal);
+  }
+  :global(.co-qty-btn) {
+    width: 26px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    color: var(--cpg-light);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  :global(.co-qty-btn:hover:not(:disabled)) {
+    background: var(--cpg-accent);
+    color: #fff;
+  }
+  :global(.co-qty-val) {
+    min-width: 24px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--cpg-pure-white);
+  }
+  :global(.co-item-delete) {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ff8a9a;
+    background: rgba(200, 16, 46, 0.12);
+    border: 1px solid rgba(200, 16, 46, 0.35);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  }
+  :global(.co-item-delete:hover:not(:disabled)) {
+    background: var(--cpg-accent);
+    border-color: var(--cpg-accent);
+    color: #fff;
   }
   :global(.co-item-price) {
     font-family: var(--font-heading);
