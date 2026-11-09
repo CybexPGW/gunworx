@@ -80,7 +80,32 @@ export default {
       });
     }
 
-    return env.ASSETS.fetch(request);
+    const assetResponse = await env.ASSETS.fetch(request);
+    const contentType = assetResponse.headers.get('Content-Type') || '';
+
+    if (
+      url.origin !== 'https://cybexprecisiongunworx.com' &&
+      contentType.includes('text/html') &&
+      typeof HTMLRewriter !== 'undefined'
+    ) {
+      const rewriter = new HTMLRewriter().on(
+        'meta[property="og:image"], meta[property="og:image:secure_url"], meta[property="og:url"], meta[name="twitter:image"]',
+        {
+          element(el) {
+            const content = el.getAttribute('content');
+            if (content && content.startsWith('https://cybexprecisiongunworx.com')) {
+              el.setAttribute(
+                'content',
+                content.replace('https://cybexprecisiongunworx.com', url.origin)
+              );
+            }
+          },
+        }
+      );
+      return rewriter.transform(assetResponse);
+    }
+
+    return assetResponse;
   },
 };
 
