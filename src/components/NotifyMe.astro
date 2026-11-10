@@ -50,6 +50,7 @@ const uid = `notify-${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
     method="POST"
   >
     <input type="hidden" name="_subject" value="New Rifle Alert Sign-Up – Cybex Precision Gunworx" />
+    <input type="hidden" name="Recipient" value="Info@CybexInc.com" />
     <input type="hidden" name="Form" value="Notify Me – New Ready to Ship Rifles" />
     <input type="hidden" name="Signed up from" value={source} />
     <input type="text" name="_gotcha" class="notify-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -83,8 +84,46 @@ const uid = `notify-${source.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 </div>
 
 <script is:inline define:vars={{ formSelector: `#${uid}-form` }}>
-  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: formSelector, formId: 'maeerwpn' });
+  window.formspree = window.formspree || function () { (window.formspree.q = window.formspree.q || []).push(arguments); };
+  window.formspree('initForm', { formElement: formSelector, formId: 'maeerwpn' });
+
+  (function () {
+    const form = document.querySelector(formSelector);
+    if (!form) return;
+    const successEl = form.querySelector('[data-fs-success]');
+    const errorEl = form.querySelector('[data-fs-error]');
+    const submitBtn = form.querySelector('[data-fs-submit-btn]');
+
+    form.addEventListener('submit', async function (e) {
+      if (!window.formspree || !Array.isArray(window.formspree.q)) return;
+      e.preventDefault();
+      if (successEl) successEl.textContent = '';
+      if (errorEl) errorEl.textContent = '';
+      if (submitBtn) submitBtn.disabled = true;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          const msg = (data && data.errors && data.errors.map((err) => err.message).join(', ')) || 'Sign-up failed. Please try again.';
+          throw new Error(msg);
+        }
+        form.reset();
+        if (successEl) {
+          successEl.textContent = '✓ You’re on the list! We’ll email you as soon as a new rifle is ready to ship.';
+        }
+      } catch (err) {
+        if (errorEl) {
+          errorEl.textContent = (err && err.message) || 'Something went wrong. Please email Info@CybexInc.com.';
+        }
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  })();
 </script>
 <script is:inline src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
