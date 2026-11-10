@@ -87,19 +87,24 @@ def main():
         mu = p["prices"]["currency_minor_unit"]
         price = int(p["prices"]["price"]) / (10 ** mu) if p["prices"]["price"] else 0.0
 
-        seen_urls = []
+        seen_imgs = []
+        seen_urls = set()
         for img in p.get("images", []):
             u = img.get("src")
+            img_id = img.get("id", "")
             if u and u not in seen_urls:
-                seen_urls.append(u)
+                seen_urls.add(u)
+                seen_imgs.append((img_id, u))
 
         local_images = []
-        for idx, u in enumerate(seen_urls, 1):
+        for idx, (img_id, u) in enumerate(seen_imgs, 1):
             fname = f"{slug}.webp" if idx == 1 else f"{slug}-{idx}.webp"
             dest = IMG_DIR / fname
-            if not dest.exists() or manifest.get(fname) != u:
-                download_webp(u, dest)
-            new_manifest[fname] = u
+            cache_key = f"{img_id}:{u}" if img_id else u
+            fetch_url = f"{u}?v={img_id}" if img_id and "?" not in u else u
+            if not dest.exists() or manifest.get(fname) != cache_key:
+                download_webp(fetch_url, dest)
+            new_manifest[fname] = cache_key
             local_images.append(f"/images/products/{fname}")
 
         bullets = extract_bullets(p.get("description", ""))

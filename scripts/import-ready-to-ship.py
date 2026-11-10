@@ -250,6 +250,7 @@ def main():
         price = int(p["prices"]["price"]) / 10 ** mu if p["prices"]["price"] else 0.0
 
         image_urls = dedupe_and_order_images(p.get("images", []))
+        id_by_src = {img.get("src", ""): img.get("id", "") for img in p.get("images", []) if img.get("src")}
         img_code = code_from_images(image_urls)
 
         sku_code = (p.get("sku") or "").strip()
@@ -278,9 +279,12 @@ def main():
         image_bgs = []
         for i, src_url in enumerate(image_urls, 1):
             dest = IMG_DIR / f"{slug}-{i}.webp"
-            if not dest.exists() or manifest.get(dest.name) != src_url:
-                download_image(src_url, dest)
-            new_manifest[dest.name] = src_url
+            img_id = id_by_src.get(src_url, "")
+            cache_key = f"{img_id}:{src_url}" if img_id else src_url
+            if not dest.exists() or manifest.get(dest.name) != cache_key:
+                fetch_url = f"{src_url}?v={img_id}" if img_id else src_url
+                download_image(fetch_url, dest)
+            new_manifest[dest.name] = cache_key
             images.append(f"/images/ready-to-ship/{dest.name}")
             image_bgs.append(sample_image_bg(dest))
 
