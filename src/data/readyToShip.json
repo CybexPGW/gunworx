@@ -4,9 +4,9 @@
     "wooId": 32005,
     "sku": "KB 10-2",
     "code": "KB 10-2",
-    "name": "Bronxe Meridian 6.5CM",
+    "name": "Bronze Meridian 6.5CM",
     "slug": "bronxe-meridian-6-5cm",
-    "price": 3807.0,
+    "price": 3888.0,
     "packages": [],
     "inStock": true,
     "platform": "centerfire",
@@ -172,9 +172,9 @@
     "wooId": 31947,
     "sku": "KB 10-1",
     "code": "KB 10-1",
-    "name": "Axiom 6.5",
+    "name": "Axiom 6.5CM",
     "slug": "cybex-axiom-6-5",
-    "price": 3807.0,
+    "price": 3888.0,
     "packages": [],
     "inStock": true,
     "platform": "centerfire",
@@ -340,9 +340,9 @@
     "wooId": 31934,
     "sku": "BR 07-2",
     "code": "BR 07-2",
-    "name": "Trident Eclipse",
+    "name": "Trident Eclipse .22lr",
     "slug": "trident-eclipse",
-    "price": 4476.0,
+    "price": 4525.0,
     "packages": [],
     "inStock": true,
     "platform": "rimfire",
@@ -470,7 +470,7 @@
         ]
       },
       {
-        "title": "Scope",
+        "title": "Scope – Optional",
         "items": [
           {
             "label": "Manufacturer",
@@ -516,21 +516,8 @@
     "code": "KB 07-2",
     "name": "Bronze Prometheus 6.5CM",
     "slug": "prometheus-blackforge-6-5cm",
-    "price": 3818.0,
-    "packages": [
-      {
-        "label": "Rifle Only",
-        "price": 3818.0
-      },
-      {
-        "label": "Rifle + Arken Scope",
-        "price": 4317.0
-      },
-      {
-        "label": "Rifle + Scope + Custom Case",
-        "price": 4837.0
-      }
-    ],
+    "price": 3861.0,
+    "packages": [],
     "inStock": true,
     "platform": "centerfire",
     "caliber": "6.5 Creedmoor",
@@ -694,25 +681,12 @@
   {
     "id": "rts-bronze-reaper",
     "wooId": 31762,
-    "sku": "RX 03-1A",
-    "code": "RX 03-1A",
-    "name": "Bronze Reaper-22",
+    "sku": "RX 03-1",
+    "code": "RX 03-1",
+    "name": "Bronze Reaper .22lr",
     "slug": "bronze-reaper",
-    "price": 3968.0,
-    "packages": [
-      {
-        "label": "Rifle Only",
-        "price": 3968.0
-      },
-      {
-        "label": "Rifle + Custom Case",
-        "price": 4488.0
-      },
-      {
-        "label": "Rifle + Scope + Custom Case",
-        "price": 4987.0
-      }
-    ],
+    "price": 4400.0,
+    "packages": [],
     "inStock": true,
     "platform": "rimfire",
     "caliber": "22LR",
@@ -818,7 +792,7 @@
         ]
       },
       {
-        "title": "Scope",
+        "title": "Scope – Optional",
         "items": [
           {
             "label": "Manufacturer",
@@ -855,21 +829,8 @@
     "code": "CF 02-2",
     "name": "Hammerhead Pro Match .223",
     "slug": "green-reaper-gen-ii-precision-forged-long-range-ready",
-    "price": 5690.0,
-    "packages": [
-      {
-        "label": "Rifle Only",
-        "price": 5690.0
-      },
-      {
-        "label": "Rifle + Custom Case",
-        "price": 6216.0
-      },
-      {
-        "label": "Rifle + Arken Scope + Custom Case",
-        "price": 6715.0
-      }
-    ],
+    "price": 5180.0,
+    "packages": [],
     "inStock": true,
     "platform": "centerfire",
     "caliber": ".223 REM Bolt Action",
@@ -1014,23 +975,10 @@
     "wooId": 31705,
     "sku": "RX 03-2",
     "code": "RX 03-2",
-    "name": "RimX Overwatch 24",
+    "name": "RimX Overwatch .22lr",
     "slug": "rx-03-2a-prairie-ghost",
-    "price": 3732.0,
-    "packages": [
-      {
-        "label": "Rifle Only",
-        "price": 3732.0
-      },
-      {
-        "label": "Rifle + Custom Case",
-        "price": 4552.0
-      },
-      {
-        "label": "Rifle + Scope + Custom Case",
-        "price": 4751.0
-      }
-    ],
+    "price": 4012.0,
+    "packages": [],
     "inStock": true,
     "platform": "rimfire",
     "caliber": "22LR",
@@ -1136,7 +1084,7 @@
         ]
       },
       {
-        "title": "Scope",
+        "title": "Scope – Optional",
         "items": [
           {
             "label": "Manufacturer",
@@ -1171,19 +1119,10 @@
     "wooId": 31655,
     "sku": "BR 05-1",
     "code": "BR 05-1",
-    "name": "X-Ring Authority .22",
+    "name": "X-Ring Authority .22lr",
     "slug": "pqp-2500x-walnut-precision-elite",
-    "price": 4996.0,
-    "packages": [
-      {
-        "label": "Rifle + Custom Case (no scope)",
-        "price": 4996.0
-      },
-      {
-        "label": "Rifle + Arken Scope + Custom Case",
-        "price": 5495.0
-      }
-    ],
+    "price": 4534.0,
+    "packages": [],
     "inStock": true,
     "platform": "rimfire",
     "caliber": "22LR",
@@ -1331,19 +1270,10 @@
     "wooId": 31595,
     "sku": "KB 05-1",
     "code": "KB 05-1",
-    "name": "Prometheus Dominion 6 PPC Benchrest Rifle",
+    "name": "Prometheus Dominion 6 PPC",
     "slug": "prometheus-dominion-6-ppc-benchrest-rifle",
-    "price": 3551.0,
-    "packages": [
-      {
-        "label": "Rifle Only",
-        "price": 3551.0
-      },
-      {
-        "label": "Rifle + Arken Scope",
-        "price": 3970.0
-      }
-    ],
+    "price": 3217.0,
+    "packages": [],
     "inStock": true,
     "platform": "centerfire",
     "caliber": "6mm PPC",
@@ -1511,19 +1441,10 @@
     "wooId": 31384,
     "sku": "BR 04-2",
     "code": "BR 04-2",
-    "name": "Apex Rimfire Precision .22 (RB/RP)",
+    "name": "Apex Rimfire Precision .22lr (RB/RP)",
     "slug": "apex-rimfire-precision-2500x",
-    "price": 4833.0,
-    "packages": [
-      {
-        "label": "Rifle + Custom Case (no scope)",
-        "price": 4833.0
-      },
-      {
-        "label": "Rifle + Arken Scope + Custom Case",
-        "price": 5252.0
-      }
-    ],
+    "price": 4542.0,
+    "packages": [],
     "inStock": true,
     "platform": "rimfire",
     "caliber": "22LR",
@@ -1656,7 +1577,7 @@
         ]
       },
       {
-        "title": "Scope",
+        "title": "Scope – Optional",
         "items": [
           {
             "label": "Manufacturer",
@@ -1691,19 +1612,10 @@
     "wooId": 31380,
     "sku": "BR 04-1",
     "code": "BR 04-1",
-    "name": "X-Shot Precision Valkyrie .22LR",
+    "name": "X-Shot Precision Valkyrie .22lr",
     "slug": "x-shot-precision-valkyrie-22lr",
-    "price": 4833.95,
-    "packages": [
-      {
-        "label": "Rifle + Custom Case (no scope)",
-        "price": 4833.95
-      },
-      {
-        "label": "Rifle + Arken Scope + Custom Case",
-        "price": 5252.0
-      }
-    ],
+    "price": 4542.0,
+    "packages": [],
     "inStock": true,
     "platform": "rimfire",
     "caliber": "22LR",
@@ -1872,19 +1784,10 @@
     "wooId": 31303,
     "sku": "CF 02-1",
     "code": "CF 02-1",
-    "name": "Hammerhead ELR 6.5 Creedmoor",
+    "name": "Hammerhead ELR 6.5 CM",
     "slug": "hammerhead-elr-6-5-creedmoor",
-    "price": 6699.0,
-    "packages": [
-      {
-        "label": "Rifle + Custom Case (no scope)",
-        "price": 6699.0
-      },
-      {
-        "label": "Rifle + Arken Scope + Custom Case",
-        "price": 7260.0
-      }
-    ],
+    "price": 6398.0,
+    "packages": [],
     "inStock": true,
     "platform": "centerfire",
     "caliber": "6.5 Creedmoor",
@@ -1899,9 +1802,9 @@
       "linear-gradient(180deg, #b5b6bf 0%, #cbcdd3 100%)",
       "linear-gradient(180deg, #cdced2 0%, #cdd1d6 100%)"
     ],
-    "summary": "Some rifles are built to shoot well. Others are built to redefine expectations. The Hammer Head 6.5 Creedmoor was engineered for shooters who demand absolute consistency, uncompromising craftsmanship, and confidence at extreme distance.",
+    "summary": "All rifles are built to shoot well. Others are built to redefine expectations. The Hammer Head 6.5 Creedmoor was engineered for shooters who demand absolute consistency, uncompromising craftsmanship, and confidence at extreme distance.",
     "description": [
-      "Some rifles are built to shoot well. Others are built to redefine expectations. The Hammer Head 6.5 Creedmoor was engineered for shooters who demand absolute consistency, uncompromising craftsmanship, and confidence at extreme distance.",
+      "All rifles are built to shoot well. Others are built to redefine expectations. The Hammer Head 6.5 Creedmoor was engineered for shooters who demand absolute consistency, uncompromising craftsmanship, and confidence at extreme distance.",
       "At the heart of this precision platform is the renowned BAT Machine Hammer Head action—an elite-level foundation trusted by competitive marksmen and long-range enthusiasts alike. Featuring a smooth dual-lug design with a fast 75-degree bolt throw, the action cycles with authority and precision, delivering a refined feel every time the bolt runs home.",
       "Anchoring the system is a 26-inch heavy contour Krieger Barrels barrel chambered in the legendary 6.5 Creedmoor. Known for exceptional ballistic efficiency and remarkable downrange consistency, the cartridge pairs perfectly with the rifle’s 1:8 twist rate to stabilize modern high-performance projectiles with ease. Enhanced with ACE (Accurize Chamber Enhancement) by Wolf Precision, the chamber has been optimized for superior alignment, consistency, and repeatable accuracy shot after shot.",
       "The muzzle system is equally refined. Threaded 5/8×24 and equipped with an EC Tuner muzzle brake, the rifle allows shooters to tune barrel harmonics for specific ammunition loads while dramatically reducing recoil. The result is flatter tracking, faster follow-up shots, and tighter groups at distance.",
@@ -1995,7 +1898,7 @@
         ]
       },
       {
-        "title": "Scope",
+        "title": "Scope – Optional",
         "items": [
           {
             "label": "Manufacturer",

@@ -10,6 +10,16 @@ export default {
     const url = new URL(request.url);
     const backendOrigin = (env.WC_BACKEND_URL || 'https://cybexprecisiongunworx.com').replace(/\/+$/, '');
 
+    if (
+      url.pathname.startsWith('/wp-content/') ||
+      url.pathname.startsWith('/wp-json/') ||
+      url.pathname.startsWith('/wp-admin') ||
+      url.pathname.startsWith('/wp-includes/') ||
+      url.pathname === '/wp-login.php'
+    ) {
+      return fetch(new Request(`${backendOrigin}${url.pathname}${url.search}`, request));
+    }
+
     if (url.pathname.startsWith('/api/wc/')) {
       if (request.method === 'OPTIONS') {
         return new Response(null, {

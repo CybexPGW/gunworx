@@ -139,6 +139,8 @@ def parse_short(short_html):
             # Section heading, e.g. "Action:" / "Scope – Optional" / "Scope (Optional):"
             if len(t) < 40 and (t.endswith(":") or "Optional" in t):
                 title = t.rstrip(":").strip()
+                if not title:
+                    continue
                 if re.match(r"^scope\s*\(optional\)$", title, re.I):
                     title = "Scope – Optional"
                 current = {"title": title, "items": []}
@@ -216,7 +218,7 @@ def code_from_images(image_urls):
 
 
 def main():
-    all_items = fetch_json(f"{STORE}/wp-json/wc/store/v1/products?per_page=100")
+    all_items = fetch_json(f"{STORE}/api/wc/store/products?per_page=100")
     items = [
         p for p in all_items
         if ACCESSORIES_SLUG not in [c["slug"] for c in p.get("categories", [])]
@@ -250,15 +252,16 @@ def main():
         image_urls = dedupe_and_order_images(p.get("images", []))
         img_code = code_from_images(image_urls)
 
-        code = text_code
+        sku_code = (p.get("sku") or "").strip()
+        code = sku_code or text_code
         if not code:
             code = img_code
-        elif text_code_counts.get(code, 0) > 1 and img_code and img_code != code:
+        elif not sku_code and text_code_counts.get(code, 0) > 1 and img_code and img_code != code:
             # Disambiguate cloned descriptions using the uploaded studio image build code
             code = img_code
 
         groups = groups_d if groups_d else groups_s
-        packages = packages_d + packages_s
+        packages = packages_d
 
         if packages and price > 0:
             rifle_only = next((pk for pk in packages if pk["label"] == "Rifle Only"), None)

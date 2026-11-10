@@ -64,9 +64,9 @@ def download_webp(url, dest: Path):
 
 
 def main():
-    cats = fetch_json(f"{STORE}/wp-json/wc/store/v1/products/categories?per_page=100")
+    cats = fetch_json(f"{STORE}/api/wc/store/products/categories?per_page=100")
     cat = next(c for c in cats if c["slug"] == CATEGORY_SLUG)
-    items = fetch_json(f"{STORE}/wp-json/wc/store/v1/products?category={cat['id']}&per_page=100")
+    items = fetch_json(f"{STORE}/api/wc/store/products?category={cat['id']}&per_page=100")
     IMG_DIR.mkdir(parents=True, exist_ok=True)
 
     manifest_path = IMG_DIR / ".manifest.json"
