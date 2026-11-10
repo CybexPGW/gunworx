@@ -51,8 +51,11 @@ def extract_paragraphs(desc_html):
     paras = []
     for p in re.findall(r"<p[^>]*>(.*?)</p>", desc_html or "", re.S | re.I):
         t = clean_text(p)
-        if t and t.lower() != "description:":
-            paras.append(t)
+        if not t or t.lower() == "description:":
+            continue
+        if not paras and len(t) < 45 and "." not in t:
+            continue
+        paras.append(t)
     return paras
 
 

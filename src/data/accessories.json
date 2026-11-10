@@ -1,10 +1,144 @@
 [
   {
+    "id": "wc-32084",
+    "wooId": 32084,
+    "name": "Precision Tube – Short",
+    "slug": "precision-tube-short",
+    "sku": "BT-S",
+    "price": 135.0,
+    "image": "/images/products/precision-tube-short.webp",
+    "images": [
+      "/images/products/precision-tube-short.webp"
+    ],
+    "category": "tools-parts",
+    "wooCategory": "accessories",
+    "description": "Tube Length – 6″ · Will fit on HoleShot Tuner, JNL Tuner, and Harrel Tuners · 1-3/8″ x 32 Thread",
+    "fullDescription": [],
+    "highlights": [
+      "Tube Length – 6″",
+      "Will fit on HoleShot Tuner, JNL Tuner, and Harrel Tuners",
+      "1-3/8″ x 32 Thread",
+      "Clear Anodized Aluminum",
+      "Tube Weight – 3.4 oz",
+      "Sliding Weight – 4.0 oz"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Tube Length": "6″",
+      "Feature 2": "Will fit on HoleShot Tuner, JNL Tuner, and Harrel Tuners",
+      "Feature 3": "1-3/8″ x 32 Thread",
+      "Feature 4": "Clear Anodized Aluminum",
+      "Tube Weight": "3.4 oz",
+      "Sliding Weight": "4.0 oz"
+    }
+  },
+  {
+    "id": "wc-32046",
+    "wooId": 32046,
+    "name": "Aluminum Tuner Cleaner",
+    "slug": "aluminum-tuner-cleaner",
+    "sku": "ATC",
+    "price": 29.95,
+    "image": "/images/products/aluminum-tuner-cleaner.webp",
+    "images": [
+      "/images/products/aluminum-tuner-cleaner.webp"
+    ],
+    "category": "tools-parts",
+    "wooCategory": "accessories",
+    "description": "Aluminum Tuner Cleaner · Use with 3″ Square Cleaning Patch · Works with PQP, Holeshot, Harrell, and JNL Tuners",
+    "fullDescription": [],
+    "highlights": [
+      "Aluminum Tuner Cleaner",
+      "Use with 3″ Square Cleaning Patch",
+      "Works with PQP, Holeshot, Harrell, and JNL Tuners"
+    ],
+    "inStock": true,
+    "featured": false,
+    "specs": {
+      "Feature 1": "Aluminum Tuner Cleaner",
+      "Feature 2": "Use with 3″ Square Cleaning Patch",
+      "Feature 3": "Works with PQP, Holeshot, Harrell, and JNL Tuners"
+    }
+  },
+  {
+    "id": "wc-32044",
+    "wooId": 32044,
+    "name": "Precision Tub – Long",
+    "slug": "precision-tubs-large-small",
+    "sku": "BT-L",
+    "price": 135.0,
+    "image": "/images/products/precision-tubs-large-small.webp",
+    "images": [
+      "/images/products/precision-tubs-large-small.webp"
+    ],
+    "category": "tools-parts",
+    "wooCategory": "accessories",
+    "description": "Tube Length – 8″ · Will fit on HoleShot Tuner, JNL Tuner, and Harrel Tuners · 1-3/8″ x 32 Thread",
+    "fullDescription": [],
+    "highlights": [
+      "Tube Length – 8″",
+      "Will fit on HoleShot Tuner, JNL Tuner, and Harrel Tuners",
+      "1-3/8″ x 32 Thread",
+      "Clear Anodized Aluminum",
+      "Tube Weight – 4.6 oz",
+      "Sliding Weight – 4.0 oz"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Tube Length": "8″",
+      "Feature 2": "Will fit on HoleShot Tuner, JNL Tuner, and Harrel Tuners",
+      "Feature 3": "1-3/8″ x 32 Thread",
+      "Feature 4": "Clear Anodized Aluminum",
+      "Tube Weight": "4.6 oz",
+      "Sliding Weight": "4.0 oz"
+    }
+  },
+  {
+    "id": "wc-32042",
+    "wooId": 32042,
+    "name": "Mid-Barrel Weight",
+    "slug": "mid-barrel-weight",
+    "sku": "MBW",
+    "price": 80.0,
+    "image": "/images/products/mid-barrel-weight.webp",
+    "images": [
+      "/images/products/mid-barrel-weight.webp"
+    ],
+    "category": "tools-parts",
+    "wooCategory": "accessories",
+    "description": "Aluminum Body · Sorbothane rubber · Reduces Vibrations",
+    "fullDescription": [],
+    "highlights": [
+      "Aluminum Body",
+      "Sorbothane rubber",
+      "Reduces Vibrations",
+      "Stiffens Barrel",
+      "Improves Performance of your Rifle",
+      "Weighs 6.5oz",
+      "Length 3.5″",
+      "Works Best on barrel diameter of .850″-.950″"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Feature 1": "Aluminum Body",
+      "Feature 2": "Sorbothane rubber",
+      "Feature 3": "Reduces Vibrations",
+      "Feature 4": "Stiffens Barrel",
+      "Feature 5": "Improves Performance of your Rifle",
+      "Feature 6": "Weighs 6.5oz",
+      "Feature 7": "Length 3.5″",
+      "Feature 8": "Works Best on barrel diameter of .850″-.950″"
+    }
+  },
+  {
     "id": "wc-31582",
     "wooId": 31582,
     "name": "Superfeet (Set of 3)",
     "slug": "superfeet-set-of-3",
-    "sku": "CPG-31582",
+    "sku": "SFB",
     "price": 40.0,
     "image": "/images/products/superfeet-set-of-3.webp",
     "images": [
@@ -34,7 +168,7 @@
     "wooId": 31409,
     "name": "Rear Mechanical Rest 2.0",
     "slug": "rear-mechanical-rest-2-0",
-    "sku": "CPG-31409",
+    "sku": "RR",
     "price": 275.0,
     "image": "/images/products/rear-mechanical-rest-2-0.webp",
     "images": [
@@ -76,7 +210,7 @@
     "wooId": 31407,
     "name": "Heavy Rest 1-Piece Rest",
     "slug": "heavy-rest-1-piece-rest",
-    "sku": "CPG-31407",
+    "sku": "HR1",
     "price": 900.0,
     "image": "/images/products/heavy-rest-1-piece-rest.webp",
     "images": [
@@ -120,7 +254,7 @@
     "wooId": 31405,
     "name": "Fuzz Button Front Top",
     "slug": "fuzz-button-front-top",
-    "sku": "CPG-31405",
+    "sku": "FH-Fz",
     "price": 250.0,
     "image": "/images/products/fuzz-button-front-top.webp",
     "images": [
@@ -156,7 +290,7 @@
     "wooId": 31402,
     "name": "Delrin Front Top",
     "slug": "delrin-front-top",
-    "sku": "CPG-31402",
+    "sku": "FH-D1",
     "price": 200.0,
     "image": "/images/products/delrin-front-top.webp",
     "images": [
@@ -188,53 +322,11 @@
     }
   },
   {
-    "id": "wc-31211",
-    "wooId": 31211,
-    "name": "Lite 1- Piece Rifle Rest",
-    "slug": "lite-1-piece-rifle-rest",
-    "sku": "PQP-PRL",
-    "price": 599.95,
-    "image": "/images/products/lite-1-piece-rifle-rest.webp",
-    "images": [
-      "/images/products/lite-1-piece-rifle-rest.webp"
-    ],
-    "category": "rests-tops",
-    "wooCategory": "accessories",
-    "description": "Uses the PQP front tops · Lightweight yet sturdy – 23 lbs · 3 Individual Leveling Legs",
-    "fullDescription": [],
-    "highlights": [
-      "Uses the PQP front tops",
-      "Lightweight yet sturdy – 23 lbs",
-      "3 Individual Leveling Legs",
-      "Adjust Front Post to set Coarse Elevation",
-      "Fine Adjustment for Windage and Elevation with no slop",
-      "Ambidextrous",
-      "Carry Handle is NOW Available Separately!!!",
-      "Hand Rest is NOW Available Separately!!!",
-      "Superfeet Holder NOW Available Separately!!!",
-      "Perfect for ARA, PSL, IR-5050, ABRA, USBR Competition"
-    ],
-    "inStock": true,
-    "featured": true,
-    "specs": {
-      "Feature 1": "Uses the PQP front tops",
-      "Lightweight yet sturdy": "23 lbs",
-      "Feature 3": "3 Individual Leveling Legs",
-      "Feature 4": "Adjust Front Post to set Coarse Elevation",
-      "Feature 5": "Fine Adjustment for Windage and Elevation with no slop",
-      "Feature 6": "Ambidextrous",
-      "Feature 7": "Carry Handle is NOW Available Separately!!!",
-      "Feature 8": "Hand Rest is NOW Available Separately!!!",
-      "Feature 9": "Superfeet Holder NOW Available Separately!!!",
-      "Feature 10": "Perfect for ARA, PSL, IR-5050, ABRA, USBR Competition"
-    }
-  },
-  {
     "id": "wc-31182",
     "wooId": 31182,
     "name": "Boreguide (2500X-Trident)",
     "slug": "boreguide",
-    "sku": "PQP-Boreguide",
+    "sku": "BG",
     "price": 35.0,
     "image": "/images/products/boreguide.webp",
     "images": [
@@ -264,7 +356,7 @@
     "wooId": 31160,
     "name": "Action Wrench",
     "slug": "action-wrench",
-    "sku": "PQP-AW",
+    "sku": "AW",
     "price": 75.0,
     "image": "/images/products/action-wrench.webp",
     "images": [
@@ -294,13 +386,11 @@
     "wooId": 31156,
     "name": "2500X/Trident Bolt Tool",
     "slug": "2500x-trident-bolt-tool",
-    "sku": "PQP-BT",
+    "sku": "BT",
     "price": 60.0,
     "image": "/images/products/2500x-trident-bolt-tool.webp",
     "images": [
-      "/images/products/2500x-trident-bolt-tool.webp",
-      "/images/products/2500x-trident-bolt-tool-2.webp",
-      "/images/products/2500x-trident-bolt-tool-3.webp"
+      "/images/products/2500x-trident-bolt-tool.webp"
     ],
     "category": "tools-parts",
     "wooCategory": "accessories",
@@ -324,7 +414,7 @@
     "wooId": 31144,
     "name": "Superfeet Holder",
     "slug": "superfeet-holder",
-    "sku": "PQP-SFH",
+    "sku": "SFH",
     "price": 40.0,
     "image": "/images/products/superfeet-holder.webp",
     "images": [
@@ -352,17 +442,13 @@
   {
     "id": "wc-31137",
     "wooId": 31137,
-    "name": "Rest Handle for 1-Piece Rest",
+    "name": "Heavy Rest Handle",
     "slug": "rest-handle-for-1-piece-rest",
-    "sku": "PQP-RH",
+    "sku": "RH",
     "price": 40.0,
     "image": "/images/products/rest-handle-for-1-piece-rest.webp",
     "images": [
-      "/images/products/rest-handle-for-1-piece-rest.webp",
-      "/images/products/rest-handle-for-1-piece-rest-2.webp",
-      "/images/products/rest-handle-for-1-piece-rest-3.webp",
-      "/images/products/rest-handle-for-1-piece-rest-4.webp",
-      "/images/products/rest-handle-for-1-piece-rest-5.webp"
+      "/images/products/rest-handle-for-1-piece-rest.webp"
     ],
     "category": "rests-tops",
     "wooCategory": "accessories",
