@@ -12,6 +12,7 @@ import json
 import re
 import subprocess
 import sys
+import time
 from pathlib import Path
 from PIL import Image
 
@@ -33,7 +34,8 @@ def curl(url, dest=None):
 
 
 def fetch_json(url):
-    return json.loads(curl(url))
+    sep = "&" if "?" in url else "?"
+    return json.loads(curl(f"{url}{sep}_t={int(time.time())}"))
 
 
 def text(s):

@@ -58,10 +58,12 @@ export default {
 
       forwardHeaders.set('User-Agent', 'CybexHeadlessStorefront/1.0');
       forwardHeaders.set('Accept', 'application/json');
+      forwardHeaders.set('Cache-Control', 'no-cache, no-store');
 
       const init = {
         method: request.method,
         headers: forwardHeaders,
+        cf: { cacheTtl: 0, cacheEverything: false },
       };
 
       if (request.method !== 'GET' && request.method !== 'HEAD') {
