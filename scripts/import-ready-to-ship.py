@@ -211,6 +211,33 @@ def sample_image_bg(dest_webp):
         return "#ffffff"
 
 
+def detect_scope_in_photo(dest_webp):
+    """Detect whether the primary right-facing profile photo has a mounted scope."""
+    try:
+        im = Image.open(dest_webp).convert("L")
+        w, h = im.size
+        px = im.load()
+        barrel_ys = []
+        for x in range(int(0.62 * w), int(0.82 * w), 4):
+            for y in range(int(0.10 * h), int(0.85 * h)):
+                if px[x, y] < 110:
+                    barrel_ys.append(y)
+                    break
+        scope_ys = []
+        for x in range(int(0.22 * w), int(0.58 * w), 4):
+            for y in range(int(0.08 * h), int(0.85 * h)):
+                if px[x, y] < 90:
+                    scope_ys.append(y)
+                    break
+        if not barrel_ys or not scope_ys:
+            return False
+        barrel_top = sorted(barrel_ys)[len(barrel_ys) // 2]
+        scope_top = min(scope_ys)
+        return (barrel_top - scope_top) > 45
+    except Exception:
+        return False
+
+
 def code_from_images(image_urls):
     for u in image_urls:
         m = re.search(r"/([A-Z]{2})-(\d{2}-\d+)[RL]?\.(?:png|jpg|webp)$", u, re.I)
@@ -279,8 +306,11 @@ def main():
 
         images = []
         image_bgs = []
+        first_dest = None
         for i, src_url in enumerate(image_urls, 1):
             dest = IMG_DIR / f"{slug}-{i}.webp"
+            if i == 1:
+                first_dest = dest
             img_id = id_by_src.get(src_url, "")
             cache_key = f"{img_id}:{src_url}" if img_id else src_url
             if not dest.exists() or manifest.get(dest.name) != cache_key:
@@ -289,6 +319,8 @@ def main():
             new_manifest[dest.name] = cache_key
             images.append(f"/images/ready-to-ship/{dest.name}")
             image_bgs.append(sample_image_bg(dest))
+
+        scoped_in_photo = detect_scope_in_photo(first_dest) if first_dest else False
 
         caliber = next((it["value"] for g in groups if g["title"].lower().startswith("barrel")
                         for it in g["items"] if (it["label"] or "").lower() == "caliber"), "")
@@ -311,6 +343,7 @@ def main():
             "usage": usage,
             "images": images,
             "imageBgs": image_bgs,
+            "scopedInPhoto": scoped_in_photo,
             "summary": (desc_paras or [""])[0],
             "description": desc_paras,
             "specGroups": groups,

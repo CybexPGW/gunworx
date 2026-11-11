@@ -28,6 +28,7 @@ export interface Rifle {
   usage: string;
   images: string[];
   imageBgs?: string[];
+  scopedInPhoto?: boolean;
   summary: string;
   description: string[];
   specGroups: SpecGroup[];

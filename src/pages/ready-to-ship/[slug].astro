@@ -117,6 +117,7 @@ const productOffers =
         <div class="rd-main" id="rd-main" style={`background: ${mainBg};`} data-bg={mainBg}>
           <img id="rd-main-img" src={rifle.images[0]} alt={`${rifle.name} – view 1`} width="1600" height="900" fetchpriority="high" />
           <span class="rd-badge"><span class="rd-dot"></span>In Stock · Ready to Ship</span>
+          {rifle.scopedInPhoto && <span class="rd-scope-note">Scope not Included in price of gun</span>}
           <button type="button" class="rd-zoom-btn" id="rd-zoom-btn" aria-label="Enlarge rifle photo">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
             Click to enlarge
@@ -277,6 +278,7 @@ const productOffers =
     <button type="button" class="rd-lightbox-close" id="rd-lightbox-close" aria-label="Close enlarged photo">&times;</button>
     <div class="rd-lightbox-stage" id="rd-lightbox-stage" style={`background: ${mainBg};`}>
       <img id="rd-lightbox-img" src={rifle.images[0]} alt={rifle.name} />
+      {rifle.scopedInPhoto && <span class="rd-scope-note">Scope not Included in price of gun</span>}
     </div>
   </div>
 </BaseLayout>
@@ -378,6 +380,23 @@ const productOffers =
     pointer-events: none;
   }
   .rd-dot { width: 8px; height: 8px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 10px #3ddc84; }
+  .rd-scope-note {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: rgba(10, 10, 10, 0.84);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(200, 16, 46, 0.65);
+    border-radius: 6px;
+    pointer-events: none;
+  }
   .rd-zoom-btn {
     position: absolute;
     bottom: 14px;
@@ -524,6 +543,7 @@ const productOffers =
   }
   .rd-lightbox[hidden] { display: none; }
   .rd-lightbox-stage {
+    position: relative;
     width: min(1600px, 96vw);
     height: min(86vh, 960px);
     border-radius: var(--radius-lg);

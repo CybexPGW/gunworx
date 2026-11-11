@@ -20,6 +20,7 @@
       "linear-gradient(180deg, #cecfd3 0%, #d3d5d9 100%)",
       "linear-gradient(180deg, #c8c7cc 0%, #d2d1d4 100%)"
     ],
+    "scopedInPhoto": false,
     "summary": "Built for shooters who value carefully selected components and purposeful design, the Cybex Axiom 6.5 brings together a Kelbly’s Prometheus action, a heavy-profile barrel, and an adjustable competition trigger in a distinctive charcoal green package.",
     "description": [
       "Built for shooters who value carefully selected components and purposeful design, the Cybex Axiom 6.5 brings together a Kelbly’s Prometheus action, a heavy-profile barrel, and an adjustable competition trigger in a distinctive charcoal green package.",
@@ -188,6 +189,7 @@
       "linear-gradient(180deg, #c0c1c5 0%, #c8c9cd 100%)",
       "linear-gradient(180deg, #caccd0 0%, #d3d5d9 100%)"
     ],
+    "scopedInPhoto": false,
     "summary": "Built for shooters who value carefully selected components and purposeful design, the Cybex Axiom 6.5 brings together a Kelbly’s Prometheus action, a heavy-profile barrel, and an adjustable competition trigger in a distinctive charcoal green package.",
     "description": [
       "Built for shooters who value carefully selected components and purposeful design, the Cybex Axiom 6.5 brings together a Kelbly’s Prometheus action, a heavy-profile barrel, and an adjustable competition trigger in a distinctive charcoal green package.",
@@ -354,10 +356,11 @@
       "/images/ready-to-ship/trident-eclipse-3.webp"
     ],
     "imageBgs": [
-      "linear-gradient(180deg, #c1c2c6 0%, #d4d4d6 100%)",
-      "linear-gradient(180deg, #c9cbcf 0%, #cfd0d4 100%)",
+      "linear-gradient(180deg, #cecfd3 0%, #d0d2d6 100%)",
+      "linear-gradient(180deg, #c4c6ca 0%, #d3d2d5 100%)",
       "linear-gradient(180deg, #d7d9db 0%, #dfe1e3 100%)"
     ],
+    "scopedInPhoto": true,
     "summary": "A premium .22 LR benchrest rifle engineered for shooters who demand unwavering consistency and exacting precision.",
     "description": [
       "A premium .22 LR benchrest rifle engineered for shooters who demand unwavering consistency and exacting precision.",
@@ -530,6 +533,7 @@
       "linear-gradient(180deg, #c4c6ca 0%, #d0d2d6 100%)",
       "linear-gradient(180deg, #c9cbcf 0%, #c8c9cd 100%)"
     ],
+    "scopedInPhoto": false,
     "summary": "Forged for precision. Built to perform at distance.",
     "description": [
       "Forged for precision. Built to perform at distance.",
@@ -696,9 +700,10 @@
       "/images/ready-to-ship/bronze-reaper-2.webp"
     ],
     "imageBgs": [
-      "linear-gradient(180deg, #c9cbcf 0%, #d8dade 100%)",
-      "linear-gradient(180deg, #cdced2 0%, #e4e5e9 100%)"
+      "linear-gradient(180deg, #d0d2d6 0%, #e7e9ed 100%)",
+      "linear-gradient(180deg, #cbcdd1 0%, #d8dade 100%)"
     ],
+    "scopedInPhoto": true,
     "summary": "Forged for competitors. Refined for marksmen. Built to dominate.",
     "description": [
       "Forged for competitors. Refined for marksmen. Built to dominate.",
@@ -840,9 +845,10 @@
       "/images/ready-to-ship/green-reaper-gen-ii-precision-forged-long-range-ready-2.webp"
     ],
     "imageBgs": [
-      "linear-gradient(180deg, #bbbdc1 0%, #c0c1c5 100%)",
-      "linear-gradient(180deg, #bfc0c4 0%, #dcdde1 100%)"
+      "linear-gradient(180deg, #bdbfc3 0%, #dcdde1 100%)",
+      "linear-gradient(180deg, #c0bfc6 0%, #c1c0c5 100%)"
     ],
+    "scopedInPhoto": true,
     "summary": "Every once in a while, a rifle comes across the bench that feels less like an assembly of parts and more like a purpose-built instrument. The CF 02-2 is exactly that—a precision-built .223 Remington designed for shooters who demand repeatability, refinement, and uncompromising performance.",
     "description": [
       "Every once in a while, a rifle comes across the bench that feels less like an assembly of parts and more like a purpose-built instrument. The CF 02-2 is exactly that—a precision-built .223 Remington designed for shooters who demand repeatability, refinement, and uncompromising performance.",
@@ -991,6 +997,7 @@
       "linear-gradient(180deg, #c1c2cb 0%, #cccfd7 100%)",
       "linear-gradient(180deg, #d1d3d7 0%, #ccd0d3 100%)"
     ],
+    "scopedInPhoto": false,
     "summary": "Purpose-built from the ground up, the RX 03-2 is a refined rimfire platform engineered for shooters who demand consistency, confidence, and absolute precision. Every detail of this custom .22LR rifle has been carefully selected to create a system that performs as flawlessly on the competition line as it does during long-range practice sessions.",
     "description": [
       "Purpose-built from the ground up, the RX 03-2 is a refined rimfire platform engineered for shooters who demand consistency, confidence, and absolute precision. Every detail of this custom .22LR rifle has been carefully selected to create a system that performs as flawlessly on the competition line as it does during long-range practice sessions.",
@@ -1133,10 +1140,11 @@
       "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-3.webp"
     ],
     "imageBgs": [
-      "linear-gradient(180deg, #b8b9bd 0%, #c2c4c8 100%)",
-      "linear-gradient(180deg, #b5b6bd 0%, #c4c6cc 100%)",
+      "linear-gradient(180deg, #bbbcc5 0%, #c0c4ca 100%)",
+      "linear-gradient(180deg, #b8b9bf 0%, #c1c2c9 100%)",
       "linear-gradient(180deg, #bdc1c4 0%, #cacdd3 100%)"
     ],
+    "scopedInPhoto": true,
     "summary": "Engineered for shooters who measure success in thousandths and live for the center of the target.",
     "description": [
       "Engineered for shooters who measure success in thousandths and live for the center of the target.",
@@ -1284,10 +1292,11 @@
       "/images/ready-to-ship/prometheus-dominion-6-ppc-benchrest-rifle-3.webp"
     ],
     "imageBgs": [
-      "linear-gradient(180deg, #a6a8ac 0%, #b3b4bb 100%)",
-      "linear-gradient(180deg, #b8b9bd 0%, #cecfd5 100%)",
+      "linear-gradient(180deg, #babbc2 0%, #cecfd5 100%)",
+      "linear-gradient(180deg, #b2b3b7 0%, #b6b8be 100%)",
       "#ffffff"
     ],
+    "scopedInPhoto": true,
     "summary": "Purpose-built for the demanding world of competitive benchrest shooting, this custom 6mm PPC rifle was engineered with one objective in mind: absolute mechanical consistency. Centered around the legendary Kelbly’s Prometheus action, this platform delivers the precision, rigidity, and repeatability elite shooters demand from a true benchrest rifle.",
     "description": [
       "Purpose-built for the demanding world of competitive benchrest shooting, this custom 6mm PPC rifle was engineered with one objective in mind: absolute mechanical consistency. Centered around the legendary Kelbly’s Prometheus action, this platform delivers the precision, rigidity, and repeatability elite shooters demand from a true benchrest rifle.",
@@ -1455,10 +1464,11 @@
       "/images/ready-to-ship/apex-rimfire-precision-2500x-3.webp"
     ],
     "imageBgs": [
-      "linear-gradient(180deg, #d2d4d8 0%, #f7f6f9 100%)",
-      "linear-gradient(180deg, #c3c5c9 0%, #c1c2c6 100%)",
+      "#c4c6ca",
+      "linear-gradient(180deg, #d6d7db 0%, #f7f6f9 100%)",
       "#e5e5e5"
     ],
+    "scopedInPhoto": true,
     "summary": "Born from the discipline of competitive benchrest shooting and shaped by the hands of craftsmen who understand that precision is earned—not claimed—the BR 04-2 is a rimfire rifle built with a singular philosophy: eliminate compromise.",
     "description": [
       "Born from the discipline of competitive benchrest shooting and shaped by the hands of craftsmen who understand that precision is earned—not claimed—the BR 04-2 is a rimfire rifle built with a singular philosophy: eliminate compromise.",
@@ -1626,10 +1636,11 @@
       "/images/ready-to-ship/x-shot-precision-valkyrie-22lr-3.webp"
     ],
     "imageBgs": [
-      "linear-gradient(180deg, #c7c8cc 0%, #c0c4c8 100%)",
-      "linear-gradient(180deg, #e3e3e3 0%, #e2e2e2 100%)",
+      "linear-gradient(180deg, #e5e5e5 0%, #e7e7e7 100%)",
+      "linear-gradient(180deg, #c8c9d2 0%, #c4c8cd 100%)",
       "linear-gradient(180deg, #e4e4e4 0%, #e4e4e6 100%)"
     ],
+    "scopedInPhoto": true,
     "summary": "The BR 04-1 was built with a singular purpose: delivering uncompromising rimfire precision through a carefully engineered blend of performance, craftsmanship, and repeatability.",
     "description": [
       "The BR 04-1 was built with a singular purpose: delivering uncompromising rimfire precision through a carefully engineered blend of performance, craftsmanship, and repeatability.",
@@ -1798,10 +1809,11 @@
       "/images/ready-to-ship/hammerhead-elr-6-5-creedmoor-3.webp"
     ],
     "imageBgs": [
-      "linear-gradient(180deg, #bbbdc1 0%, #c4c6ca 100%)",
-      "linear-gradient(180deg, #b5b6bf 0%, #cbcdd3 100%)",
+      "linear-gradient(180deg, #b6b7c0 0%, #cdcdd6 100%)",
+      "linear-gradient(180deg, #bdbfc3 0%, #c8c7ce 100%)",
       "linear-gradient(180deg, #cdced2 0%, #cdd1d6 100%)"
     ],
+    "scopedInPhoto": true,
     "summary": "All rifles are built to shoot well. Others are built to redefine expectations. The Hammer Head 6.5 Creedmoor was engineered for shooters who demand absolute consistency, uncompromising craftsmanship, and confidence at extreme distance.",
     "description": [
       "All rifles are built to shoot well. Others are built to redefine expectations. The Hammer Head 6.5 Creedmoor was engineered for shooters who demand absolute consistency, uncompromising craftsmanship, and confidence at extreme distance.",
