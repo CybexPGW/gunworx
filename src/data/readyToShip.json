@@ -36,7 +36,7 @@
         "items": [
           {
             "label": "Manufacturer",
-            "value": "Kelbey’s"
+            "value": "Kelbly’s"
           },
           {
             "label": "Model",
@@ -205,7 +205,7 @@
         "items": [
           {
             "label": "Manufacturer",
-            "value": "Kelbey’s"
+            "value": "Kelbly’s"
           },
           {
             "label": "Model",
@@ -509,6 +509,15 @@
             "value": "Benchrest"
           }
         ]
+      },
+      {
+        "title": "Case – Optional",
+        "items": [
+          {
+            "label": null,
+            "value": "See Accessories for Custom Case"
+          }
+        ]
       }
     ]
   },
@@ -550,7 +559,7 @@
         "items": [
           {
             "label": "Manufacturer",
-            "value": "Kelbey’s"
+            "value": "Kelbly’s"
           },
           {
             "label": "Model",
@@ -710,7 +719,7 @@
       "The Bronze Reaper is the embodiment of modern precision rimfire engineering—a rifle designed to blur the line between rimfire training and centerfire performance. At its heart lies the renowned Zermatt RimX action , delivering the smooth cycling, reliability, and consistency that have made it a benchmark among elite precision shooters.",
       "Paired with a hand-selected 23-inch Benchmark match barrel featuring a heavy 1.20″ contour and optimized 1:15 twist, the Bronze Reaper is engineered to produce exceptional accuracy and maintain stability shot after shot.",
       "Every detail of the rifle has been selected with competitive performance in mind. The TriggerTech Diamond trigger , adjustable from an ultra-light 4 ounces to 32 ounces, provides a crisp, glass-rod break that allows the shooter to fully exploit the rifle’s precision potential. Whether engaging KYL racks, tiny PRS Rimfire targets, or challenging positional stages, the trigger delivers confidence when fractions of an inch matter.",
-      "The rifle is housed in the flagship MDT Premier Gen II chassis , finished in the distinctive War-Torn Bronze color that inspired its name. More than aesthetics, the chassis incorporates a precision-tuned system of forend weighting, buttstock dampers, and a competition-ready bag rider to create a platform that tracks smoothly, settles quickly, and remains stable through every shot sequence. The result is a rifle that feels planted on barricades, predictable from bags, and exceptionally balanced in the hands.",
+      "The rifle is housed in the flagship MDT Premier Gen II chassis , finished in the distinctive War-Torn Bronze color that inspired its name. More than aesthetics, the chassis incorporates a precision-tuned system of forend weighting, buttstock dampers, and a competition-ready adjustable bag rider to create a platform that tracks smoothly, settles quickly, and remains stable through every shot sequence. The result is a rifle that feels planted on barricades, predictable from bags, and exceptionally balanced in the hands.",
       "Topping the system is the Arken EP-5 5-25×56 FFP optic , providing the magnification range and first focal plane precision needed to confidently engage targets from close-range NRL22 stages to the outer limits of rimfire ballistics. The illuminated MIL reticle offers rapid holdovers and precise corrections, ensuring the shooter remains in control regardless of distance or conditions.",
       "Every Bronze Reaper is test-fired, verified, and prepared before delivery, ensuring it arrives ready to perform. More than a rifle, it is a purpose-built precision instrument designed for competitors, trainers, and enthusiasts who refuse to compromise.",
       "The Bronze Reaper doesn’t simply hit targets—it methodically collects them."
@@ -792,7 +801,7 @@
           },
           {
             "label": "Other",
-            "value": "Bag Rider, Forend Weight, Butt Stock Dampers"
+            "value": "Adjustable Bag Rider, Forend Weight, Butt Stock Dampers"
           }
         ]
       },
@@ -1142,7 +1151,7 @@
     "imageBgs": [
       "linear-gradient(180deg, #bbbcc5 0%, #c0c4ca 100%)",
       "linear-gradient(180deg, #b8b9bf 0%, #c1c2c9 100%)",
-      "linear-gradient(180deg, #bdc1c4 0%, #cacdd3 100%)"
+      "#e5e5e5"
     ],
     "scopedInPhoto": true,
     "summary": "Engineered for shooters who measure success in thousandths and live for the center of the target.",
@@ -1270,6 +1279,15 @@
             "value": "Benchrest"
           }
         ]
+      },
+      {
+        "title": "Case – Optional",
+        "items": [
+          {
+            "label": null,
+            "value": "See Accessories for Custom Case"
+          }
+        ]
       }
     ]
   },
@@ -1313,7 +1331,7 @@
         "items": [
           {
             "label": "Manufacturer",
-            "value": "Kelbey’s"
+            "value": "Kelbly’s"
           },
           {
             "label": "Model",
@@ -1466,7 +1484,7 @@
     "imageBgs": [
       "#c4c6ca",
       "linear-gradient(180deg, #d6d7db 0%, #f7f6f9 100%)",
-      "#e5e5e5"
+      "linear-gradient(180deg, #d7d9db 0%, #dfe1e3 100%)"
     ],
     "scopedInPhoto": true,
     "summary": "Born from the discipline of competitive benchrest shooting and shaped by the hands of craftsmen who understand that precision is earned—not claimed—the BR 04-2 is a rimfire rifle built with a singular philosophy: eliminate compromise.",
@@ -1612,6 +1630,15 @@
           {
             "label": "Recital",
             "value": "VHR, MIL, Luminated"
+          }
+        ]
+      },
+      {
+        "title": "Case – Optional",
+        "items": [
+          {
+            "label": null,
+            "value": "See Accessories for Custom Case"
           }
         ]
       }
@@ -1787,6 +1814,15 @@
             "value": "NP-2DD"
           }
         ]
+      },
+      {
+        "title": "Case – Optional",
+        "items": [
+          {
+            "label": null,
+            "value": "See Accessories for Custom Case"
+          }
+        ]
       }
     ]
   },
@@ -1944,6 +1980,15 @@
           {
             "label": null,
             "value": "Pre-Owned /light usage (with some minor cosmetics scratches on the chassis)"
+          }
+        ]
+      },
+      {
+        "title": "Case – Optional",
+        "items": [
+          {
+            "label": null,
+            "value": "See Accessories for Custom Case"
           }
         ]
       }

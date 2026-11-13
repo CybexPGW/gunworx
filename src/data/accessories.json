@@ -1,5 +1,171 @@
 [
   {
+    "id": "wc-32200",
+    "wooId": 32200,
+    "name": "Custom Rifle Case",
+    "slug": "custom-rifle-case",
+    "sku": "Case",
+    "price": 515.0,
+    "image": "/images/products/custom-rifle-case.webp",
+    "images": [
+      "/images/products/custom-rifle-case.webp",
+      "/images/products/custom-rifle-case-2.webp",
+      "/images/products/custom-rifle-case-3.webp"
+    ],
+    "category": "optics-cases",
+    "wooCategory": "accessories",
+    "description": "Foam cut to hold — Rifle, Bolt, Ammo (box or mag), Cleaning Rod",
+    "fullDescription": [
+      "Foam cut to hold:"
+    ],
+    "highlights": [
+      "Rifle",
+      "Bolt",
+      "Ammo (box or mag)",
+      "Cleaning Rod"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Feature 1": "Rifle",
+      "Feature 2": "Bolt",
+      "Feature 3": "Ammo (box or mag)",
+      "Feature 4": "Cleaning Rod"
+    }
+  },
+  {
+    "id": "wc-32184",
+    "wooId": 32184,
+    "name": "Arken EP5 – 7",
+    "slug": "arken-ep5-7",
+    "sku": "ARK-7",
+    "price": 735.0,
+    "image": "/images/products/arken-ep5-7.webp",
+    "images": [
+      "/images/products/arken-ep5-7.webp"
+    ],
+    "category": "optics-cases",
+    "wooCategory": "accessories",
+    "description": "Model: EP 5 – FFP · Size: 7-35×56 · Reticle: VPR-MIL",
+    "fullDescription": [],
+    "highlights": [
+      "Model: EP 5 – FFP",
+      "Size: 7-35×56",
+      "Reticle: VPR-MIL",
+      "Tube: 34mm",
+      "No Rings"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Model": "EP 5 – FFP",
+      "Size": "7-35×56",
+      "Reticle": "VPR-MIL",
+      "Tube": "34mm",
+      "Feature 5": "No Rings"
+    }
+  },
+  {
+    "id": "wc-32182",
+    "wooId": 32182,
+    "name": "Arken EP5 – 5",
+    "slug": "arken-ep5",
+    "sku": "ARK-5",
+    "price": 499.0,
+    "image": "/images/products/arken-ep5.webp",
+    "images": [
+      "/images/products/arken-ep5.webp"
+    ],
+    "category": "optics-cases",
+    "wooCategory": "accessories",
+    "description": "Model: EP 5 – FFP · Size: 5-25×56 · Reticle: VPR-MIL",
+    "fullDescription": [],
+    "highlights": [
+      "Model: EP 5 – FFP",
+      "Size: 5-25×56",
+      "Reticle: VPR-MIL",
+      "Tube: 34mm",
+      "No Rings"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Model": "EP 5 – FFP",
+      "Size": "5-25×56",
+      "Reticle": "VPR-MIL",
+      "Tube": "34mm",
+      "Feature 5": "No Rings"
+    }
+  },
+  {
+    "id": "wc-32179",
+    "wooId": 32179,
+    "name": "NightForce Benchrest",
+    "slug": "nightforce-benchrest",
+    "sku": "NF-BR",
+    "price": 1500.0,
+    "image": "/images/products/nightforce-benchrest.webp",
+    "images": [
+      "/images/products/nightforce-benchrest.webp"
+    ],
+    "category": "optics-cases",
+    "wooCategory": "accessories",
+    "description": "NightForce (Demo Model) · Model: Benchrest – SFP · Size: 4-42×56 · Reticle: 2DD",
+    "fullDescription": [
+      "NightForce (Demo Model)"
+    ],
+    "highlights": [
+      "Model: Benchrest – SFP",
+      "Size: 4-42×56",
+      "Reticle: 2DD",
+      "Tube: 30mm",
+      "No Rings"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Model": "Benchrest – SFP",
+      "Size": "4-42×56",
+      "Reticle": "2DD",
+      "Tube": "30mm",
+      "Feature 5": "No Rings"
+    }
+  },
+  {
+    "id": "wc-32177",
+    "wooId": 32177,
+    "name": "NIghtForce ATACR",
+    "slug": "nightforce-atacr",
+    "sku": "NF ATACR",
+    "price": 2995.0,
+    "image": "/images/products/nightforce-atacr.webp",
+    "images": [
+      "/images/products/nightforce-atacr.webp"
+    ],
+    "category": "optics-cases",
+    "wooCategory": "accessories",
+    "description": "NightForce (Demo Model) · Model: ATACR – FFP · Size: 7-35×56 · Reticle: MIL-XT",
+    "fullDescription": [
+      "NightForce (Demo Model)"
+    ],
+    "highlights": [
+      "Model: ATACR – FFP",
+      "Size: 7-35×56",
+      "Reticle: MIL-XT",
+      "Tube: 34mm",
+      "No Rings"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Model": "ATACR – FFP",
+      "Size": "7-35×56",
+      "Reticle": "MIL-XT",
+      "Tube": "34mm",
+      "Feature 5": "No Rings"
+    }
+  },
+  {
     "id": "wc-32084",
     "wooId": 32084,
     "name": "Precision Tube – Short",

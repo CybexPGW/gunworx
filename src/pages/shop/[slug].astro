@@ -14,6 +14,13 @@ const { product } = Astro.props as { product: Product };
 const categoryName = categories.find(c => c.slug === product.category)?.name || product.category;
 const relatedProducts = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3);
 const images = product.images?.length ? product.images : [product.image];
+const brandName = /arken/i.test(product.name)
+  ? 'Arken Optics'
+  : /nightforce/i.test(product.name)
+    ? 'NightForce Optics'
+    : /case/i.test(product.name)
+      ? 'Cybex Precision Gunworx'
+      : 'Precision Quest Products (PQP)';
 ---
 
 <BaseLayout
@@ -34,7 +41,7 @@ const images = product.images?.length ? product.images : [product.image];
         "image": images.map((img) => `https://cybexprecisiongunworx.com${img}`),
         "brand": {
           "@type": "Brand",
-          "name": "Precision Quest Products (PQP)"
+          "name": brandName
         },
         "itemCondition": "https://schema.org/NewCondition",
         ...(product.highlights?.length ? {

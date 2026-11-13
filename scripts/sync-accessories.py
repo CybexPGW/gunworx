@@ -49,14 +49,17 @@ def extract_bullets(desc_html):
     return bullets
 
 
-def extract_paragraphs(desc_html):
+def extract_paragraphs(desc_html, product_name=""):
     paras = []
-    for p in re.findall(r"<p[^>]*>(.*?)</p>", desc_html or "", re.S | re.I):
+    norm_name = re.sub(r"[^a-z0-9]+", "", (product_name or "").lower())
+    for idx, p in enumerate(re.findall(r"<p[^>]*>(.*?)</p>", desc_html or "", re.S | re.I)):
         t = clean_text(p)
         if not t or t.lower() == "description:":
             continue
-        if not paras and len(t) < 45 and "." not in t:
-            continue
+        norm_t = re.sub(r"[^a-z0-9]+", "", t.lower())
+        if idx == 0 and len(t) < 45 and "." not in t and "(" not in t and ":" not in t:
+            if norm_t == norm_name or norm_t in norm_name or norm_name in norm_t or len(t) < 35:
+                continue
         paras.append(t)
     return paras
 
@@ -110,18 +113,30 @@ def main():
             local_images.append(f"/images/products/{fname}")
 
         bullets = extract_bullets(p.get("description", ""))
-        paras = extract_paragraphs(p.get("description", ""))
-        summary = paras[0] if paras else (" · ".join(bullets[:3]) if bullets else clean_text(p["name"]))
+        paras = extract_paragraphs(p.get("description", ""), p["name"])
+        if paras:
+            if len(paras[0]) < 40 and bullets:
+                lead = paras[0].rstrip(":")
+                summary = f"{lead} — {', '.join(bullets[:4])}" if paras[0].endswith(":") else f"{lead} · {' · '.join(bullets[:3])}"
+            else:
+                summary = paras[0]
+        else:
+            summary = " · ".join(bullets[:3]) if bullets else clean_text(p["name"])
 
         name_lower = p["name"].lower()
-        if "rest" in name_lower or "top" in name_lower or "superfeet" in name_lower:
+        if any(k in name_lower for k in ("arken", "nightforce", "scope", "optic", "case")):
+            subcat = "optics-cases"
+        elif "rest" in name_lower or "top" in name_lower or "superfeet" in name_lower:
             subcat = "rests-tops"
         else:
             subcat = "tools-parts"
 
         specs = {}
         for i, b in enumerate(bullets, 1):
-            if " – " in b:
+            if ": " in b:
+                k, v = b.split(": ", 1)
+                specs[k.strip()] = v.strip()
+            elif " – " in b:
                 k, v = b.split(" – ", 1)
                 specs[k.strip()] = v.strip()
             else:

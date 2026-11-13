@@ -168,7 +168,20 @@ const productOffers =
                   <dl>
                     {g.items.map((it) => (
                       <div class="rd-spec-row">
-                        {it.label ? <><dt>{it.label}</dt><dd>{it.value}</dd></> : <dd class="rd-spec-full">{it.value}</dd>}
+                        {it.label ? (
+                          <>
+                            <dt>{it.label}</dt>
+                            <dd>{it.value}</dd>
+                          </>
+                        ) : /See Accessories for Custom Case/i.test(it.value) ? (
+                          <dd class="rd-spec-full">
+                            <a href="/shop/custom-rifle-case/" style="color: var(--cpg-accent); text-decoration: underline;">
+                              {it.value} →
+                            </a>
+                          </dd>
+                        ) : (
+                          <dd class="rd-spec-full">{it.value}</dd>
+                        )}
                       </div>
                     ))}
                   </dl>

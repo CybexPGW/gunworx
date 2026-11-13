@@ -28,6 +28,7 @@ export interface Product {
 
 export const categories = [
   { name: 'All', slug: 'all' },
+  { name: 'Optics & Cases', slug: 'optics-cases' },
   { name: 'Rests & Front Tops', slug: 'rests-tops' },
   { name: 'Tools & Accessories', slug: 'tools-parts' },
 ];
