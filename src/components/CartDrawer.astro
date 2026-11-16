@@ -640,6 +640,12 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
 </script>
 
 <style is:global>
+  /* Flex layouts must not override sections hidden by the cart renderer. */
+  .wc-drawer [hidden],
+  .wc-drawer-backdrop[hidden] {
+    display: none !important;
+  }
+
   .wc-drawer-backdrop {
     position: fixed;
     inset: 0;
