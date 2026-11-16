@@ -27,7 +27,7 @@ const restrictedCodes = noShipStates.map((s) => s.code);
 
 <BaseLayout
   title="Checkout"
-  description="Secure checkout for Cybex Precision Gunworx firearms, benchrest rests, and accessories."
+  description="Place an order with Cybex Precision Gunworx. No payment is collected online. Our team will contact you to confirm shipping and payment."
   noindex={true}
 >
   <div class="page-header">
@@ -39,8 +39,8 @@ const restrictedCodes = noShipStates.map((s) => s.code);
         <span>/</span>
         <span>Checkout</span>
       </div>
-      <h1>Secure Checkout</h1>
-      <p>Encrypted payment processing powered by WooCommerce &amp; Accept.blue.</p>
+      <h1>Checkout</h1>
+      <p>No payment is collected online. After you submit your order, our team will contact you to confirm the details.</p>
     </div>
   </div>
 
@@ -63,16 +63,22 @@ const restrictedCodes = noShipStates.map((s) => s.code);
             <polyline points="20 6 9 17 4 12"/>
           </svg>
         </div>
-        <span class="co-success-tag">Order Confirmed</span>
+        <span class="co-success-tag">Order Received</span>
         <h2>Thank You for Your Order</h2>
-        <p class="co-success-order">
-          Order <strong id="co-order-number">#—</strong> has been received and is being processed.
+        <p class="co-success-lead">
+          Your order has been received. No payment was collected online.
+        </p>
+        <p class="co-success-followup">
+          Our team will contact you at the email and phone number you provided to answer any questions about your purchase and to confirm shipping details and payment.
+        </p>
+        <p class="co-success-order" id="co-order-number-wrap" hidden>
+          Reference <strong id="co-order-number"></strong>. Please keep this for your records and for your FFL dealer.
         </p>
         <div class="co-success-ffl">
           <h3>Next Steps for Firearm Orders (FFL Transfer)</h3>
           <p>
             If your order includes a firearm, please have your receiving FFL dealer email a signed copy of their license to
-            <a href="mailto:Info@CybexInc.com">Info@CybexInc.com</a> referencing your order number, or call us at
+            <a href="mailto:Info@CybexInc.com">Info@CybexInc.com</a>. Include your name and the order reference above, or call us at
             <a href="tel:+14197400456">(419) 740-0456</a>.
           </p>
         </div>
@@ -93,6 +99,7 @@ const restrictedCodes = noShipStates.map((s) => s.code);
               <span class="co-step">1</span>
               <h2>Contact &amp; Billing Information</h2>
             </div>
+            <p class="co-contact-note">Please include your name, email, and phone number. That is how we will reach you about this order.</p>
 
             <div class="co-fields">
               <div class="co-row-2">
@@ -189,7 +196,7 @@ const restrictedCodes = noShipStates.map((s) => s.code);
               <span>Shipping address is the same as billing address</span>
             </label>
 
-            <div class="co-fields" id="shipping_fields_wrap" hidden style="margin-top: var(--space-lg);">
+            <div class="co-fields" id="shipping_fields_wrap" style="margin-top: var(--space-lg);">
               <div class="co-row-2">
                 <div class="co-field">
                   <label for="shipping_first_name">Recipient First Name *</label>
@@ -239,67 +246,22 @@ const restrictedCodes = noShipStates.map((s) => s.code);
             </div>
           </div>
 
-          <!-- 3. Payment (Accept.blue) -->
+          <!-- 3. Payment is arranged after the order is submitted -->
           <div class="co-card">
             <div class="co-card-head">
               <span class="co-step">3</span>
-              <h2>Payment Details</h2>
+              <h2>Payment</h2>
             </div>
 
-            <p class="co-pay-sub">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3ddc84" stroke-width="2">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            <div class="co-pay-note">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
-              256-bit SSL encrypted credit card processing via Accept.blue.
-            </p>
-
-            <div class="co-fields">
-              <div class="co-field">
-                <label for="cc_number">Card Number *</label>
-                <input
-                  type="text"
-                  id="cc_number"
-                  placeholder="•••• •••• •••• ••••"
-                  autocomplete="cc-number"
-                  inputmode="numeric"
-                  maxlength="19"
-                  required
-                />
-              </div>
-
-              <div class="co-row-2">
-                <div class="co-field">
-                  <label for="cc_expiry">Expiration Date (MM/YY) *</label>
-                  <input
-                    type="text"
-                    id="cc_expiry"
-                    placeholder="MM/YY"
-                    autocomplete="cc-exp"
-                    inputmode="numeric"
-                    maxlength="5"
-                    required
-                  />
-                </div>
-                <div class="co-field">
-                  <label for="cc_cvv">Security Code (CVV) *</label>
-                  <input
-                    type="password"
-                    id="cc_cvv"
-                    placeholder="•••"
-                    autocomplete="cc-csc"
-                    inputmode="numeric"
-                    maxlength="4"
-                    required
-                  />
-                </div>
-              </div>
+              <p>No payment is collected online. After you place your order, our team will contact you to answer any questions about your purchase and to confirm shipping details and payment.</p>
             </div>
 
             <button type="submit" class="btn btn-primary co-submit-btn" id="co-submit-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-              </svg>
-              <span id="co-submit-text">Place Order</span>
+              <span id="co-submit-text">Submit Order</span>
             </button>
           </div>
         </div>
@@ -376,15 +338,14 @@ const restrictedCodes = noShipStates.map((s) => s.code);
   const submitText = document.getElementById('co-submit-text');
 
   const shipSameCheck = document.getElementById('ship_same_as_billing');
-  const shipWrap = document.getElementById('shipping_fields_wrap');
   const fflPickupCheck = document.getElementById('ffl_local_pickup');
   const fflDealerFields = document.getElementById('ffl_dealer_fields');
 
-  const ccNumber = document.getElementById('cc_number');
-  const ccExpiry = document.getElementById('cc_expiry');
-  const ccCvv = document.getElementById('cc_cvv');
-
   const restrictedStates = JSON.parse((rootEl && rootEl.dataset.restricted) || '[]');
+  // Same inbox the contact form already uses. WooCommerce checkout cannot
+  // place a paid order without an Accept.blue card token — see submit handler.
+  const ORDER_EMAIL_ENDPOINT = 'https://formspree.io/f/maeerwpn';
+  let submitting = false;
 
   function formatDollars(n) {
     return Number(n || 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -402,30 +363,6 @@ const restrictedCodes = noShipStates.map((s) => s.code);
     }
   }
 
-  // Format card inputs
-  if (ccNumber) {
-    ccNumber.addEventListener('input', () => {
-      const digits = ccNumber.value.replace(/\D/g, '').slice(0, 16);
-      ccNumber.value = digits.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
-    });
-  }
-  if (ccExpiry) {
-    ccExpiry.addEventListener('input', () => {
-      const digits = ccExpiry.value.replace(/\D/g, '').slice(0, 4);
-      ccExpiry.value = digits.length >= 3 ? `${digits.slice(0, 2)}/${digits.slice(2, 4)}` : digits;
-    });
-  }
-  if (ccCvv) {
-    ccCvv.addEventListener('input', () => {
-      ccCvv.value = ccCvv.value.replace(/\D/g, '').slice(0, 4);
-    });
-  }
-
-  if (shipSameCheck && shipWrap) {
-    shipSameCheck.addEventListener('change', () => {
-      shipWrap.hidden = shipSameCheck.checked;
-    });
-  }
   if (fflPickupCheck && fflDealerFields) {
     fflPickupCheck.addEventListener('change', () => {
       fflDealerFields.style.opacity = fflPickupCheck.checked ? '0.5' : '1';
@@ -482,11 +419,188 @@ const restrictedCodes = noShipStates.map((s) => s.code);
     return { billing_address: billing, shipping_address: shipping };
   }
 
+  function makeReference() {
+    const stamp = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+    return `CPG-${stamp}-${rand}`;
+  }
+
+  function formatPostalAddress(addr) {
+    return [
+      [addr.first_name, addr.last_name].filter(Boolean).join(' '),
+      addr.company,
+      addr.address_1,
+      addr.address_2,
+      [addr.city, addr.state, addr.postcode].filter(Boolean).join(', '),
+      addr.country,
+    ].filter(Boolean).join('\n');
+  }
+
+  function formatOrderItems(cart) {
+    const metaMap = window.CPGCart.getItemMeta();
+    const { minorUnit } = window.CPGCart.computeCartDisplayTotals(cart);
+    return (cart.items || []).map((item) => {
+      const m = metaMap[String(item.id)] || {};
+      const name = decodeHtml(item.name);
+      const baseUnit = Number(item.prices?.price || 0) / Math.pow(10, minorUnit);
+      const unitPrice = (m.packagePrice && Number(m.packagePrice) > baseUnit) ? Number(m.packagePrice) : baseUnit;
+      const pkg = m.packageLabel ? `\n    Package: ${decodeHtml(m.packageLabel)}` : '';
+      return `- ${name} × ${item.quantity} — ${formatDollars(unitPrice * item.quantity)}${pkg}`;
+    }).join('\n');
+  }
+
+  function formatOrderTotals(cart) {
+    const { wcSubtotal, packageDelta, minorUnit } = window.CPGCart.computeCartDisplayTotals(cart);
+    const discount = Number(cart?.totals?.total_discount || 0) / Math.pow(10, minorUnit);
+    const tax = Number(cart?.totals?.total_tax || 0) / Math.pow(10, minorUnit);
+    const shipping = Number(cart?.totals?.total_shipping || 0) / Math.pow(10, minorUnit);
+    const grandTotal = (Number(cart?.totals?.total_price || 0) / Math.pow(10, minorUnit)) + packageDelta;
+    const lines = [`Subtotal: ${formatDollars(wcSubtotal)}`];
+    if (packageDelta > 0) lines.push(`Selected rifle package upgrades: ${formatDollars(packageDelta)}`);
+    if (discount > 0) lines.push(`Discount: -${formatDollars(discount)}`);
+    if (shipping > 0) lines.push(`Shipping: ${formatDollars(shipping)}`);
+    lines.push(`Tax: ${formatDollars(tax)}`);
+    lines.push(`Total shown to customer: ${formatDollars(grandTotal)}`);
+    return lines.join('\n');
+  }
+
+  function showOrderReceived(reference) {
+    const orderNumEl = document.getElementById('co-order-number');
+    const orderWrap = document.getElementById('co-order-number-wrap');
+    if (orderNumEl && orderWrap) {
+      if (reference) {
+        orderNumEl.textContent = reference;
+        orderWrap.hidden = false;
+      } else {
+        orderWrap.hidden = true;
+      }
+    }
+    if (formEl) formEl.hidden = true;
+    if (emptyEl) emptyEl.hidden = true;
+    if (successEl) {
+      successEl.hidden = false;
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function entered(id) {
+    return (document.getElementById(id)?.value || '').trim();
+  }
+
+  function shippingAndFflDetails(shipping_address) {
+    const same = !shipSameCheck || shipSameCheck.checked;
+    const localTransfer = !!(fflPickupCheck && fflPickupCheck.checked);
+    return [
+      'Shipping & FFL Transfer Details',
+      'Federal Firearms License (FFL) Notice: All complete firearms and serialized receivers ship only to a licensed FFL dealer. Non-serialized accessories ship directly to your address.',
+      `Transfer at Cybex Precision Gunworx (Toledo, OH) — $25 FFL transfer fee: ${localTransfer ? 'Yes' : 'No'}`,
+      `Receiving FFL Dealer Name: ${entered('ffl_dealer_name')}`,
+      `FFL Phone / Email / License #: ${entered('ffl_dealer_contact')}`,
+      `Shipping address is the same as billing address: ${same ? 'Yes' : 'No'}`,
+      `Recipient First Name: ${entered('shipping_first_name')}`,
+      `Recipient Last Name: ${entered('shipping_last_name')}`,
+      `FFL Business / Company Name: ${entered('shipping_company')}`,
+      `Shipping Street Address: ${entered('shipping_address_1')}`,
+      `Suite / Unit: ${entered('shipping_address_2')}`,
+      `Shipping City: ${entered('shipping_city')}`,
+      `Shipping State: ${entered('shipping_state')}`,
+      `Shipping ZIP Code: ${entered('shipping_postcode')}`,
+      `Order Notes: ${entered('customer_note')}`,
+      '',
+      'Shipping address saved on the order',
+      formatPostalAddress(shipping_address),
+      shipping_address.phone ? `Phone: ${shipping_address.phone}` : '',
+    ].join('\n');
+  }
+
+  async function emailOrderToShop({ billing_address, shipping_address, notes, cart, reference }) {
+    const message = [
+      `Order reference: ${reference}`,
+      '',
+      'No payment was collected online. Please contact this customer to answer any questions about the purchase and to confirm shipping details and payment.',
+      '',
+      'Customer',
+      `Name: ${billing_address.first_name} ${billing_address.last_name}`,
+      `Email: ${billing_address.email}`,
+      `Phone: ${billing_address.phone}`,
+      '',
+      'Billing address',
+      formatPostalAddress(billing_address),
+      '',
+      shippingAndFflDetails(shipping_address),
+      '',
+      'Items',
+      formatOrderItems(cart) || '(none)',
+      '',
+      formatOrderTotals(cart),
+      '',
+      'Notes',
+      notes.join('\n') || '(none)',
+      '',
+      'This order was sent from the website checkout page. It was not charged. WooCommerce is not able to record it without a card payment, because Accept.blue is the only payment method enabled on the store.',
+    ].join('\n');
+
+    const body = new FormData();
+    body.set('_subject', `New order ${reference} from ${billing_address.first_name} ${billing_address.last_name} — payment to be arranged`);
+    body.set('Recipient', 'Info@CybexInc.com');
+    body.set('Form', 'Checkout');
+    body.set('name', `${billing_address.first_name} ${billing_address.last_name}`);
+    body.set('email', billing_address.email);
+    body.set('phone', billing_address.phone);
+    body.set('Order reference', reference);
+    body.set('message', message);
+    body.set('_gotcha', '');
+
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), 20000);
+    try {
+      const res = await fetch(ORDER_EMAIL_ENDPOINT, {
+        method: 'POST',
+        body,
+        headers: { Accept: 'application/json' },
+        signal: controller.signal,
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const msg = (data && data.errors && data.errors.map((err) => err.message).join(', '))
+          || 'Unable to submit your order. Please call (419) 740-0456 or email Info@CybexInc.com.';
+        throw new Error(msg);
+      }
+    } finally {
+      window.clearTimeout(timer);
+    }
+  }
+
+  async function placeOrder({ billing_address, shipping_address, notes, cart }) {
+    // A zero-total cart does not need a payment method, so WooCommerce can
+    // still record the order and email the shop. Every paid cart on this
+    // store currently requires the Accept.blue card gateway.
+    if (cart.needs_payment === false) {
+      const orderResult = await window.CPGCart.submitCheckout({
+        billing_address,
+        shipping_address,
+        customer_note: notes.join('\n'),
+        payment_method: '',
+        payment_data: [],
+      });
+      if (orderResult && orderResult.payment_result && orderResult.payment_result.payment_status === 'failure') {
+        const failMsg = (orderResult.payment_result.payment_details || []).find((d) => d.key === 'errorMessage')?.value;
+        throw new Error(failMsg || 'The order could not be submitted. Please call (419) 740-0456.');
+      }
+      const orderNumber = orderResult.order_number || orderResult.order_id;
+      return orderNumber ? `#${orderNumber}` : '';
+    }
+
+    const reference = makeReference();
+    await emailOrderToShop({ billing_address, shipping_address, notes, cart, reference });
+    return reference;
+  }
+
   function renderCheckoutCart(cart) {
     if (!window.CPGCart) return;
     const items = (cart && Array.isArray(cart.items)) ? cart.items : [];
     if (items.length === 0) {
-      if ( (successEl && !successEl.hidden) ) return;
+      if ((successEl && !successEl.hidden) || submitting) return;
       if (formEl) formEl.hidden = true;
       if (emptyEl) emptyEl.hidden = false;
       return;
@@ -514,7 +628,7 @@ const restrictedCodes = noShipStates.map((s) => s.code);
     }
     if (taxEl) taxEl.textContent = formatDollars(tax);
     if (totalEl) totalEl.textContent = formatDollars(grandTotal);
-    if (submitText) submitText.textContent = `Place Order · ${formatDollars(grandTotal)}`;
+    if (submitText && !submitting) submitText.textContent = `Submit Order · ${formatDollars(grandTotal)}`;
 
     if (itemsEl) {
       itemsEl.innerHTML = items.map((item) => {
@@ -680,19 +794,29 @@ const restrictedCodes = noShipStates.map((s) => s.code);
           return;
         }
 
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(billing_address.email)) {
+          setError('Please enter an email address we can use to contact you.');
+          return;
+        }
+        if (billing_address.phone.replace(/\D/g, '').length < 10) {
+          setError('Please enter a phone number we can use to contact you.');
+          return;
+        }
+        const sameAddress = !shipSameCheck || shipSameCheck.checked;
+        if (!sameAddress && (!shipping_address.first_name || !shipping_address.last_name || !shipping_address.address_1 || !shipping_address.city || !shipping_address.state || !shipping_address.postcode)) {
+          setError('Please complete the shipping address, or use the same address as billing.');
+          return;
+        }
+
         const cart = window.CPGCart.getCart();
+        if (!cart || !Array.isArray(cart.items) || cart.items.length === 0) {
+          setError('Your cart is empty. Add an item before submitting your order.');
+          return;
+        }
         const { hasFirearm } = window.CPGCart.computeCartDisplayTotals(cart);
         const destState = shipping_address.state || billing_address.state;
         if (hasFirearm && restrictedStates.includes(destState)) {
           setError(`We cannot ship firearms to ${destState}. Please review our Restricted States policy.`);
-          return;
-        }
-
-        const num = (ccNumber?.value || '').trim();
-        const exp = (ccExpiry?.value || '').trim();
-        const cvv = (ccCvv?.value || '').trim();
-        if (!num || !exp || !cvv) {
-          setError('Please enter your credit card number, expiration date, and security code.');
           return;
         }
 
@@ -712,63 +836,37 @@ const restrictedCodes = noShipStates.map((s) => s.code);
         }
 
         const metaMap = window.CPGCart.getItemMeta();
-        (cart?.items || []).forEach((item) => {
+        (cart.items || []).forEach((item) => {
           const m = metaMap[String(item.id)];
           if (m && m.packageLabel) {
             notes.push(`${decodeHtml(item.name)} Package: ${m.packageLabel} ($${Number(m.packagePrice || 0).toLocaleString()})`);
           }
         });
+        notes.push('No payment was collected online. Please contact the customer to answer questions and to confirm shipping details and payment.');
 
+        submitting = true;
         submitBtn.disabled = true;
         const prevText = submitText.textContent;
-        submitText.textContent = 'Processing Order…';
+        submitText.textContent = 'Submitting Order…';
 
         try {
-          // 1. Tokenize card via Accept.blue
-          const avsAddress = [billing_address.address_1, billing_address.address_2].filter(Boolean).join(' ').trim().slice(0, 255);
-          const avsZip = billing_address.postcode.slice(0, 50);
-          const tokenData = await window.CPGCart.tokenizeCard({
-            number: num,
-            expiry: exp,
-            cvv: cvv,
-            avs_address: avsAddress,
-            avs_zip: avsZip,
-          });
-
-          // 2. Submit WooCommerce Store API checkout
-          const orderResult = await window.CPGCart.submitCheckout({
+          const reference = await placeOrder({
             billing_address,
             shipping_address,
-            customer_note: notes.join('\n'),
-            payment_method: 'acceptbluev2',
-            payment_data: [
-              { key: 'token', value: String(tokenData.token || '') },
-              { key: 'acceptbluev2-expiry-month', value: String(tokenData.expiry_month || '') },
-              { key: 'acceptbluev2-expiry-year', value: String(tokenData.expiry_year || '') },
-              { key: 'acceptbluev2-last4', value: String(tokenData.last4 || '') },
-              { key: 'acceptbluev2-save-card', value: '0' },
-            ],
+            notes,
+            cart,
           });
-
-          if (orderResult && orderResult.payment_result && orderResult.payment_result.payment_status === 'failure') {
-            const failMsg = (orderResult.payment_result.payment_details || []).find((d) => d.key === 'errorMessage')?.value;
-            throw new Error(failMsg || 'Payment was declined. Please verify your card information.');
-          }
-
-          // Show confirmation screen
-          const orderNumEl = document.getElementById('co-order-number');
-          if (orderNumEl) {
-            orderNumEl.textContent = `#${orderResult.order_number || orderResult.order_id || ''}`;
-          }
-          formEl.hidden = true;
-          if (emptyEl) emptyEl.hidden = true;
-          if (successEl) {
-            successEl.hidden = false;
-            successEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          showOrderReceived(reference);
+          if (cart.needs_payment !== false) {
+            try { await window.CPGCart.clearCart(); } catch (_) {}
           }
         } catch (err) {
-          setError(err.message || 'Unable to process your order. Please verify your details or call (419) 740-0456.');
+          const aborted = err && err.name === 'AbortError';
+          setError(aborted
+            ? 'The order could not be sent. Please try again, or call (419) 740-0456.'
+            : (err.message || 'Unable to submit your order. Please verify your details or call (419) 740-0456.'));
         } finally {
+          submitting = false;
           submitBtn.disabled = false;
           submitText.textContent = prevText;
         }
@@ -929,13 +1027,32 @@ const restrictedCodes = noShipStates.map((s) => s.code);
     accent-color: var(--cpg-accent);
   }
 
-  .co-pay-sub {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
+  .co-contact-note {
+    margin: calc(var(--space-sm) * -1) 0 var(--space-lg);
     color: var(--cpg-silver);
-    margin-bottom: var(--space-md);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .co-pay-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: var(--space-md);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--cpg-border);
+    border-radius: var(--radius-md);
+    color: var(--cpg-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .co-pay-note svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    stroke: var(--cpg-accent);
+  }
+  .co-pay-note p {
+    margin: 0;
   }
 
   .co-submit-btn {
@@ -1159,6 +1276,12 @@ const restrictedCodes = noShipStates.map((s) => s.code);
   .co-success p {
     color: var(--cpg-silver);
     margin: var(--space-md) 0 var(--space-xl);
+  }
+  .co-success p.co-success-lead {
+    margin-bottom: var(--space-sm);
+  }
+  .co-success p.co-success-followup {
+    margin-top: 0;
   }
   .co-empty-actions {
     display: flex;
