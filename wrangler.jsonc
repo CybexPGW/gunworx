@@ -9,5 +9,8 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS"
-  }
+  },
+  // Pull-request builds run `npx wrangler preview`. The block can be empty:
+  // assets and compatibility settings stay at the top level.
+  "previews": {}
 }
