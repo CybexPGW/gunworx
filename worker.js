@@ -2,7 +2,6 @@
  * Cloudflare Worker entrypoint for Cybex Precision Gunworx (Headless WooCommerce).
  *
  * - Proxies `/api/wc/store/*` to `${WC_BACKEND_URL}/wp-json/wc/store/v1/*`
- * - Proxies `/api/wc/tokenize` to `${WC_BACKEND_URL}/?wc-ajax=acceptbluev2_tokenize`
  * - Serves all other requests from Cloudflare Workers Static Assets (`env.ASSETS`).
  */
 export default {
@@ -34,9 +33,7 @@ export default {
       }
 
       let targetUrl;
-      if (url.pathname === '/api/wc/tokenize') {
-        targetUrl = `${backendOrigin}/?wc-ajax=acceptbluev2_tokenize`;
-      } else if (url.pathname.startsWith('/api/wc/store/')) {
+      if (url.pathname.startsWith('/api/wc/store/')) {
         const subPath = url.pathname.slice('/api/wc/store/'.length);
         targetUrl = `${backendOrigin}/wp-json/wc/store/v1/${subPath}${url.search}`;
       } else {

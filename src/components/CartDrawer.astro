@@ -203,36 +203,6 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
     return data;
   }
 
-  async function tokenizeCard(cardPayload) {
-    const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
-    let res;
-    try {
-      res = await fetch('/api/wc/tokenize', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(cardPayload),
-      });
-      if (res.status === 404) {
-        res = await fetch(`${wcOrigin}/?wc-ajax=acceptbluev2_tokenize`, {
-          method: 'POST',
-          headers,
-          body: JSON.stringify(cardPayload),
-        });
-      }
-    } catch (_) {
-      res = await fetch(`${wcOrigin}/?wc-ajax=acceptbluev2_tokenize`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(cardPayload),
-      });
-    }
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok || !data.success) {
-      throw new Error((data && data.data && data.data.message) || 'Card tokenization failed. Please check your card details.');
-    }
-    return data.data;
-  }
-
   let currentCart = null;
   const listeners = new Set();
 
@@ -624,7 +594,6 @@ const wcOrigin = import.meta.env.PUBLIC_WC_URL || 'https://cybexprecisiongunworx
     selectShippingRate,
     applyCoupon,
     removeCoupon,
-    tokenizeCard,
     submitCheckout,
     getItemMeta,
     computeCartDisplayTotals,
