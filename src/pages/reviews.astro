@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { reviews } from '../data/reviews';
+
+const published = [...reviews].sort((a, b) => b.date.localeCompare(a.date));
+const average = published.length
+  ? (published.reduce((sum, review) => sum + review.rating, 0) / published.length).toFixed(1)
+  : null;
+---
+
+<BaseLayout title="Customer Reviews" description="Read customer feedback and share your experience with Cybex Precision Gunworx in Toledo, Ohio.">
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb"><a href="/">Home</a><span>/</span><span>Reviews</span></div>
+      <p class="eyebrow">Your experience matters</p>
+      <h1>Customer <span>Reviews</span></h1>
+      <p>Tell us how we did. Your feedback helps our shop improve and helps other customers know what to expect.</p>
+      <a href="#write-review" class="btn btn-primary review-cta">Write a Review →</a>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="feedback-heading">
+    <div class="container review-layout">
+      <div>
+        <div class="feedback-header">
+          <div><p class="eyebrow">From our customers</p><h2 id="feedback-heading">The word from you</h2></div>
+          {average && <div class="rating-summary"><strong>{average}<small> / 5</small></strong><span>{published.length} {published.length === 1 ? 'review' : 'reviews'}</span></div>}
+        </div>
+        {published.length ? (
+          <div class="review-list">
+            {published.map(review => (
+              <article class="review-card">
+                <div class="review-meta"><span class="stars" role="img" aria-label={`${review.rating} out of 5 stars`}>{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</span><span>{review.category}</span></div>
+                <h3>{review.title}</h3>
+                <p class="review-text">{review.text}</p>
+                <div class="review-author"><strong>{review.name}</strong><time datetime={review.date}>{new Date(`${review.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}</time></div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="empty-reviews">
+            <svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/></svg>
+            <h3>Be the first to share</h3>
+            <p>No reviews have been published on this page yet. Have you worked with our shop? We'd like to hear about your experience.</p>
+            <a href="#write-review">Share your experience →</a>
+          </div>
+        )}
+        <div class="review-note"><h3>Honest feedback is welcome</h3><p>We welcome all ratings. Submissions are reviewed for spam, personal information, and relevance before publication. Your email is never displayed.</p></div>
+        <div class="support-note"><h3>Need a hand with an order?</h3><p>For a question or an issue that needs a response, <a href="/contact/">contact our team</a> or call <a href="tel:+14197400456">(419) 740-0456</a>.</p></div>
+      </div>
+
+      <aside id="write-review" class="review-form-panel" aria-labelledby="write-heading">
+        <p class="eyebrow">Have a moment?</p>
+        <h2 id="write-heading">Share your experience</h2>
+        <p class="form-intro">A few words go a long way. Fields marked * are required.</p>
+        <form id="review-form" class="contact-form" action="https://formspree.io/f/maeerwpn" method="POST">
+          <input type="hidden" name="_subject" value="Customer Review - Cybex Precision Gunworx" />
+          <input type="hidden" name="Form" value="Customer Reviews Page" />
+          <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <fieldset class="rating-field">
+            <legend>Your rating *</legend>
+            <div class="rating-options">
+              {[1, 2, 3, 4, 5].map(value => (
+                <label><input type="radio" name="rating" value={value} required aria-label={`${value} ${value === 1 ? 'star' : 'stars'}`} /><span aria-hidden="true">{value} ★</span></label>
+              ))}
+            </div>
+            <p class="field-help">1 = Poor · 5 = Excellent</p>
+          </fieldset>
+          <div class="form-group"><label for="review-name">Display name *</label><input id="review-name" name="name" type="text" required maxlength="60" placeholder="First name and last initial" autocomplete="nickname" /><p class="field-help">This name may appear with your review.</p></div>
+          <div class="form-group"><label for="review-email">Email *</label><input id="review-email" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="you@example.com" /><p class="field-help">For follow-up only. Never published.</p></div>
+          <div class="form-group"><label for="review-category">What was your experience with? *</label><select id="review-category" name="category" required><option value="">Select an experience</option><option>Customer service</option><option>FFL transfer</option><option>Product quality</option><option>Other</option></select></div>
+          <div class="form-group"><label for="review-title">Review title *</label><input id="review-title" name="title" type="text" required maxlength="120" placeholder="Sum up your experience" /></div>
+          <div class="form-group"><label for="review-message">Your review *</label><textarea id="review-message" name="review" required minlength="10" maxlength="3000" rows="5" placeholder="What went well? What could we improve?"></textarea></div>
+          <label class="review-consent"><input type="checkbox" name="publication_consent" value="I consent to publication of my review, rating, and display name." required /><span>I confirm this is my own experience and agree that my review, rating, and display name may be published. *</span></label>
+          <p class="field-help privacy-note">Please leave out order numbers and other private information. See our <a href="/policies/privacy/">Privacy Policy</a>.</p>
+          <button type="submit" class="btn btn-primary" id="review-submit">Submit Review →</button>
+          <p id="review-status" role="status" aria-live="polite" tabindex="-1"></p>
+          <p id="review-error" role="alert" tabindex="-1"></p>
+          <noscript><p class="field-help">Submitting opens our form provider's confirmation page.</p></noscript>
+        </form>
+      </aside>
+    </div>
+  </section>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>('#review-form');
+    const submit = document.querySelector<HTMLButtonElement>('#review-submit');
+    const status = document.querySelector<HTMLElement>('#review-status');
+    const error = document.querySelector<HTMLElement>('#review-error');
+    if (form && submit && status && error) {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (submit.disabled) return;
+        status.textContent = '';
+        error.textContent = '';
+        submit.disabled = true;
+        submit.textContent = 'Sending…';
+        form.setAttribute('aria-busy', 'true');
+        const controller = new AbortController();
+        const timer = window.setTimeout(() => controller.abort(), 20000);
+        try {
+          const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, signal: controller.signal });
+          if (!response.ok) throw new Error('Submission failed');
+          form.reset();
+          status.textContent = 'Thank you! Your review has been sent to our team for review before publication.';
+          status.focus();
+        } catch {
+          error.textContent = 'We could not confirm your submission. Your entries are still here. Please try again, or email Info@CybexInc.com.';
+          error.focus();
+        } finally {
+          window.clearTimeout(timer);
+          submit.disabled = false;
+          submit.textContent = 'Submit Review →';
+          form.removeAttribute('aria-busy');
+        }
+      });
+    }
+  </script>
+
+  <style>
+    .page-header h1 span { color: var(--cpg-accent); }
+    .eyebrow { color: var(--cpg-accent); font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 12px; }
+    .page-header .eyebrow { color: var(--cpg-accent); }
+    .review-cta { margin-top: 28px; }
+    .review-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: start; }
+    .feedback-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2rem); }
+    .rating-summary { display: flex; flex-direction: column; text-align: right; white-space: nowrap; }
+    .rating-summary strong { color: var(--cpg-white); font-size: 2rem; }
+    .rating-summary small, .rating-summary span { font-size: .8rem; color: var(--cpg-light); }
+    .empty-reviews { padding: 48px 32px; border: 1px dashed var(--cpg-steel); border-radius: var(--radius-md); text-align: center; background: var(--cpg-dark); }
+    .empty-reviews svg { margin: 0 auto 24px; color: var(--cpg-silver); }
+    h3 { font-size: 1.2rem; margin-bottom: 12px; }
+    .empty-reviews p { max-width: 410px; margin: 0 auto 24px; }
+    .empty-reviews a, .support-note a, .privacy-note a { color: var(--cpg-white); text-decoration: underline; text-underline-offset: 4px; }
+    .empty-reviews a { font-weight: 600; }
+    .review-note { border-left: 3px solid var(--cpg-accent); padding: 4px 0 4px 24px; margin-top: 32px; }
+    .review-note p, .support-note p { font-size: .9rem; }
+    .support-note { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--cpg-border); }
+    .review-form-panel { padding: 32px; border: 1px solid var(--cpg-border-hover); border-top: 3px solid var(--cpg-accent); border-radius: var(--radius-md); background: var(--cpg-dark); scroll-margin-top: 140px; }
+    .form-intro { font-size: .85rem; margin: 14px 0 28px; }
+    .rating-field { border: 0; padding: 0; margin: 0 0 24px; min-width: 0; }
+    .rating-field legend { color: var(--cpg-light); font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+    .rating-options { display: flex; gap: 8px; }
+    .rating-options label { flex: 1; position: relative; cursor: pointer; }
+    .rating-options input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; cursor: pointer; }
+    .rating-options span { display: block; text-align: center; border: 1px solid var(--cpg-steel); border-radius: 4px; padding: 12px 4px; color: var(--cpg-light); }
+    .rating-options input:checked + span { color: var(--cpg-white); background: var(--cpg-accent-dark); border-color: var(--cpg-accent); }
+    .rating-options input:focus-visible + span { outline: 2px solid white; outline-offset: 3px; }
+    .field-help { font-size: .75rem; color: var(--cpg-light); line-height: 1.6; margin-top: 8px; }
+    .review-consent { display: flex; gap: 12px; align-items: flex-start; font-size: .8rem; line-height: 1.65; cursor: pointer; }
+    .review-consent input { flex-shrink: 0; width: 18px; height: 18px; margin-top: 3px; accent-color: var(--cpg-accent); }
+    .privacy-note { margin: 16px 0 24px; }
+    #review-submit { width: 100%; justify-content: center; white-space: normal; }
+    #review-submit:disabled { opacity: .65; cursor: wait; }
+    #review-status:empty, #review-error:empty { display: none; }
+    #review-status, #review-error { padding: 16px; margin-top: 20px; border: 1px solid currentColor; border-radius: 4px; font-size: .85rem; }
+    #review-status { color: #87dfaa; }
+    #review-error { color: #ff9ba9; }
+    .honeypot { display: none; }
+    .review-list { display: grid; gap: 20px; }
+    .review-card { background: var(--cpg-dark); border: 1px solid var(--cpg-border-hover); border-radius: 8px; padding: 28px; }
+    .review-meta, .review-author { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: .8rem; }
+    .review-meta { margin-bottom: 16px; }
+    .stars { color: var(--cpg-gold); letter-spacing: 2px; }
+    .review-text { white-space: pre-line; overflow-wrap: anywhere; }
+    .review-card h3 { overflow-wrap: anywhere; }
+    .review-author { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--cpg-border); }
+    .review-author strong { color: var(--cpg-white); }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--cpg-white); outline-offset: 4px; }
+    @media (max-width: 900px) { .review-layout { grid-template-columns: 1fr; gap: 40px; } }
+    @media (max-width: 480px) { .review-form-panel { padding: 24px 18px; } .empty-reviews { padding: 32px 20px; } .rating-options { gap: 6px; } }
+    @media (prefers-reduced-motion: reduce) { :global(html) { scroll-behavior: auto; } .btn { transition: none; } }
+  </style>
+</BaseLayout>

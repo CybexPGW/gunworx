@@ -85,6 +85,12 @@ export const GET: APIRoute = async () => {
       priority: '0.8',
     },
     {
+      loc: `${SITE}/reviews/`,
+      lastmod: buildDate,
+      changefreq: 'weekly',
+      priority: '0.7',
+    },
+    {
       loc: `${SITE}/contact/`,
       lastmod: buildDate,
       changefreq: 'monthly',
