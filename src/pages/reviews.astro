@@ -3,8 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { reviews } from '../data/reviews';
 
 const published = [...reviews].sort((a, b) => b.date.localeCompare(a.date));
-const average = published.length
-  ? (published.reduce((sum, review) => sum + review.rating, 0) / published.length).toFixed(1)
+const ratings = published.flatMap(review => review.rating === undefined ? [] : [review.rating]);
+const average = ratings.length
+  ? (ratings.reduce<number>((sum, rating) => sum + rating, 0) / ratings.length).toFixed(1)
   : null;
 ---
 
@@ -24,13 +25,13 @@ const average = published.length
       <div>
         <div class="feedback-header">
           <div><p class="eyebrow">From our customers</p><h2 id="feedback-heading">The word from you</h2></div>
-          {average && <div class="rating-summary"><strong>{average}<small> / 5</small></strong><span>{published.length} {published.length === 1 ? 'review' : 'reviews'}</span></div>}
+          {average && <div class="rating-summary"><strong>{average}<small> / 5</small></strong><span>{ratings.length} {ratings.length === 1 ? 'rated review' : 'rated reviews'}</span></div>}
         </div>
         {published.length ? (
           <div class="review-list">
             {published.map(review => (
               <article class="review-card">
-                <div class="review-meta"><span class="stars" role="img" aria-label={`${review.rating} out of 5 stars`}>{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</span><span>{review.category}</span></div>
+                <div class="review-meta">{review.rating !== undefined && <span class="stars" role="img" aria-label={`${review.rating} out of 5 stars`}>{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</span>}<span>{review.category}</span></div>
                 <h3>{review.title}</h3>
                 <p class="review-text">{review.text}</p>
                 <div class="review-author"><strong>{review.name}</strong><time datetime={review.date}>{new Date(`${review.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}</time></div>
