@@ -196,7 +196,7 @@ const restrictedCodes = noShipStates.map((s) => s.code);
               <span>Shipping address is the same as billing address</span>
             </label>
 
-            <div class="co-fields" id="shipping_fields_wrap" hidden style="margin-top: var(--space-lg);">
+            <div class="co-fields" id="shipping_fields_wrap" style="margin-top: var(--space-lg);">
               <div class="co-row-2">
                 <div class="co-field">
                   <label for="shipping_first_name">Recipient First Name *</label>
@@ -338,7 +338,6 @@ const restrictedCodes = noShipStates.map((s) => s.code);
   const submitText = document.getElementById('co-submit-text');
 
   const shipSameCheck = document.getElementById('ship_same_as_billing');
-  const shipWrap = document.getElementById('shipping_fields_wrap');
   const fflPickupCheck = document.getElementById('ffl_local_pickup');
   const fflDealerFields = document.getElementById('ffl_dealer_fields');
 
@@ -364,11 +363,6 @@ const restrictedCodes = noShipStates.map((s) => s.code);
     }
   }
 
-  if (shipSameCheck && shipWrap) {
-    shipSameCheck.addEventListener('change', () => {
-      shipWrap.hidden = shipSameCheck.checked;
-    });
-  }
   if (fflPickupCheck && fflDealerFields) {
     fflPickupCheck.addEventListener('change', () => {
       fflDealerFields.style.opacity = fflPickupCheck.checked ? '0.5' : '1';
@@ -489,6 +483,36 @@ const restrictedCodes = noShipStates.map((s) => s.code);
     }
   }
 
+  function entered(id) {
+    return (document.getElementById(id)?.value || '').trim();
+  }
+
+  function shippingAndFflDetails(shipping_address) {
+    const same = !shipSameCheck || shipSameCheck.checked;
+    const localTransfer = !!(fflPickupCheck && fflPickupCheck.checked);
+    return [
+      'Shipping & FFL Transfer Details',
+      'Federal Firearms License (FFL) Notice: All complete firearms and serialized receivers ship only to a licensed FFL dealer. Non-serialized accessories ship directly to your address.',
+      `Transfer at Cybex Precision Gunworx (Toledo, OH) — $25 FFL transfer fee: ${localTransfer ? 'Yes' : 'No'}`,
+      `Receiving FFL Dealer Name: ${entered('ffl_dealer_name')}`,
+      `FFL Phone / Email / License #: ${entered('ffl_dealer_contact')}`,
+      `Shipping address is the same as billing address: ${same ? 'Yes' : 'No'}`,
+      `Recipient First Name: ${entered('shipping_first_name')}`,
+      `Recipient Last Name: ${entered('shipping_last_name')}`,
+      `FFL Business / Company Name: ${entered('shipping_company')}`,
+      `Shipping Street Address: ${entered('shipping_address_1')}`,
+      `Suite / Unit: ${entered('shipping_address_2')}`,
+      `Shipping City: ${entered('shipping_city')}`,
+      `Shipping State: ${entered('shipping_state')}`,
+      `Shipping ZIP Code: ${entered('shipping_postcode')}`,
+      `Order Notes: ${entered('customer_note')}`,
+      '',
+      'Shipping address saved on the order',
+      formatPostalAddress(shipping_address),
+      shipping_address.phone ? `Phone: ${shipping_address.phone}` : '',
+    ].join('\n');
+  }
+
   async function emailOrderToShop({ billing_address, shipping_address, notes, cart, reference }) {
     const message = [
       `Order reference: ${reference}`,
@@ -503,9 +527,7 @@ const restrictedCodes = noShipStates.map((s) => s.code);
       'Billing address',
       formatPostalAddress(billing_address),
       '',
-      'Shipping address',
-      formatPostalAddress(shipping_address),
-      shipping_address.phone ? `Phone: ${shipping_address.phone}` : null,
+      shippingAndFflDetails(shipping_address),
       '',
       'Items',
       formatOrderItems(cart) || '(none)',
@@ -516,7 +538,7 @@ const restrictedCodes = noShipStates.map((s) => s.code);
       notes.join('\n') || '(none)',
       '',
       'This order was sent from the website checkout page. It was not charged. WooCommerce is not able to record it without a card payment, because Accept.blue is the only payment method enabled on the store.',
-    ].filter((line) => line !== null).join('\n');
+    ].join('\n');
 
     const body = new FormData();
     body.set('_subject', `New order ${reference} from ${billing_address.first_name} ${billing_address.last_name} — payment to be arranged`);
@@ -857,11 +879,6 @@ const restrictedCodes = noShipStates.map((s) => s.code);
 </script>
 
 <style>
-  /* Author display values must not override the hidden attribute. */
-  #co-root [hidden] {
-    display: none !important;
-  }
-
   .co-grid {
     display: grid;
     grid-template-columns: 1fr;
