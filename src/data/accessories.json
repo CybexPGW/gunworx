@@ -1,5 +1,75 @@
 [
   {
+    "id": "wc-32223",
+    "wooId": 32223,
+    "name": "TriggerTech Diamond",
+    "slug": "triggertech-diamond",
+    "sku": "TT Dmd",
+    "price": 335.0,
+    "image": "/images/products/triggertech-diamond.webp",
+    "images": [
+      "/images/products/triggertech-diamond.webp"
+    ],
+    "category": "tools-parts",
+    "wooCategory": "accessories",
+    "description": "The TriggerTech Diamond Trigger for Remington 700 cloned action firearms are the best-in-class triggers designed to meet the requirements of leading competitive shooters. Our Diamond Trigger is designed with the help of the K & M Shooting Team and several leading Remington 700 cloned action manufacturers.",
+    "fullDescription": [
+      "The TriggerTech Diamond Trigger for Remington 700 cloned action firearms are the best-in-class triggers designed to meet the requirements of leading competitive shooters. Our Diamond Trigger is designed with the help of the K & M Shooting Team and several leading Remington 700 cloned action manufacturers.",
+      "With TriggerTech’s patented Zero Creep Technology™, shooters have described it as the most consistent and crisp breaking trigger they have ever felt. After feeling the crisp break on the Diamond Trigger you will immediately become aware of the creep that exists in all other triggers. Five of the critical Diamond components are assembled as matched set to enable a true zero-creep break, extremely short overtravel, and offers outstanding reliability.",
+      "The TriggerTech Diamond Triggers are made with hardened 440C stainless steel internal components to ensure corrosion resistance and an extended service life. As Zero Creep Technology™ does not rely on coating, polishing or lubricating the key engagement surfaces, trigger pulls will be more consistent from shot to shot, and after thousands of shots more than you ever thought possible."
+    ],
+    "highlights": [
+      "Pull weight range of <4 oz – 32 oz",
+      "Variable Rate Adjustment Technology",
+      "Available with pro curved trigger lever"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Pull weight range of <4 oz": "32 oz",
+      "Feature 2": "Variable Rate Adjustment Technology",
+      "Feature 3": "Available with pro curved trigger lever"
+    }
+  },
+  {
+    "id": "wc-32221",
+    "wooId": 32221,
+    "name": "Bix’n Andy Competition",
+    "slug": "bixn-andy-competition",
+    "sku": "BnA 700",
+    "price": 540.0,
+    "image": "/images/products/bixn-andy-competition.webp",
+    "images": [
+      "/images/products/bixn-andy-competition.webp"
+    ],
+    "category": "tools-parts",
+    "wooCategory": "accessories",
+    "description": "A single-stage ball trigger with a pull weight adjustable from 30 to 800 grams, about 1 oz to 1.75 lb. This is the benchrest trigger that set records and moved Bix’n Andy to the top of precision shooting. Drop-in fit for Remington 700 footprint actions, including Remington 700 clones.",
+    "fullDescription": [
+      "A single-stage ball trigger with a pull weight adjustable from 30 to 800 grams, about 1 oz to 1.75 lb. This is the benchrest trigger that set records and moved Bix’n Andy to the top of precision shooting. Drop-in fit for Remington 700 footprint actions, including Remington 700 clones.",
+      "What it is for",
+      "Built for benchrest, F-Class, and precision group shooting, where the lightest, cleanest, most consistent trigger break matters. Less force on the trigger means less disturbance to the rifle as the shot breaks, and that shows up on target. The patented ball design is what sets it apart: offset balls held by a retainer bar collapse almost instantly on release, so the trigger lets go with very low reset force and repeats to the gram.",
+      "Who it is for",
+      "Serious benchrest and F-Class competitors chasing the smallest groups. This is the most precise, most adjustable trigger Bix’n Andy makes, with the widest tuning range and the lightest achievable pull in the lineup."
+    ],
+    "highlights": [
+      "Pull weight: 30 to 800 g, adjustable",
+      "Fits: Remington 700, Remington 700 clones",
+      "Safety: none",
+      "Very short lock time; installs without modifying the action",
+      "Gunsmith fitting recommended"
+    ],
+    "inStock": true,
+    "featured": true,
+    "specs": {
+      "Pull weight": "30 to 800 g, adjustable",
+      "Fits": "Remington 700, Remington 700 clones",
+      "Safety": "none",
+      "Feature 4": "Very short lock time; installs without modifying the action",
+      "Feature 5": "Gunsmith fitting recommended"
+    }
+  },
+  {
     "id": "wc-32200",
     "wooId": 32200,
     "name": "Custom Rifle Case",
