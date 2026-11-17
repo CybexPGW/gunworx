@@ -352,13 +352,11 @@
     "usage": "Benchrest",
     "images": [
       "/images/ready-to-ship/trident-eclipse-1.webp",
-      "/images/ready-to-ship/trident-eclipse-2.webp",
-      "/images/ready-to-ship/trident-eclipse-3.webp"
+      "/images/ready-to-ship/trident-eclipse-2.webp"
     ],
     "imageBgs": [
       "linear-gradient(180deg, #cecfd3 0%, #d0d2d6 100%)",
-      "linear-gradient(180deg, #c4c6ca 0%, #d3d2d5 100%)",
-      "linear-gradient(180deg, #d7d9db 0%, #dfe1e3 100%)"
+      "linear-gradient(180deg, #c4c6ca 0%, #d3d2d5 100%)"
     ],
     "scopedInPhoto": true,
     "summary": "A premium .22 LR benchrest rifle engineered for shooters who demand unwavering consistency and exacting precision.",
@@ -398,6 +396,10 @@
           {
             "label": "Manufacturer",
             "value": "MullerWorks"
+          },
+          {
+            "label": "Barrel Smith",
+            "value": "Richard Gorham"
           },
           {
             "label": "Contour (diameter/length)",
@@ -1145,13 +1147,11 @@
     "usage": "Benchrest",
     "images": [
       "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-1.webp",
-      "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-2.webp",
-      "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-3.webp"
+      "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-2.webp"
     ],
     "imageBgs": [
       "linear-gradient(180deg, #bbbcc5 0%, #c0c4ca 100%)",
-      "linear-gradient(180deg, #b8b9bf 0%, #c1c2c9 100%)",
-      "#e5e5e5"
+      "linear-gradient(180deg, #b8b9bf 0%, #c1c2c9 100%)"
     ],
     "scopedInPhoto": true,
     "summary": "Engineered for shooters who measure success in thousandths and live for the center of the target.",
@@ -1193,6 +1193,10 @@
           {
             "label": "Manufacturer",
             "value": "MullerWorks"
+          },
+          {
+            "label": "Barrel Smith",
+            "value": "Richard Gorham"
           },
           {
             "label": "Contour (diameter/length)",
@@ -1478,13 +1482,11 @@
     "usage": "",
     "images": [
       "/images/ready-to-ship/apex-rimfire-precision-2500x-1.webp",
-      "/images/ready-to-ship/apex-rimfire-precision-2500x-2.webp",
-      "/images/ready-to-ship/apex-rimfire-precision-2500x-3.webp"
+      "/images/ready-to-ship/apex-rimfire-precision-2500x-2.webp"
     ],
     "imageBgs": [
       "#c4c6ca",
-      "linear-gradient(180deg, #d6d7db 0%, #f7f6f9 100%)",
-      "linear-gradient(180deg, #d7d9db 0%, #dfe1e3 100%)"
+      "linear-gradient(180deg, #d6d7db 0%, #f7f6f9 100%)"
     ],
     "scopedInPhoto": true,
     "summary": "Born from the discipline of competitive benchrest shooting and shaped by the hands of craftsmen who understand that precision is earned—not claimed—the BR 04-2 is a rimfire rifle built with a singular philosophy: eliminate compromise.",
@@ -1526,6 +1528,10 @@
           {
             "label": "Manufacturer",
             "value": "MullerWorks"
+          },
+          {
+            "label": "Barrel Smith",
+            "value": "Richard Gorham"
           },
           {
             "label": "Contour (diameter/length)",
@@ -1659,13 +1665,11 @@
     "usage": "",
     "images": [
       "/images/ready-to-ship/x-shot-precision-valkyrie-22lr-1.webp",
-      "/images/ready-to-ship/x-shot-precision-valkyrie-22lr-2.webp",
-      "/images/ready-to-ship/x-shot-precision-valkyrie-22lr-3.webp"
+      "/images/ready-to-ship/x-shot-precision-valkyrie-22lr-2.webp"
     ],
     "imageBgs": [
       "linear-gradient(180deg, #e5e5e5 0%, #e7e7e7 100%)",
-      "linear-gradient(180deg, #c8c9d2 0%, #c4c8cd 100%)",
-      "linear-gradient(180deg, #e4e4e4 0%, #e4e4e6 100%)"
+      "linear-gradient(180deg, #c8c9d2 0%, #c4c8cd 100%)"
     ],
     "scopedInPhoto": true,
     "summary": "The BR 04-1 was built with a singular purpose: delivering uncompromising rimfire precision through a carefully engineered blend of performance, craftsmanship, and repeatability.",
@@ -1708,6 +1712,10 @@
           {
             "label": "Manufacturer",
             "value": "MullerWorks"
+          },
+          {
+            "label": "Barrel Smith",
+            "value": "Richard Gorham"
           },
           {
             "label": "Contour (diameter/length)",
