@@ -1,6 +1,7 @@
 ---
 import AgeGate from '../components/AgeGate.astro';
 import CartDrawer from '../components/CartDrawer.astro';
+import { shop, shopAddressLine, shopMapsUrl } from '../data/business';
 import { prop65Text } from '../data/compliance';
 
 interface Props {
@@ -1414,7 +1415,7 @@ const ogImageType = ogImageUrl.endsWith('.png')
         "@type": ["Store", "LocalBusiness"],
         "@id": `${siteUrl}/#business`,
         "name": "Cybex Precision Gunworx",
-        "description": "Hand-built competition-ready rimfire and centerfire precision rifles, Precision Quest Products (PQP) benchrest rests and tools, and $25 FFL transfer services in Toledo, Ohio.",
+        "description": "Hand-built competition-ready rimfire and centerfire precision rifles, Precision Quest Products (PQP) benchrest rests and tools, and $25 FFL transfer services in Monclova, Ohio.",
         "url": siteUrl,
         "logo": {
           "@type": "ImageObject",
@@ -1425,9 +1426,15 @@ const ogImageType = ogImageUrl.endsWith('.png')
         "email": "Info@CybexInc.com",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Toledo",
-          "addressRegion": "OH",
-          "addressCountry": "US"
+          "streetAddress": shop.street,
+          "addressLocality": shop.city,
+          "addressRegion": shop.region,
+          "postalCode": shop.postalCode,
+          "addressCountry": shop.country
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "description": shop.hours
         },
         "areaServed": {
           "@type": "Country",
@@ -1537,7 +1544,11 @@ const ogImageType = ogImageUrl.endsWith('.png')
           </a>
           <p>Custom-built precision firearms crafted with uncompromising quality. Every build is a statement of accuracy and reliability.</p>
           <p style="font-size: 0.85rem; color: var(--cpg-light); margin-top: var(--space-sm);">
-            Toledo, OH &nbsp;·&nbsp; <a href="tel:+14197400456" style="color: var(--cpg-light);">(419) 740-0456</a> &nbsp;·&nbsp; <a href="mailto:Info@CybexInc.com" style="color: var(--cpg-light);">Info@CybexInc.com</a>
+            <a href={shopMapsUrl} style="color: var(--cpg-light);" target="_blank" rel="noopener">{shopAddressLine}</a>
+          </p>
+          <p style="font-size: 0.85rem; color: var(--cpg-light);">{shop.hours}</p>
+          <p style="font-size: 0.85rem; color: var(--cpg-light);">
+            <a href="tel:+14197400456" style="color: var(--cpg-light);">(419) 740-0456</a> &nbsp;·&nbsp; <a href="mailto:Info@CybexInc.com" style="color: var(--cpg-light);">Info@CybexInc.com</a>
           </p>
           <div class="footer-social">
             <a href="https://www.facebook.com/CybexPrecisionGunworx" target="_blank" rel="noopener" aria-label="Facebook">

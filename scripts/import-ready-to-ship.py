@@ -16,6 +16,9 @@ import time
 from pathlib import Path
 from PIL import Image
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from copy_fixes import canonical_slug, fix_copy  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 STORE = "https://cybexprecisiongunworx.com"
 ACCESSORIES_SLUG = "accessories"
@@ -46,7 +49,7 @@ def text(s):
     s = html.unescape(s).replace("\xa0", " ")
     s = re.sub(r"\b(75|90)\s+0\b", r"\1°", s)
     s = re.sub(r"\s+/(RB-[LR]P)", r"/\1", s)
-    return re.sub(r"\s+", " ", s).strip()
+    return fix_copy(re.sub(r"\s+", " ", s).strip())
 
 
 DASH = re.compile(r"\s+[–—-]\s+|\s*[–—]\s*")
@@ -274,7 +277,7 @@ def main():
 
     rifles = []
     for p, code_s, groups_s, packages_s, code_d, groups_d, packages_d, text_code in parsed_rows:
-        slug = p["slug"]
+        slug = canonical_slug(p["slug"])
         mu = p["prices"]["currency_minor_unit"]
         price = int(p["prices"]["price"]) / 10 ** mu if p["prices"]["price"] else 0.0
 

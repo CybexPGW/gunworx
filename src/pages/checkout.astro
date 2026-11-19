@@ -176,7 +176,7 @@ const restrictedCodes = noShipStates.map((s) => s.code);
 
               <label class="co-checkbox">
                 <input type="checkbox" id="ffl_local_pickup" />
-                <span>Transfer at <strong>Cybex Precision Gunworx (Toledo, OH)</strong> — $25 FFL transfer fee</span>
+                <span>Transfer at <strong>Cybex Precision Gunworx (Monclova, OH)</strong> — $25 FFL transfer fee</span>
               </label>
 
               <div class="co-row-2" id="ffl_dealer_fields">
@@ -493,7 +493,7 @@ const restrictedCodes = noShipStates.map((s) => s.code);
     return [
       'Shipping & FFL Transfer Details',
       'Federal Firearms License (FFL) Notice: All complete firearms and serialized receivers ship only to a licensed FFL dealer. Non-serialized accessories ship directly to your address.',
-      `Transfer at Cybex Precision Gunworx (Toledo, OH) — $25 FFL transfer fee: ${localTransfer ? 'Yes' : 'No'}`,
+      `Transfer at Cybex Precision Gunworx (Monclova, OH) — $25 FFL transfer fee: ${localTransfer ? 'Yes' : 'No'}`,
       `Receiving FFL Dealer Name: ${entered('ffl_dealer_name')}`,
       `FFL Phone / Email / License #: ${entered('ffl_dealer_contact')}`,
       `Shipping address is the same as billing address: ${same ? 'Yes' : 'No'}`,
@@ -826,7 +826,7 @@ const restrictedCodes = noShipStates.map((s) => s.code);
         if (userNote) notes.push(userNote);
 
         if (fflPickupCheck && fflPickupCheck.checked) {
-          notes.push('FFL Transfer: Local Transfer at Cybex Precision Gunworx (Toledo, OH - $25 fee)');
+          notes.push('FFL Transfer: Local Transfer at Cybex Precision Gunworx (Monclova, OH - $25 fee)');
         } else {
           const fflName = (document.getElementById('ffl_dealer_name')?.value || '').trim();
           const fflContact = (document.getElementById('ffl_dealer_contact')?.value || '').trim();

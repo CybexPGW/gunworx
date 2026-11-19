@@ -204,7 +204,7 @@
   {
     "id": "wc-32177",
     "wooId": 32177,
-    "name": "NIghtForce ATACR",
+    "name": "NightForce ATACR",
     "slug": "nightforce-atacr",
     "sku": "NF ATACR",
     "price": 2995.0,
@@ -248,11 +248,11 @@
     ],
     "category": "tools-parts",
     "wooCategory": "accessories",
-    "description": "Tube Length – 6″ · Will fit on HoleShot, JNL, and Harrel Tuners · 1-3/8″ x 32 Thread",
+    "description": "Tube Length – 6″ · Will fit on HoleShot, JNL, and Harrell Tuners · 1-3/8″ x 32 Thread",
     "fullDescription": [],
     "highlights": [
       "Tube Length – 6″",
-      "Will fit on HoleShot, JNL, and Harrel Tuners",
+      "Will fit on HoleShot, JNL, and Harrell Tuners",
       "1-3/8″ x 32 Thread",
       "Clear Anodized Aluminum",
       "Tube Weight – 3.4 oz",
@@ -262,7 +262,7 @@
     "featured": true,
     "specs": {
       "Tube Length": "6″",
-      "Feature 2": "Will fit on HoleShot, JNL, and Harrel Tuners",
+      "Feature 2": "Will fit on HoleShot, JNL, and Harrell Tuners",
       "Feature 3": "1-3/8″ x 32 Thread",
       "Feature 4": "Clear Anodized Aluminum",
       "Tube Weight": "3.4 oz",
@@ -282,25 +282,25 @@
     ],
     "category": "tools-parts",
     "wooCategory": "accessories",
-    "description": "Aluminum Tuner Cleaner · Use with 3″ Square Cleaning Patch · Works with PQP, Holeshot, Harrell, and JNL Tuners",
+    "description": "Aluminum Tuner Cleaner · Use with 3″ Square Cleaning Patch · Works with PQP, HoleShot, Harrell, and JNL Tuners",
     "fullDescription": [],
     "highlights": [
       "Aluminum Tuner Cleaner",
       "Use with 3″ Square Cleaning Patch",
-      "Works with PQP, Holeshot, Harrell, and JNL Tuners"
+      "Works with PQP, HoleShot, Harrell, and JNL Tuners"
     ],
     "inStock": true,
     "featured": false,
     "specs": {
       "Feature 1": "Aluminum Tuner Cleaner",
       "Feature 2": "Use with 3″ Square Cleaning Patch",
-      "Feature 3": "Works with PQP, Holeshot, Harrell, and JNL Tuners"
+      "Feature 3": "Works with PQP, HoleShot, Harrell, and JNL Tuners"
     }
   },
   {
     "id": "wc-32044",
     "wooId": 32044,
-    "name": "Precision Tub – Long",
+    "name": "Precision Tube – Long",
     "slug": "precision-tubs-large-small",
     "sku": "BT-L",
     "price": 135.0,
@@ -310,11 +310,11 @@
     ],
     "category": "tools-parts",
     "wooCategory": "accessories",
-    "description": "Tube Length – 8″ · Will fit on HoleShot, JNL, and Harrel Tuners · 1-3/8″ x 32 Thread",
+    "description": "Tube Length – 8″ · Will fit on HoleShot, JNL, and Harrell Tuners · 1-3/8″ x 32 Thread",
     "fullDescription": [],
     "highlights": [
       "Tube Length – 8″",
-      "Will fit on HoleShot, JNL, and Harrel Tuners",
+      "Will fit on HoleShot, JNL, and Harrell Tuners",
       "1-3/8″ x 32 Thread",
       "Clear Anodized Aluminum",
       "Tube Weight – 4.6 oz",
@@ -324,7 +324,7 @@
     "featured": true,
     "specs": {
       "Tube Length": "8″",
-      "Feature 2": "Will fit on HoleShot, JNL, and Harrel Tuners",
+      "Feature 2": "Will fit on HoleShot, JNL, and Harrell Tuners",
       "Feature 3": "1-3/8″ x 32 Thread",
       "Feature 4": "Clear Anodized Aluminum",
       "Tube Weight": "4.6 oz",

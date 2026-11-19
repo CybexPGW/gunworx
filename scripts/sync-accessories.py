@@ -14,6 +14,9 @@ import sys
 import time
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from copy_fixes import canonical_slug, fix_copy  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 STORE = "https://cybexprecisiongunworx.com"
 CATEGORY_SLUG = "accessories"
@@ -37,7 +40,7 @@ def fetch_json(url):
 def clean_text(s):
     s = re.sub(r"<[^>]+>", " ", s or "")
     s = html.unescape(s).replace("\xa0", " ")
-    return re.sub(r"\s+", " ", s).strip()
+    return fix_copy(re.sub(r"\s+", " ", s).strip())
 
 
 def extract_bullets(desc_html):
@@ -88,7 +91,7 @@ def main():
 
     accessories = []
     for p in items:
-        slug = p["slug"]
+        slug = canonical_slug(p["slug"])
         mu = p["prices"]["currency_minor_unit"]
         price = int(p["prices"]["price"]) / (10 ** mu) if p["prices"]["price"] else 0.0
 
