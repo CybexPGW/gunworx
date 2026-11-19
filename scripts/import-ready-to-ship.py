@@ -291,7 +291,9 @@ def main():
             code = img_code
 
         groups = groups_d if groups_d else groups_s
-        packages = packages_d
+        # Package prices are written in the WooCommerce short description.
+        # The long description usually has the spec list and no cost lines.
+        packages = packages_d or packages_s
 
         if packages and price > 0:
             rifle_only = next((pk for pk in packages if pk["label"] == "Rifle Only"), None)

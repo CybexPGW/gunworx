@@ -338,192 +338,6 @@
     ]
   },
   {
-    "id": "rts-trident-eclipse",
-    "wooId": 31934,
-    "sku": "BR 07-2",
-    "code": "BR 07-2",
-    "name": "Trident Eclipse .22lr",
-    "slug": "trident-eclipse",
-    "price": 4525.0,
-    "packages": [],
-    "inStock": true,
-    "platform": "rimfire",
-    "caliber": "22LR",
-    "usage": "Benchrest",
-    "images": [
-      "/images/ready-to-ship/trident-eclipse-1.webp",
-      "/images/ready-to-ship/trident-eclipse-2.webp"
-    ],
-    "imageBgs": [
-      "linear-gradient(180deg, #cecfd3 0%, #d0d2d6 100%)",
-      "linear-gradient(180deg, #c4c6ca 0%, #d3d2d5 100%)"
-    ],
-    "scopedInPhoto": true,
-    "summary": "A premium .22 LR benchrest rifle engineered for shooters who demand unwavering consistency and exacting precision.",
-    "description": [
-      "A premium .22 LR benchrest rifle engineered for shooters who demand unwavering consistency and exacting precision.",
-      "At its heart is a PQP/Trident three-lug action paired with a 24-inch MullerWorks barrel featuring a 1:16 twist and substantial 1.20-to-.920-inch contour for excellent stability. A lockable, anodized-aluminum tuner provides an adjustment range of 0–500 and is threaded to accept additional accessories, allowing the rifle to be carefully tuned to its preferred match ammunition.",
-      "The rifle rests in a low-profile Precision WoodCraft stock finished in a rich Walnut color—an elegant contrast to the rifle’s dark competition hardware.",
-      "A TriggerTech Diamond trigger, adjustable from 4 to 32 ounces, delivers the light, crisp release essential for precision benchrest shooting.",
-      "The scoped configuration is crowned with a Nightforce Benchrest 12–42×56 optic, mounted on a 20-MOA Picatinny rail for exceptional clarity and precise target definition at 50 yards.",
-      "The name “Trident Eclipse” reflects the rifle’s foundation—the formidable PQP/Trident action—while “Eclipse” captures its dark accents, commanding presence, and ability to place shot after shot into one nearly indistinguishable point."
-    ],
-    "specGroups": [
-      {
-        "title": "Action",
-        "items": [
-          {
-            "label": "Manufacturer",
-            "value": "PQP (Dan Killough)"
-          },
-          {
-            "label": "Model",
-            "value": "Trident"
-          },
-          {
-            "label": "Bolt Lug/Angle/Style",
-            "value": "3 Lug/75°/RB-LP"
-          }
-        ]
-      },
-      {
-        "title": "Barrel",
-        "items": [
-          {
-            "label": "Caliber",
-            "value": "22LR"
-          },
-          {
-            "label": "Manufacturer",
-            "value": "MullerWorks"
-          },
-          {
-            "label": "Barrel Smith",
-            "value": "Richard Gorham"
-          },
-          {
-            "label": "Contour (diameter/length)",
-            "value": "1.2”-.905”/24”"
-          },
-          {
-            "label": "Twist",
-            "value": "1:16"
-          },
-          {
-            "label": "Other",
-            "value": "20 MOA Pic Rail"
-          },
-          {
-            "label": "Barrel thread size",
-            "value": "N/A"
-          }
-        ]
-      },
-      {
-        "title": "Tuner",
-        "items": [
-          {
-            "label": null,
-            "value": "Adjustable from 0-500 and lockable"
-          },
-          {
-            "label": null,
-            "value": "Anodized Aluminum"
-          },
-          {
-            "label": null,
-            "value": "Black Numbering"
-          },
-          {
-            "label": null,
-            "value": "Threaded on the end for accessories"
-          }
-        ]
-      },
-      {
-        "title": "Trigger",
-        "items": [
-          {
-            "label": "Manufacturer",
-            "value": "Trigger Tech"
-          },
-          {
-            "label": "Model",
-            "value": "Diamond"
-          },
-          {
-            "label": "Trigger Adjustment Range",
-            "value": "4-32 oz"
-          }
-        ]
-      },
-      {
-        "title": "Chassis/Stock",
-        "items": [
-          {
-            "label": "Manufacturer",
-            "value": "Precision WoodCraft (PWC)"
-          },
-          {
-            "label": "Profile",
-            "value": "Low"
-          },
-          {
-            "label": "Color",
-            "value": "Walnut"
-          }
-        ]
-      },
-      {
-        "title": "Scope – Optional",
-        "items": [
-          {
-            "label": "Manufacturer",
-            "value": "Night Force"
-          },
-          {
-            "label": "Model",
-            "value": "Benchrest"
-          },
-          {
-            "label": "Specs",
-            "value": "12-42×56"
-          },
-          {
-            "label": "Tube",
-            "value": "30mm"
-          },
-          {
-            "label": "Focal Plane",
-            "value": "FF2"
-          },
-          {
-            "label": "Recital",
-            "value": "2DD, Luminated"
-          }
-        ]
-      },
-      {
-        "title": "Primary Usage",
-        "items": [
-          {
-            "label": null,
-            "value": "Benchrest"
-          }
-        ]
-      },
-      {
-        "title": "Case – Optional",
-        "items": [
-          {
-            "label": null,
-            "value": "See Accessories for Custom Case"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "rts-prometheus-blackforge-6-5cm",
     "wooId": 31806,
     "sku": "KB 07-2",
@@ -531,7 +345,20 @@
     "name": "Bronze Prometheus 6.5CM",
     "slug": "prometheus-blackforge-6-5cm",
     "price": 3861.0,
-    "packages": [],
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 3861.0
+      },
+      {
+        "label": "Rifle + Arken Scope",
+        "price": 4317.0
+      },
+      {
+        "label": "Rifle + Scope + Custom Case",
+        "price": 4837.0
+      }
+    ],
     "inStock": true,
     "platform": "centerfire",
     "caliber": "6.5 Creedmoor",
@@ -701,7 +528,20 @@
     "name": "Bronze Reaper .22lr",
     "slug": "bronze-reaper",
     "price": 4400.0,
-    "packages": [],
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 4400.0
+      },
+      {
+        "label": "Rifle + Custom Case",
+        "price": 4488.0
+      },
+      {
+        "label": "Rifle + Scope + Custom Case",
+        "price": 4987.0
+      }
+    ],
     "inStock": true,
     "platform": "rimfire",
     "caliber": "22LR",
@@ -846,7 +686,20 @@
     "name": "Hammerhead Pro Match .223",
     "slug": "green-reaper-gen-ii-precision-forged-long-range-ready",
     "price": 5180.0,
-    "packages": [],
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 5180.0
+      },
+      {
+        "label": "Rifle + Custom Case",
+        "price": 6216.0
+      },
+      {
+        "label": "Rifle + Arken Scope + Custom Case",
+        "price": 6715.0
+      }
+    ],
     "inStock": true,
     "platform": "centerfire",
     "caliber": ".223 REM Bolt Action",
@@ -995,7 +848,20 @@
     "name": "RimX Overwatch .22lr",
     "slug": "rx-03-2a-prairie-ghost",
     "price": 4012.0,
-    "packages": [],
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 4012.0
+      },
+      {
+        "label": "Rifle + Custom Case",
+        "price": 4552.0
+      },
+      {
+        "label": "Rifle + Scope + Custom Case",
+        "price": 4751.0
+      }
+    ],
     "inStock": true,
     "platform": "rimfire",
     "caliber": "22LR",
@@ -1140,7 +1006,20 @@
     "name": "X-Ring Authority .22lr",
     "slug": "pqp-2500x-walnut-precision-elite",
     "price": 4534.0,
-    "packages": [],
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 4534.0
+      },
+      {
+        "label": "Rifle + Custom Case (no scope)",
+        "price": 4996.0
+      },
+      {
+        "label": "Rifle + Arken Scope + Custom Case",
+        "price": 5495.0
+      }
+    ],
     "inStock": true,
     "platform": "rimfire",
     "caliber": "22LR",
@@ -1303,7 +1182,16 @@
     "name": "Prometheus Dominion 6 PPC",
     "slug": "prometheus-dominion-6-ppc-benchrest-rifle",
     "price": 3217.0,
-    "packages": [],
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 3217.0
+      },
+      {
+        "label": "Rifle + Arken Scope",
+        "price": 3970.0
+      }
+    ],
     "inStock": true,
     "platform": "centerfire",
     "caliber": "6mm PPC",
@@ -1468,189 +1356,6 @@
     ]
   },
   {
-    "id": "rts-apex-rimfire-precision-2500x",
-    "wooId": 31384,
-    "sku": "BR 04-2",
-    "code": "BR 04-2",
-    "name": "Apex Rimfire Precision .22lr (RB/RP)",
-    "slug": "apex-rimfire-precision-2500x",
-    "price": 4542.0,
-    "packages": [],
-    "inStock": true,
-    "platform": "rimfire",
-    "caliber": "22LR",
-    "usage": "",
-    "images": [
-      "/images/ready-to-ship/apex-rimfire-precision-2500x-1.webp",
-      "/images/ready-to-ship/apex-rimfire-precision-2500x-2.webp"
-    ],
-    "imageBgs": [
-      "#c4c6ca",
-      "linear-gradient(180deg, #d6d7db 0%, #f7f6f9 100%)"
-    ],
-    "scopedInPhoto": true,
-    "summary": "Born from the discipline of competitive benchrest shooting and shaped by the hands of craftsmen who understand that precision is earned—not claimed—the BR 04-2 is a rimfire rifle built with a singular philosophy: eliminate compromise.",
-    "description": [
-      "Born from the discipline of competitive benchrest shooting and shaped by the hands of craftsmen who understand that precision is earned—not claimed—the BR 04-2 is a rimfire rifle built with a singular philosophy: eliminate compromise.",
-      "At its heart lies the legendary PQP Trident action, conceived by Dan Killough and engineered around a 3-lug, 75-degree bolt geometry that cycles with mechanical authority and remarkable smoothness. The RB-RP configuration delivers a short, efficient throw that feels deliberate and exact—every movement refined for the shooter who measures success in thousandths and single-hole groups.",
-      "The rifle’s foundation of accuracy is its MullerWorks .920 straight contour barrel, chambered in .22LR and tuned with a 1:16 twist to extract the absolute best from premium match ammunition. Heavy, stable, and thermally consistent, the barrel anchors the rifle with the kind of unwavering balance demanded in serious rimfire competition. Paired with an integrated 20 MOA rail, the BR 04-2 transitions effortlessly from tight benchrest aggregates to precision rimfire engagements at extended distance.",
-      "Completing the rifle’s precision-focused architecture is a finely tuned barrel tuner system, engineered to extract the absolute highest level of consistency from match-grade rimfire ammunition. Designed to harmonize barrel vibrations and refine the rifle’s natural frequency during firing, the tuner allows the BR 04-2 to be precisely calibrated to specific ammunition lots and environmental conditions.",
-      "Trigger control is delivered through the exceptional TriggerTech Diamond, adjustable from an impossibly light 4 ounces up to 32 ounces. The break is crisp, instantaneous, and devoid of creep—a trigger that disappears beneath the shooter’s finger, leaving only intent and execution.",
-      "What truly distinguishes the BR 04-2, however, is its marriage of modern precision with traditional artistry. The rifle is seated in a handcrafted Precision WoodCraft walnut stock by Randy Ownes, built specifically for the Trident platform. Rich walnut grain flows through the stock like topographic contour lines, giving the rifle a timeless elegance rarely seen in contemporary precision builds. It is a rifle equally at home on the firing line or displayed as functional craftsmanship.",
-      "Crowning the system is the Arken EP-5 5-25×56, mounted securely in an Area 419 one-piece mount. With its 34mm tube, first focal plane design, illuminated VHR MIL reticle, and repeatable tracking, the optic provides the clarity and confidence necessary for precision shot placement in any condition.",
-      "The BR 04-2 is more than a custom rimfire rifle—it is a statement of intent. A rifle for the shooter who understands that excellence is hidden in the smallest details: chamber alignment, trigger break, bolt timing, stock geometry, and the calm certainty that comes from equipment built without shortcuts."
-    ],
-    "specGroups": [
-      {
-        "title": "Action",
-        "items": [
-          {
-            "label": "Manufacturer",
-            "value": "PQP (Dan Killough)"
-          },
-          {
-            "label": "Model",
-            "value": "Trident"
-          },
-          {
-            "label": "Bolt Lug/Angle/Style",
-            "value": "3/75°/RB-RP"
-          }
-        ]
-      },
-      {
-        "title": "Barrel",
-        "items": [
-          {
-            "label": "Caliber",
-            "value": "22LR"
-          },
-          {
-            "label": "Manufacturer",
-            "value": "MullerWorks"
-          },
-          {
-            "label": "Barrel Smith",
-            "value": "Richard Gorham"
-          },
-          {
-            "label": "Contour (diameter/length)",
-            "value": ".905” Straight"
-          },
-          {
-            "label": "Twist",
-            "value": "1:16"
-          },
-          {
-            "label": "Other",
-            "value": "20 MOA Pic Rail"
-          },
-          {
-            "label": "Barrel thread size",
-            "value": "N/A"
-          }
-        ]
-      },
-      {
-        "title": "Tuner",
-        "items": [
-          {
-            "label": "Holeshot",
-            "value": "(Dan Killough)"
-          },
-          {
-            "label": null,
-            "value": "Adjustable from 0-500 and lockable"
-          },
-          {
-            "label": null,
-            "value": "Anodized Aluminum"
-          },
-          {
-            "label": null,
-            "value": "Black Numbering"
-          },
-          {
-            "label": null,
-            "value": "Threaded on the end for accessories"
-          }
-        ]
-      },
-      {
-        "title": "Trigger",
-        "items": [
-          {
-            "label": "Manufacturer",
-            "value": "Trigger Tech"
-          },
-          {
-            "label": "Model",
-            "value": "Diamond"
-          },
-          {
-            "label": "Trigger Adjustment Range",
-            "value": "4-32 oz"
-          }
-        ]
-      },
-      {
-        "title": "Chassis/Stock",
-        "items": [
-          {
-            "label": "Manufacturer",
-            "value": "Precision WoodCraft (Randy Ownes)"
-          },
-          {
-            "label": "Profile",
-            "value": "Low"
-          },
-          {
-            "label": "Color",
-            "value": "Walnut"
-          }
-        ]
-      },
-      {
-        "title": "Scope – Optional",
-        "items": [
-          {
-            "label": "Manufacturer",
-            "value": "Arken"
-          },
-          {
-            "label": "Model",
-            "value": "EP-5"
-          },
-          {
-            "label": "Specs",
-            "value": "5-25×56"
-          },
-          {
-            "label": "Tube",
-            "value": "34mm"
-          },
-          {
-            "label": "Focal Plane",
-            "value": "FF1"
-          },
-          {
-            "label": "Recital",
-            "value": "VHR, MIL, Luminated"
-          }
-        ]
-      },
-      {
-        "title": "Case – Optional",
-        "items": [
-          {
-            "label": null,
-            "value": "See Accessories for Custom Case"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "rts-x-shot-precision-valkyrie-22lr",
     "wooId": 31380,
     "sku": "BR 04-1",
@@ -1658,7 +1363,20 @@
     "name": "X-Shot Precision Valkyrie .22lr",
     "slug": "x-shot-precision-valkyrie-22lr",
     "price": 4542.0,
-    "packages": [],
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 4542.0
+      },
+      {
+        "label": "Rifle + Custom Case (no scope)",
+        "price": 4833.95
+      },
+      {
+        "label": "Rifle + Arken Scope + Custom Case",
+        "price": 5252.0
+      }
+    ],
     "inStock": true,
     "platform": "rimfire",
     "caliber": "22LR",
@@ -1842,7 +1560,20 @@
     "name": "Hammerhead ELR 6.5 CM",
     "slug": "hammerhead-elr-6-5-creedmoor",
     "price": 6398.0,
-    "packages": [],
+    "packages": [
+      {
+        "label": "Rifle Only",
+        "price": 6398.0
+      },
+      {
+        "label": "Rifle + Custom Case (no scope)",
+        "price": 6699.0
+      },
+      {
+        "label": "Rifle + Arken Scope + Custom Case",
+        "price": 7260.0
+      }
+    ],
     "inStock": true,
     "platform": "centerfire",
     "caliber": "6.5 Creedmoor",
