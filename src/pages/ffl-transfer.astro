@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { shop, shopAddressLine } from '../data/business';
 ---
 
 <BaseLayout
   title="FFL Transfer"
-  description="Cybex Precision Gunworx offers $25 FFL transfers in Toledo, Ohio. Fast processing, easy paperwork. Ship your online firearm purchase to our FFL."
+  description={`Cybex Precision Gunworx offers $25 FFL transfers at ${shopAddressLine}. Hours are ${shop.hours.toLowerCase()}. Fast processing, easy paperwork.`}
 >
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -12,11 +13,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       {
         "@type": "Service",
         "name": "FFL Firearm Transfer Service",
-        "description": "Flat-rate $25 FFL firearm transfer service in Toledo, Ohio including paperwork and NICS background check processing.",
+        "description": `Flat-rate $25 FFL firearm transfer service in ${shop.city}, Ohio including paperwork and NICS background check processing. ${shop.hours}.`,
         "provider": { "@id": "https://cybexprecisiongunworx.com/#business" },
         "areaServed": {
           "@type": "City",
-          "name": "Toledo",
+          "name": shop.city,
           "containedInPlace": { "@type": "State", "name": "Ohio" }
         },
         "offers": {
@@ -91,6 +92,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <h3 style="font-size: 1.2rem; margin-bottom: var(--space-lg); text-align: center;">Transfer Details</h3>
             <table class="specs-table">
               <tbody>
+                <tr><td>Location</td><td>{shopAddressLine}</td></tr>
+                <tr><td>Hours</td><td>{shop.hours}</td></tr>
                 <tr><td>Transfer Fee</td><td style="color: var(--cpg-accent); font-weight: 700; font-size: 1.2rem;">$25.00</td></tr>
                 <tr><td>Processing Time</td><td>Same day (when possible)</td></tr>
                 <tr><td>Required ID</td><td>Valid government-issued photo ID</td></tr>

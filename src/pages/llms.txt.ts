@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { rifles, rifleUrl, fromPrice, formatPrice, keyComponents } from '../data/readyToShip';
 import { products } from '../data/products';
 import { getPosts, postUrl, SITE } from '../data/blog';
+import { shop, shopAddressLine } from '../data/business';
 
 export const GET: APIRoute = async () => {
   const posts = await getPosts();
@@ -31,11 +32,12 @@ export const GET: APIRoute = async () => {
   const lines: string[] = [
     '# Cybex Precision Gunworx',
     '',
-    '> Hand-built precision rimfire and centerfire competition rifles, Precision Quest Products (PQP) benchrest rests and tools, and $25 FFL transfer services in Toledo, Ohio. Every Ready-to-Ship rifle is professionally assembled from proven match-grade components, test-fired, zeroed, and in stock for immediate shipment to a licensed FFL dealer.',
+    '> Hand-built precision rimfire and centerfire competition rifles, Precision Quest Products (PQP) benchrest rests and tools, and $25 FFL transfer services in Monclova, Ohio. Every Ready-to-Ship rifle is professionally assembled from proven match-grade components, test-fired, zeroed, and in stock for immediate shipment to a licensed FFL dealer.',
     '',
     'Cybex Precision Gunworx builds competition-ready bolt-action precision rifles for rimfire benchrest (ARA, IR 50/50), PRS Rimfire & NRL22, centerfire PRS/NRL, 6mm PPC short-range benchrest, F-Class, and long-range / ELR shooting. Builds feature actions and components from Kelbly\'s, BAT Machine Co., PQP / HoleShot Arms (2500X & Trident), Zermatt Arms (RimX), MasterPiece Arms (MPA), Foundation, McMillan, Krieger, Bartlein, MullerWorks, Shilen, Bix\'n Andy, TriggerTech, Arken Optics, and custom-cut Gunfoam cases.',
     '',
-    '- **Location**: Toledo, Ohio, USA',
+    `- **Location**: ${shopAddressLine}, USA`,
+    `- **Hours**: ${shop.hours}`,
     '- **Phone**: (419) 740-0456',
     '- **Email**: Info@CybexInc.com',
     `- **Website**: ${SITE}`,
@@ -48,7 +50,7 @@ export const GET: APIRoute = async () => {
     `- [Shop Benchrest Rests & Accessories](${SITE}/shop/): Precision Quest Products (PQP) mechanical rests, 1-piece rests, front tops, boreguides, action wrenches, and bolt tools.`,
     `- [Rimfire vs. Centerfire Shooter's Guide](${SITE}/guides/rimfire-vs-centerfire/): Comprehensive comparison of priming systems, ammunition, competition disciplines (PRS Rimfire, NRL22, ARA/IR 50/50 Benchrest, Centerfire PRS, 6mm PPC Benchrest, ELR), FAQs, and rifle recommendations.`,
     `- [About Cybex Precision Gunworx](${SITE}/about/): Origin story, system-based build philosophy, component selection, test-firing & zeroing process, and optional Arken scope + custom-cut foam case packages.`,
-    `- [FFL Transfer Service](${SITE}/ffl-transfer/): Flat-rate $25 local FFL transfers in Toledo, Ohio, plus instructions for shipping Cybex rifles to your receiving FFL dealer.`,
+    `- [FFL Transfer Service](${SITE}/ffl-transfer/): Flat-rate $25 local FFL transfers in Monclova, Ohio, plus instructions for shipping Cybex rifles to your receiving FFL dealer.`,
     `- [Contact Us](${SITE}/contact/): Direct builder contact via phone (419) 740-0456, email Info@CybexInc.com, or inquiry form.`,
     '',
     `## Ready-to-Ship Rimfire Rifles (${rimfire.length} In Stock)`,

@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { shop, shopMapsUrl } from '../data/business';
 ---
 
 <BaseLayout
   title="Contact Us"
-  description="Contact Cybex Precision Gunworx. Call (419) 740-0456 or send a general inquiry with your contact details and message."
+  description="Contact Cybex Precision Gunworx at 9540 Airport Hwy, Monclova, OH 43542. Hours are by appointment only. Call (419) 740-0456 or send a general inquiry."
 >
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -67,7 +68,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
             <div>
               <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--cpg-pure-white); text-transform: uppercase; margin-bottom: var(--space-xs);">Location</h4>
-              <p style="color: var(--cpg-silver);">Toledo, Ohio</p>
+              <p style="color: var(--cpg-silver);">
+                <a href={shopMapsUrl} target="_blank" rel="noopener" style="color: var(--cpg-silver);">{shop.street}<br />{shop.city}, {shop.region} {shop.postalCode}</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+            </div>
+            <div>
+              <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--cpg-pure-white); text-transform: uppercase; margin-bottom: var(--space-xs);">Hours</h4>
+              <p style="color: var(--cpg-silver);">{shop.hours}</p>
             </div>
           </div>
 

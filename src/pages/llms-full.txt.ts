@@ -3,6 +3,7 @@ import { rifles, rifleUrl, fromPrice, formatPrice } from '../data/readyToShip';
 import { products, categories } from '../data/products';
 import { disciplines } from '../data/disciplines';
 import { getPosts, postUrl, formatDate, SITE } from '../data/blog';
+import { shop, shopAddressLine } from '../data/business';
 
 export const GET: APIRoute = async () => {
   const posts = await getPosts();
@@ -92,12 +93,13 @@ export const GET: APIRoute = async () => {
   const doc = [
     '# Cybex Precision Gunworx — Complete AI & Search Knowledge Base',
     '',
-    '> Hand-built precision rimfire and centerfire competition rifles, Precision Quest Products (PQP) benchrest rests and maintenance tools, and $25 FFL transfer services based in Toledo, Ohio.',
+    '> Hand-built precision rimfire and centerfire competition rifles, Precision Quest Products (PQP) benchrest rests and maintenance tools, and $25 FFL transfer services based in Monclova, Ohio.',
     '',
     '## Company Profile & Contact Information',
     '',
     '- **Business Name**: Cybex Precision Gunworx',
-    '- **Location**: Toledo, Ohio, United States',
+    `- **Location**: ${shopAddressLine}, United States`,
+    `- **Hours**: ${shop.hours}`,
     '- **Phone**: (419) 740-0456',
     '- **Email**: Info@CybexInc.com',
     `- **Primary Website**: ${SITE}`,
@@ -115,7 +117,7 @@ export const GET: APIRoute = async () => {
     '',
     '## FFL Transfer & Shipping Compliance',
     '',
-    '- **Local FFL Transfers (Toledo, OH)**: Flat-rate $25.00 transfer fee, same-day processing when possible, NICS background check, valid government-issued photo ID required (21+ for handguns, 18+ for long guns). Contact (419) 740-0456 or Info@CybexInc.com for FFL license exchange.',
+    '- **Local FFL Transfers (Monclova, OH)**: Flat-rate $25.00 transfer fee, same-day processing when possible, NICS background check, valid government-issued photo ID required (21+ for handguns, 18+ for long guns). Contact (419) 740-0456 or Info@CybexInc.com for FFL license exchange.',
     '- **Out-of-State / Online Firearm Orders**: All serialized firearms ship exclusively to a licensed Federal Firearms Licensee (FFL). Buyers provide their receiving dealer\'s info at checkout or have their dealer email their FFL copy.',
     '- **Shipping Restrictions**: We do not ship where restrictions apply. All shipment of firearms MUST COMPLY with ATF constraints and state-mandated restrictions.',
     '',
