@@ -4,7 +4,7 @@ description: "Barrel tuners can shrink .22LR groups dramatically. Here's how the
 pubDate: 2026-10-08
 category: Rimfire
 tags: [tuner, rimfire benchrest, accuracy, barrel harmonics]
-heroImage: /images/ready-to-ship/pqp-2500x-walnut-precision-elite-1.webp
+heroImage: /images/ready-to-ship/x-ring-authority-22lr-1.webp
 heroAlt: X-Ring Authority .22 rimfire benchrest rifle with barrel tuner
 rifles: rimfire
 ---

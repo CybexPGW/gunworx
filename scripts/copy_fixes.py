@@ -38,11 +38,18 @@ def fix_copy(value):
     return value
 
 
-def canonical_slug(slug):
-    """Correct the WooCommerce slug typo bronxe-meridian -> bronze-meridian.
+# WooCommerce slugs that should not be used as storefront URLs.
+# The next `npm run sync` rewrites these so the published page slug stays put.
+_SLUGS = {
+    "pqp-2500x-walnut-precision-elite": "x-ring-authority-22lr",
+}
 
-    The store still publishes the Bronze Meridian rifle under a slug that
-    spells bronze as bronxe. Rewriting it here keeps the storefront URL
-    stable after the next `npm run sync`.
+
+def canonical_slug(slug):
+    """Map a WooCommerce product slug to the storefront slug.
+
+    Bronze Meridian is still published as bronxe-meridian. X-Ring Authority
+    is still published under the old pqp-2500x-walnut-precision-elite slug.
     """
-    return (slug or "").replace("bronxe", "bronze")
+    slug = (slug or "").replace("bronxe", "bronze")
+    return _SLUGS.get(slug, slug)

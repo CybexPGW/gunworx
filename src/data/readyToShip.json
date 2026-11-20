@@ -999,12 +999,12 @@
     ]
   },
   {
-    "id": "rts-pqp-2500x-walnut-precision-elite",
+    "id": "rts-x-ring-authority-22lr",
     "wooId": 31655,
     "sku": "BR 05-1",
     "code": "BR 05-1",
     "name": "X-Ring Authority .22lr",
-    "slug": "pqp-2500x-walnut-precision-elite",
+    "slug": "x-ring-authority-22lr",
     "price": 4534.0,
     "packages": [
       {
@@ -1025,8 +1025,8 @@
     "caliber": "22LR",
     "usage": "Benchrest",
     "images": [
-      "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-1.webp",
-      "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-2.webp"
+      "/images/ready-to-ship/x-ring-authority-22lr-1.webp",
+      "/images/ready-to-ship/x-ring-authority-22lr-2.webp"
     ],
     "imageBgs": [
       "#e4e4e4",
