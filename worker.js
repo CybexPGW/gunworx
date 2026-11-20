@@ -2,18 +2,19 @@
  * Cloudflare Worker entrypoint for Cybex Precision Gunworx (Headless WooCommerce).
  *
  * - 301 www.cybexprecisiongunworx.com to the same path on the apex host
- * - 301 the old Bronze Meridian slug to the corrected ready-to-ship URL
+ * - 301 old product slugs to their current ready-to-ship URLs
  * - Proxies `/api/wc/store/*` to `${WC_BACKEND_URL}/wp-json/wc/store/v1/*`
  * - Serves all other requests from Cloudflare Workers Static Assets (`env.ASSETS`).
  */
 
 const APEX_HOST = 'cybexprecisiongunworx.com';
 
-/** Paths the storefront used before the bronxe-meridian slug was corrected. */
+/** Old paths, with or without a trailing slash, permanently redirected. */
 const LEGACY_PATHS = {
   '/ready-to-ship/bronxe-meridian-6-5cm': '/ready-to-ship/bronze-meridian-6-5cm/',
   '/shop/bronxe-meridian': '/ready-to-ship/bronze-meridian-6-5cm/',
   '/shop/bronxe-meridian-6-5cm': '/ready-to-ship/bronze-meridian-6-5cm/',
+  '/ready-to-ship/pqp-2500x-walnut-precision-elite': '/ready-to-ship/x-ring-authority-22lr/',
 };
 
 function normalizePath(pathname) {
