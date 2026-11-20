@@ -1029,10 +1029,10 @@
       "/images/ready-to-ship/pqp-2500x-walnut-precision-elite-2.webp"
     ],
     "imageBgs": [
-      "linear-gradient(180deg, #bbbcc5 0%, #c0c4ca 100%)",
-      "linear-gradient(180deg, #b8b9bf 0%, #c1c2c9 100%)"
+      "#e4e4e4",
+      "#e4e4e4"
     ],
-    "scopedInPhoto": true,
+    "scopedInPhoto": false,
     "summary": "Engineered for shooters who measure success in thousandths and live for the center of the target.",
     "description": [
       "Engineered for shooters who measure success in thousandths and live for the center of the target.",
