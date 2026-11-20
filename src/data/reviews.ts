@@ -23,6 +23,7 @@ export const reviews: CustomerReview[] = [
     date: '2026-11-16',
   },
   {
+    name: 'Thomas S',
     text: `I love the build, it looks great, also had a few positive comments at the range yesterday.
 The Arken scope needed a few minor clicks but after that I was getting some good groups going.
 I shot a couple boxes of Lapua Center-X and am still adjusting the tuner, but overall shot very well out of the box at your tuner setting. (Which by the way is marked with the number 88 on a piece of tape??)
