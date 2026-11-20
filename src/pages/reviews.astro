@@ -2,7 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { reviews } from '../data/reviews';
 
-const published = [...reviews].sort((a, b) => b.date.localeCompare(a.date));
+const published = [...reviews].sort((a, b) => {
+  if (a.date && b.date) return b.date.localeCompare(a.date);
+  if (a.date) return -1;
+  if (b.date) return 1;
+  return 0;
+});
 const ratings = published.flatMap(review => review.rating === undefined ? [] : [review.rating]);
 const average = ratings.length
   ? (ratings.reduce<number>((sum, rating) => sum + rating, 0) / ratings.length).toFixed(1)
@@ -31,10 +36,14 @@ const average = ratings.length
           <div class="review-list">
             {published.map(review => (
               <article class="review-card">
-                <div class="review-meta">{review.rating !== undefined && <span class="stars" role="img" aria-label={`${review.rating} out of 5 stars`}>{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</span>}<span>{review.category}</span></div>
-                <h3>{review.title}</h3>
+                {(review.rating !== undefined || review.category) && (
+                  <div class="review-meta">{review.rating !== undefined && <span class="stars" role="img" aria-label={`${review.rating} out of 5 stars`}>{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</span>}{review.category && <span>{review.category}</span>}</div>
+                )}
+                {review.title && <h3>{review.title}</h3>}
                 <p class="review-text">{review.text}</p>
-                <div class="review-author"><strong>{review.name}</strong><time datetime={review.date}>{new Date(`${review.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}</time></div>
+                {(review.name || review.date) && (
+                  <div class="review-author">{review.name && <strong>{review.name}</strong>}{review.date && <time datetime={review.date}>{new Date(`${review.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}</time>}</div>
+                )}
               </article>
             ))}
           </div>
